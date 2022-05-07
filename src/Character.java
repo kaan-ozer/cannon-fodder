@@ -3,6 +3,7 @@ public abstract class Character {
     private int strength;
     private int vitality;
     private int intelligence;
+    private long hp;
 
     public Character(int strength, int vitality, int intelligence) {
         this.strength = strength;
@@ -40,5 +41,10 @@ public abstract class Character {
 
     public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
+    }
+
+    public void calculateHp(){   //method for calculation of health point
+       hp= Math.round(0.7*getVitality()+0.2*getStrength()+0.1*getIntelligence());
+
     }
 }
