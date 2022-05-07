@@ -1,3 +1,4 @@
+
 public abstract class Character {
 
     private int strength;
@@ -5,7 +6,12 @@ public abstract class Character {
     private int intelligence;
     private long hp;
 
+
+
+
     public Character(int strength, int vitality, int intelligence) {
+
+
         this.strength = strength;
         this.vitality = vitality;
         this.intelligence = intelligence;
