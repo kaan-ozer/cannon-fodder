@@ -1,18 +1,21 @@
-import  java.security.SecureRandom;
- public class Healer extends Character{
-     SecureRandom randomNumber =new SecureRandom();
+import java.security.SecureRandom;
 
-     //constructor for healer, healer is a character, and we used the character's constructor via super.
-    public Healer(int strength,int vitality, int intelligence) {
-        super(strength,vitality,intelligence);
+public class Healer extends Character{
 
-        this.setStrength(3+randomNumber.nextInt(7));  // page 3 of the project instruction (based on table values)
-        this.setVitality(1+randomNumber.nextInt(5));
-        this.setIntelligence(6+randomNumber.nextInt(10));
+    //constructor for healer
+    public Healer(SecureRandom randomNumber) {
+        super(randomNumber);
+        setHp(calculateHp());
     }
 
-    //default constructor
-    public Healer() {
-        super(0,0,0);
+    //it will show the information of the healer
+    public void showInfos() {
+        System.out.println("Character's type is Healer...");
+        System.out.println("Healer's strength is: " + getStrength());
+        System.out.println("Healer's intelligence is: " + getIntelligence());
+        System.out.println("Healer's vitality is: " + getVitality());
+        System.out.println("Healer's hp is: " + getHp());
     }
+
+
 }

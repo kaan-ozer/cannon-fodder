@@ -1,17 +1,19 @@
-import  java.security.SecureRandom;
+import java.security.SecureRandom;
 
 public class Enemy extends  Character{
-    SecureRandom randomNumber =new SecureRandom();
 
-    public Enemy(int strength,int vitality, int intelligence) {
-        super(strength,vitality,intelligence);
-
-        this.setStrength(1+randomNumber.nextInt(5));  // page 3 of the project instruction (based on table values)
-        this.setVitality(1+randomNumber.nextInt(5));
-        this.setIntelligence(1+randomNumber.nextInt(5));
+    //constructor for Enemy
+    public Enemy(SecureRandom randomNumber) {
+        super(randomNumber);
+        setHp(calculateHp());
     }
 
-    public Enemy() {
-        super(0,0,0);
+    //it will show the information of the Enemy
+    public void showInfos() {
+        System.out.println("Character's type is Enemy...");
+        System.out.println("Enemy's strength is: " + getStrength());
+        System.out.println("Enemy's intelligence is: " + getIntelligence());
+        System.out.println("Enemy's vitality is: " + getVitality());
+        System.out.println("Enemy's hp is: " + getHp());
     }
 }

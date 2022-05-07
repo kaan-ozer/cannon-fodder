@@ -1,3 +1,4 @@
+import java.security.SecureRandom;
 
 public abstract class Character {
 
@@ -7,14 +8,13 @@ public abstract class Character {
     private long hp;
 
 
+    public abstract void showInfos();
 
+    public Character(SecureRandom randomNumber) {
 
-    public Character(int strength, int vitality, int intelligence) {
-
-
-        this.strength = strength;
-        this.vitality = vitality;
-        this.intelligence = intelligence;
+        this.setStrength(6+randomNumber.nextInt(10));  // page 3 of the project instruction (based on table values)
+        this.setVitality(3+randomNumber.nextInt(7));
+        this.setIntelligence(1+randomNumber.nextInt(5));
     }
 
     //default constructor
@@ -49,8 +49,19 @@ public abstract class Character {
         this.intelligence = intelligence;
     }
 
-    public void calculateHp(){   //method for calculation of health point
-       hp= Math.round(0.7*getVitality()+0.2*getStrength()+0.1*getIntelligence());
+    // it will calculate and return the hp value which its type is long.
+    public long calculateHp(){   //method for calculation of health point
 
+        hp= Math.round(0.7*getVitality()+0.2*getStrength()+0.1*getIntelligence());
+
+        return hp;
+    }
+
+    public long getHp() {
+        return hp;
+    }
+
+    public void setHp(long hp) {
+        this.hp = hp;
     }
 }
