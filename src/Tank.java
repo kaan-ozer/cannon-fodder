@@ -1,12 +1,14 @@
 import java.security.SecureRandom;
 
 public class Tank extends Character {
-
+/*
     //constructor for Tank
     public Tank(SecureRandom randomNumber) {
         super(randomNumber);
         setHp(calculateHp());
     }
+
+ */
 
     //it will show the information of the Tank
     public void showInfos() {

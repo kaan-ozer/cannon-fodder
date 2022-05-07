@@ -2,9 +2,12 @@ import java.security.SecureRandom;
 
 public class Fighter extends Character{
 
-    public Fighter(SecureRandom randomNumber) {
-        super(randomNumber);
-        setHp(calculateHp());
+    public Fighter(int strength, int vitality, int intelligence) {
+
+        super(strength,
+                vitality,
+                intelligence);
+
     }
 
     //it will show the information of the Fighter
