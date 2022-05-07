@@ -1,12 +1,12 @@
-# SE 116 Project
+# SE 116 Project - CannonFodder
 
 
 #### Participants:
                 
-1. Kaan Özer
-2. Selin Ünal
-3. Kian
-4. Miray Solmaz
+1. KAAN ÖZER
+2. ŞENAY SELİN ÜNAL
+3. KIAN ANSARINEJAD
+4. MİRAY SOLMAZ
                 
 ----
                 
