@@ -3,10 +3,12 @@ import java.security.SecureRandom;
 public class Enemy extends  Character{
 
     //constructor for Enemy
-    public Enemy(SecureRandom randomNumber) {
+    /*public Enemy(SecureRandom randomNumber) {
         super(randomNumber);
         setHp(calculateHp());
     }
+    */
+
 
     //it will show the information of the Enemy
     public void showInfos() {

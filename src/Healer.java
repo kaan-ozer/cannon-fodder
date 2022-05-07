@@ -1,12 +1,12 @@
 import java.security.SecureRandom;
 
 public class Healer extends Character{
-
+/*
     //constructor for healer
     public Healer(SecureRandom randomNumber) {
         super(randomNumber);
         setHp(calculateHp());
-    }
+    }*/
 
     //it will show the information of the healer
     public void showInfos() {
