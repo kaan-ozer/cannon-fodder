@@ -18,5 +18,6 @@ public class Enemy extends  Character{
         System.out.println("Enemy's vitality is: " + getVitality());
         System.out.println("Enemy's hp is: " + getHp());
         /*sdfg*/
+        /*dfghj*/
     }
 }
