@@ -1,4 +1,5 @@
 import java.security.SecureRandom;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -6,9 +7,21 @@ public class Main {
 
         SecureRandom randomNumber = new SecureRandom();
 
-        Character fighter1 = new Fighter(6+randomNumber.nextInt(10),6+randomNumber.nextInt(10),6+randomNumber.nextInt(10) );
+       Fighter fighter1 = new Fighter(randomNumber);
+       Healer healer1 = new Healer(randomNumber);
+       Tank tank1 = new Tank(randomNumber);
 
-        fighter1.showInfos();
+        ArrayList<Character> characters = new ArrayList<>();
+        characters.add(fighter1);
+        characters.add(healer1);
+        characters.add(tank1);
+
+
+        System.out.println("----------------------------------");
+        for(Character character : characters) {
+            character.showInfos();
+            System.out.println("----------------------------------");
+        }
 
 
 

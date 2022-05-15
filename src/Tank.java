@@ -1,14 +1,28 @@
 import java.security.SecureRandom;
 
 public class Tank extends Character {
-/*
+
     //constructor for Tank
     public Tank(SecureRandom randomNumber) {
-        super(randomNumber);
-        setHp(calculateHp());
+        // page 3 of the project instruction (based on table values)
+
+        //str must be between 3-7 for the Healer
+        int strength = 1+randomNumber.nextInt(5);
+        //vitality must be between 6-10 for the Tank
+        int vitality = 6+randomNumber.nextInt(5);
+        //vitality must be between 3-7 for the Tank
+        int intelligence = 3+randomNumber.nextInt(5);
+
+
+        this.setStrength(strength);
+        this.setVitality(vitality);
+        this.setIntelligence(intelligence);
+
+        //set HP
+        this.setHp(calculateHp(strength,vitality,intelligence));
     }
 
- */
+
 
     //it will show the information of the Tank
     public void showInfos() {
