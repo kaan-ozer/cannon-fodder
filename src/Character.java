@@ -1,4 +1,5 @@
 import java.security.SecureRandom;
+import java.util.ArrayList;
 
 public abstract class Character {
 
@@ -6,17 +7,17 @@ public abstract class Character {
     private int vitality;
     private int intelligence;
     private long hp;
+    // each character has an inventory which holds items
+    private ArrayList<Item> inventory = new ArrayList<>();
 
 
     public abstract void showInfos();
 
-    public Character(int strength, int vitality, int intelligence ) {
+    public Character(SecureRandom randomNumber) {
 
-     setStrength(strength);
-     setVitality(vitality);
-     setIntelligence(intelligence);
-
-     setHp(calculateHp(getStrength(),getVitality(),getIntelligence()));
+        this.setStrength(6+randomNumber.nextInt(10));  // page 3 of the project instruction (based on table values)
+        this.setVitality(3+randomNumber.nextInt(7));
+        this.setIntelligence(1+randomNumber.nextInt(5));
     }
 
     //default constructor
@@ -52,9 +53,9 @@ public abstract class Character {
     }
 
     // it will calculate and return the hp value which its type is long.
-    public long calculateHp(int strength, int vitality, int intelligence){   //method for calculation of health point
+    public long calculateHp(int strength,int vitality, int intelligence){   //method for calculation of health point
 
-        hp= Math.round(0.7*strength + 0.2*vitality + 0.1*intelligence);
+        long hp= Math.round(0.7*vitality+0.2*strength+0.1*intelligence);
 
         return hp;
     }
