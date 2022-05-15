@@ -1,9 +1,18 @@
 public class Sword extends Item {
-    private int totalDamage;
+
+    private int defaultSwordDamageValue;
 
     public Sword(String name, int weight,
-             double value,int swordDamage,Character character) {
+             double value,int defaultSwordDamageValue) {
         super(name,weight,value);
-        this.totalDamage = swordDamage * character.getStrength();
+        this.defaultSwordDamageValue = defaultSwordDamageValue;
+    }
+
+    public int getDefaultSwordDamageValue() {
+        return defaultSwordDamageValue;
+    }
+
+    public void setDefaultSwordDamageValue(int defaultSwordDamageValue) {
+        this.defaultSwordDamageValue = defaultSwordDamageValue;
     }
 }
