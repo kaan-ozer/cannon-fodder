@@ -42,7 +42,9 @@ public class Main {
         ArrayList<Character> charactersAreAtBeginning = charactersAreAtBeginning();
 
 
-        for(Character character : charactersAreAtBeginning) {
+
+        System.out.println("----------------------------------");
+        for(Character character : characters) {
             character.showInfos();
             System.out.println("----------------------------------");
         }
