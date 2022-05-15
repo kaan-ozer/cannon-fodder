@@ -14,7 +14,7 @@ public class Fighter extends Character{
         this.setStrength(strength);
         //vitality must be between 3-7 for the fighter
         this.setVitality(vitality);
-        //vitality must be between 1-5 for the fighter
+        //intelligence must be between 1-5 for the fighter
         this.setIntelligence(intelligence);
         //set HP
         this.setHp(calculateHp(strength,vitality,intelligence));
