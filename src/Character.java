@@ -15,9 +15,9 @@ public abstract class Character {
 
     public Character(SecureRandom randomNumber) {
 
-        this.setStrength(6+randomNumber.nextInt(10));  // page 3 of the project instruction (based on table values)
-        this.setVitality(3+randomNumber.nextInt(7));
-        this.setIntelligence(1+randomNumber.nextInt(5));
+        this.setStrength(0);  // page 3 of the project instruction (based on table values)
+        this.setVitality(0);
+        this.setIntelligence(0);
     }
 
     //default constructor
