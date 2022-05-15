@@ -23,6 +23,7 @@ public class Enemy extends  Character{
     }
 
 
+
     //it will show the information of the Enemy
     public void showInfos() {
         System.out.println("Character's type is Enemy...");

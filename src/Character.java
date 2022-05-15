@@ -7,17 +7,45 @@ public abstract class Character {
     private int vitality;
     private int intelligence;
     private long hp;
+    protected  int startOfInterval ; ////////*******  this data member determines the beginning of the "random number " interval
+    protected  int endOfInterval;//////    this data member determines the end  of the "random number " interval.
+    // for example if strength should be a random value between inter val ( x , y ) the rangeFrom data member is x and rangeTo data member will be y
+
+
+
+    public int generateRandomNumber(int startOfInterval,int endOfInterval){ //  this  method makes randomNumbers based on the  intervals of numbers
+        SecureRandom randomNumber=new SecureRandom();
+        int randomValue= startOfInterval+randomNumber.nextInt(endOfInterval);
+        return  randomValue;
+
+
+    }
+
+
+    ////my changes
+
+
+    public int getStartOfInterval() {
+        return startOfInterval;
+    }
+
+    public int getEndOfInterval() {
+        return endOfInterval;
+    }
+
     // each character has an inventory which holds items
     private ArrayList<Item> inventory = new ArrayList<>();
 
 
     public abstract void showInfos();
 
-    public Character(SecureRandom randomNumber) {
 
-        this.setStrength(0);  // page 3 of the project instruction (based on table values)
-        this.setVitality(0);
-        this.setIntelligence(0);
+
+    public Character(int strength,int vitality,int intelligence) {
+
+        this.setStrength(generateRandomNumber(startOfInterval,endOfInterval));  // page 3 of the project instruction (based on table values)
+        this.setVitality(generateRandomNumber(startOfInterval,endOfInterval));
+        this.setIntelligence(generateRandomNumber(startOfInterval,endOfInterval));
     }
 
     //default constructor

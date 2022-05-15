@@ -2,23 +2,16 @@ import java.security.SecureRandom;
 
 public class Fighter extends Character{
 
+    public Fighter(int strength,int vitality,int intelligence ) {
+        super(strength,vitality,intelligence);
+        this.setStrength(generateRandomNumber(6,10));// the method will work like  this
+        this.setIntelligence(generateRandomNumber(1,5));
+        this.setVitality(generateRandomNumber(3,7));
+
+        setHp(calculateHp(getStrength(),getVitality(),getIntelligence()));
+    }// I guess there should be parameters related to "calculate Hp method"  in the above setHp method
 
 
-    public Fighter(SecureRandom randomNumber) {
-    // page 3 of the project instruction (based on table values)
-        int strength = 6+randomNumber.nextInt(5);
-        int vitality = 3+randomNumber.nextInt(5);
-        int intelligence = 1+randomNumber.nextInt(5);
-
-        //str must be between 6-10 for the fighter
-        this.setStrength(strength);
-        //vitality must be between 3-7 for the fighter
-        this.setVitality(vitality);
-        //intelligence must be between 1-5 for the fighter
-        this.setIntelligence(intelligence);
-        //set HP
-        this.setHp(calculateHp(strength,vitality,intelligence));
-    }
 
     //it will show the information of the Fighter
     public void showInfos() {
@@ -28,6 +21,5 @@ public class Fighter extends Character{
         System.out.println("Fighter's vitality is: " + getVitality());
         System.out.println("Fighter's hp is: " + getHp());
     }
-
 
 }

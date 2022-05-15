@@ -39,12 +39,12 @@ public class Main {
 
         SecureRandom randomNumber = new SecureRandom();
 
-        ArrayList<Character> charactersAreAtBeginning = charactersAreAtBeginning();
+        ArrayList<Character> charactersAreAtBeginning2 = charactersAreAtBeginning();
 
 
 
         System.out.println("----------------------------------");
-        for(Character character : characters) {
+        for(Character character : charactersAreAtBeginning2) {
             character.showInfos();
             System.out.println("----------------------------------");
         }
