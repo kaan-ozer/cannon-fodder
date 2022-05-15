@@ -34,7 +34,8 @@ public class Main {
                 + " S: " + fighter1.getStrength()
                 + ", V:" +  fighter1.getVitality()
                 + ", I: " + fighter1.getIntelligence()
-                + ". The HP is :" +  fighter1.getHp());
+                + ". The HP is :" +  fighter1.getHp()
+                + ". The sword's of the fighter: " + fighter1.getInventory().get(0).getName());
 
         System.out.println("healer created with "
                 + " S: " + healer1.getStrength()
@@ -52,6 +53,46 @@ public class Main {
         return charactersAreAtBeginning;
     }
 
+    public static void DisplayItemsInInventory(Character character) {
+
+        if (character.getInventory().size() == 0) {
+            System.out.println();
+            System.out.println("--------------------------------------------------------");
+            System.out.println("There is no any item which assigned to character right now.");
+            System.out.println("--------------------------------------------------------");
+            System.out.println();
+            return;
+        }
+
+        System.out.println();
+        System.out.println("--------------------------------------------------------");
+        System.out.printf("%-17s " , "Item's name");
+        //System.out.printf("%-14s " , "");
+        //System.out.printf("%-10s " , "");
+        System.out.println();
+
+
+        //System.out.printf("%-17s ", character.getInventory().get(0).getName());
+       // System.out.printf("%-14s ", character.getInventory().get(0);
+      //  System.out.printf("%-10s ",
+      //         );
+     //   System.out.println();
+
+        for(int i = 0; i < character.getInventory().size() ; i++) {
+
+
+                System.out.printf("%d. %-17s ", i+1,character.getInventory().get(i).getName());
+               // System.out.printf("%-14s ", );
+               // System.out.printf("%-10s ", );
+                System.out.println();
+
+
+
+        }
+        System.out.println("--------------------------------------------------------");
+        System.out.println();
+    }
+
 
 
 
@@ -60,6 +101,9 @@ public class Main {
 
 
         ArrayList<Character> charactersAreAtBeginning = charactersAreAtBeginning();
+
+        //test for seeing inventory.
+        DisplayItemsInInventory(charactersAreAtBeginning.get(0));
 
         /*
         System.out.println("----------------------------------");
