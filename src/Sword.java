@@ -9,8 +9,8 @@ public class Sword extends Item implements Actions{
     }
 
     public double calculateAttackDamage(Character character) {
-        double attackDamage = getValue() * character.getStrength();
 
+        double attackDamage = getValue() * character.getStrength();
         return attackDamage;
     }
 
