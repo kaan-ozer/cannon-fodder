@@ -3,7 +3,10 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public ArrayList<Enemy> createEnemy(int level,SecureRandom randomNumber) {
+    public static SecureRandom randomNumber = new SecureRandom();
+
+
+    public static ArrayList<Enemy> createEnemy(int level) {
         ArrayList<Enemy> activeEnemies = new ArrayList<>();
         // We are creating enemies according to level via "2'n formula"
         for (int i = 0 ; i < Math.pow(2.0,level) ; i++) {
@@ -14,24 +17,39 @@ public class Main {
         // I obtained an array which was filled with enemies for a specific level.
         return  activeEnemies;
     }
+    public static ArrayList<Character> charactersAreAtBeginning () {
+
+        // I created three characters to start the game
+        Fighter fighter1 = new Fighter(randomNumber);
+        Healer healer1 = new Healer(randomNumber);
+        Tank tank1 = new Tank(randomNumber);
+
+        // I added those characters to an array
+        ArrayList<Character> charactersAreAtBeginning = new ArrayList<>();
+        charactersAreAtBeginning.add(fighter1);
+        charactersAreAtBeginning.add(healer1);
+        charactersAreAtBeginning.add(tank1);
+
+        return charactersAreAtBeginning;
+    }
+
+
 
     public static void main(String[] args) {
 
         SecureRandom randomNumber = new SecureRandom();
 
-       Fighter fighter1 = new Fighter(randomNumber);
-       Healer healer1 = new Healer(randomNumber);
-       Tank tank1 = new Tank(randomNumber);
+        ArrayList<Character> charactersAreAtBeginning = charactersAreAtBeginning();
 
-        ArrayList<Character> characters = new ArrayList<>();
-        characters.add(fighter1);
-        characters.add(healer1);
-        characters.add(tank1);
 
-        for(Character character : characters) {
+        for(Character character : charactersAreAtBeginning) {
             character.showInfos();
             System.out.println("----------------------------------");
         }
+
+        // I am creating the enemies for level 1
+
+        ArrayList<Enemy> level1enemies = createEnemy(1);
 
 
 
