@@ -1,18 +1,22 @@
-public class Sword extends Item {
+import java.util.ArrayList;
 
-    private int defaultSwordDamageValue;
+public class Sword extends Item implements Actions{
+
 
     public Sword(String name, int weight,
-             double value,int defaultSwordDamageValue) {
+             double value) {
         super(name,weight,value);
-        this.defaultSwordDamageValue = defaultSwordDamageValue;
     }
 
-    public int getDefaultSwordDamageValue() {
-        return defaultSwordDamageValue;
+    public double calculateAttackDamage(Character character) {
+
+        double attackDamage = getValue() * character.getStrength();
+        return attackDamage;
     }
 
-    public void setDefaultSwordDamageValue(int defaultSwordDamageValue) {
-        this.defaultSwordDamageValue = defaultSwordDamageValue;
+    public void attack(ArrayList<Enemy> enemies, ArrayList<Character> characters) {
+
     }
+
+
 }

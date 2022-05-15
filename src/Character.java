@@ -7,6 +7,7 @@ public abstract class Character {
     private int vitality;
     private int intelligence;
     private long hp;
+    private Item itemHoldingOnHand;
     // each character has an inventory which holds items
     private ArrayList<Item> inventory = new ArrayList<>();
 
@@ -18,6 +19,7 @@ public abstract class Character {
         this.setStrength(0);  // page 3 of the project instruction (based on table values)
         this.setVitality(0);
         this.setIntelligence(0);
+        this.setItemHoldingOnHand(null);
     }
 
     //default constructor
@@ -27,7 +29,55 @@ public abstract class Character {
         this.intelligence = 0;
     }
 
+    public double calculateYourInventoryWeight() {
+        double totalWeightInInventory =0;
+        for (int i = 0; i < getInventory().size() ; i++) {
+            //if there is an item add its weight to the total weight
+            if (getInventory().get(i) != null) {
+                totalWeightInInventory += getInventory().get(i).getValue();
+            }
+        }
+
+        return totalWeightInInventory;
+    }
+
+    public void addItemToInventory(Character character, Item item) {
+
+        //character try to take an item and we calculate the totalweight.
+        double updatedWeightInInventory = item.weight + calculateYourInventoryWeight();
+
+        //Character cannot carry much more than itself's strength
+        if (updatedWeightInInventory < character.getStrength()) {
+            System.out.println(item.getName() + " added to the inventory.");
+            character.getInventory().add(item);
+        }
+        else {
+            System.out.println("Character cannot carry much more than itself's strength which be " + character.getStrength() );
+            System.out.println("Your inventory's current weight is: " + calculateYourInventoryWeight());
+        }
+
+    }
+
+
     //getter and setters
+
+
+    public Item getItemHoldingOnHand() {
+        return itemHoldingOnHand;
+    }
+
+    public void setItemHoldingOnHand(Item itemHoldingOnHand) {
+        this.itemHoldingOnHand = itemHoldingOnHand;
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(ArrayList<Item> inventory) {
+        this.inventory = inventory;
+    }
+
     public int getStrength() {
         return strength;
     }
