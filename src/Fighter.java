@@ -18,6 +18,9 @@ public class Fighter extends Character{
         this.setIntelligence(intelligence);
         //set HP
         this.setHp(calculateHp(strength,vitality,intelligence));
+        // beginning item
+        Sword shortSword = new Sword("short sword", 2,2);
+        this.setItemHoldingOnHand(shortSword);
     }
 
     //it will show the information of the Fighter

@@ -30,28 +30,58 @@ public class Main {
         charactersAreAtBeginning.add(healer1);
         charactersAreAtBeginning.add(tank1);
 
+        System.out.println("Fighter created with "
+                + " S: " + fighter1.getStrength()
+                + ", V:" +  fighter1.getVitality()
+                + ", I: " + fighter1.getIntelligence()
+                + ". The HP is :" +  fighter1.getHp());
+
+        System.out.println("healer created with "
+                + " S: " + healer1.getStrength()
+                + ", V:" +  healer1.getVitality()
+                + ", I: " + healer1.getIntelligence()
+                + ". The HP is :" +  healer1.getHp());
+
+        System.out.println("tank created with "
+                + " S: " + tank1.getStrength()
+                + ", V:" +  tank1.getVitality()
+                + ", I: " + tank1.getIntelligence()
+                + ". The HP is :" +  tank1.getHp());
+
+
         return charactersAreAtBeginning;
     }
 
 
 
+
+
     public static void main(String[] args) {
 
-        SecureRandom randomNumber = new SecureRandom();
 
         ArrayList<Character> charactersAreAtBeginning = charactersAreAtBeginning();
 
-
-
+        /*
         System.out.println("----------------------------------");
-        for(Character character : characters) {
+        for(Character character : charactersAreAtBeginning) {
             character.showInfos();
             System.out.println("----------------------------------");
         }
+        */
+
 
         // I am creating the enemies for level 1
 
         ArrayList<Enemy> level1enemies = createEnemy(1);
+
+        System.out.println("Welcome to the game....");
+        System.out.println();
+
+
+        System.out.println("You are in level 0....");
+        System.out.println("You have to beat " + Math.pow(2.0,0) + " enemy to move on....");
+
+
 
 
 

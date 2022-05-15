@@ -7,6 +7,7 @@ public abstract class Character {
     private int vitality;
     private int intelligence;
     private long hp;
+    private Item itemHoldingOnHand;
     // each character has an inventory which holds items
     private ArrayList<Item> inventory = new ArrayList<>();
 
@@ -18,6 +19,7 @@ public abstract class Character {
         this.setStrength(0);  // page 3 of the project instruction (based on table values)
         this.setVitality(0);
         this.setIntelligence(0);
+        this.setItemHoldingOnHand(null);
     }
 
     //default constructor
@@ -27,7 +29,26 @@ public abstract class Character {
         this.intelligence = 0;
     }
 
+
     //getter and setters
+
+
+    public Item getItemHoldingOnHand() {
+        return itemHoldingOnHand;
+    }
+
+    public void setItemHoldingOnHand(Item itemHoldingOnHand) {
+        this.itemHoldingOnHand = itemHoldingOnHand;
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(ArrayList<Item> inventory) {
+        this.inventory = inventory;
+    }
+
     public int getStrength() {
         return strength;
     }
