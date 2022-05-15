@@ -18,9 +18,9 @@ public class Fighter extends Character{
         this.setIntelligence(intelligence);
         //set HP
         this.setHp(calculateHp(strength,vitality,intelligence));
-        // beginning item
+        //character will be born with an item which is given at the beginning
         Sword shortSword = new Sword("short sword", 2,2);
-        this.setItemHoldingOnHand(shortSword);
+        addItemToInventory(this,shortSword);
     }
 
     //it will show the information of the Fighter
