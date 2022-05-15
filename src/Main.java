@@ -16,6 +16,8 @@ public class Main {
         characters.add(healer1);
         characters.add(tank1);
 
+
+        System.out.println("----------------------------------");
         for(Character character : characters) {
             character.showInfos();
             System.out.println("----------------------------------");
