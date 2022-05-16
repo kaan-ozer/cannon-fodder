@@ -4,24 +4,21 @@ public class Fighter extends Character{
 
 
 
-    public Fighter(SecureRandom randomNumber) {
-    // page 3 of the project instruction (based on table values)
-        int strength = 6+randomNumber.nextInt(5);
-        int vitality = 3+randomNumber.nextInt(5);
-        int intelligence = 1+randomNumber.nextInt(5);
+    public Fighter(int strength,int vitality,int intelligence) {
 
-        //str must be between 6-10 for the fighter
-        this.setStrength(strength);
-        //vitality must be between 3-7 for the fighter
-        this.setVitality(vitality);
-        //intelligence must be between 1-5 for the fighter
-        this.setIntelligence(intelligence);
-        //set HP
+        // page 3 of the project instruction (based on table values)
+        super(strength,vitality,intelligence);
+        //setHP
         this.setHp(calculateHp(strength,vitality,intelligence));
+        //SetRace
+        setRace("fighter");
+
         //character will be born with an item which is given at the beginning
         Sword shortSword = new Sword("short sword", 2,2);
         addItemToInventory(this,shortSword);
+        setItemHoldingOnHand(shortSword);
     }
+
 
     //it will show the information of the Fighter
     public void showInfos() {
@@ -31,6 +28,7 @@ public class Fighter extends Character{
         System.out.println("Fighter's vitality is: " + getVitality());
         System.out.println("Fighter's hp is: " + getHp());
     }
+
 
 
 }

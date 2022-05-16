@@ -8,18 +8,24 @@ public abstract class Character {
     private int intelligence;
     private long hp;
     private Item itemHoldingOnHand;
+    private boolean doesItLive;
+    private String race;
     // each character has an inventory which holds items
-    private ArrayList<Item> inventory = new ArrayList<>();
+    private ArrayList<Item> inventory;
 
 
     public abstract void showInfos();
 
-    public Character(SecureRandom randomNumber) {
+    public Character(int strength,int vitality,int intelligence) {
 
-        this.setStrength(0);  // page 3 of the project instruction (based on table values)
-        this.setVitality(0);
-        this.setIntelligence(0);
-        this.setItemHoldingOnHand(null);
+        this.strength = strength;  // page 3 of the project instruction (based on table values)
+        this.vitality = vitality;
+        this.intelligence = intelligence;
+        setHp(calculateHp(strength,vitality,intelligence));
+        this.race = null;
+        this.doesItLive = true;
+        this.itemHoldingOnHand = null;
+        this.inventory = new ArrayList<>();
     }
 
     //default constructor
@@ -27,6 +33,12 @@ public abstract class Character {
         this.strength = 0;
         this.vitality = 0;
         this.intelligence = 0;
+        setHp(calculateHp(0,0,0));
+        this.itemHoldingOnHand = null;
+        this.race = null;
+        this.doesItLive = true;
+        this.itemHoldingOnHand = null;
+        this.inventory = new ArrayList<>();
     }
 
     public double calculateYourInventoryWeight() {
@@ -61,6 +73,22 @@ public abstract class Character {
 
     //getter and setters
 
+
+    public String getRace() {
+        return race;
+    }
+
+    public void setRace(String race) {
+        this.race = race;
+    }
+
+    public boolean isDoesItLive() {
+        return doesItLive;
+    }
+
+    public void setDoesItLive(boolean doesItLive) {
+        this.doesItLive = doesItLive;
+    }
 
     public Item getItemHoldingOnHand() {
         return itemHoldingOnHand;
@@ -115,6 +143,13 @@ public abstract class Character {
     }
 
     public void setHp(long hp) {
-        this.hp = hp;
+        if ((getHp() - hp) < 0 ) {
+            System.out.println("Warrior is dead");
+            setDoesItLive(false);
+        }
+        else {
+            this.hp = hp;
+        }
+
     }
 }

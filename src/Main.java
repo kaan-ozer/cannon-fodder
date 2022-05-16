@@ -1,5 +1,6 @@
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
 
@@ -7,10 +8,19 @@ public class Main {
 
 
     public static ArrayList<Enemy> createEnemy(int level) {
+
+        //str must be between 1-5 for the Enemy
+        int strength = 1+randomNumber.nextInt(5);
+        //vitality must be between 1-5 for the Enemy
+        int vitality = 1+randomNumber.nextInt(5);
+        //intelligence must be between 1-5 for the fighter
+        int intelligence = 1+randomNumber.nextInt(5);
+
         ArrayList<Enemy> activeEnemies = new ArrayList<>();
+
         // We are creating enemies according to level via "2'n formula"
         for (int i = 0 ; i < Math.pow(2.0,level) ; i++) {
-            Enemy anEnemy = new Enemy(randomNumber);
+            Enemy anEnemy = new Enemy(strength,vitality,intelligence);
             //then I added those enemies to an array list to prepare enemies for that level, and it will help me to choose enemies easily.
             activeEnemies.add(anEnemy);
         }
@@ -18,26 +28,35 @@ public class Main {
         return  activeEnemies;
     }
     public static ArrayList<Character> charactersAreAtBeginning () {
+        SecureRandom randomNumber = new SecureRandom();
 
-        // I created three characters to start the game
-        Fighter fighter1 = new Fighter(randomNumber);
-        Healer healer1 = new Healer(randomNumber);
-        Tank tank1 = new Tank(randomNumber);
+        //abilities for fighter
+        int strengthForFighter = 6+randomNumber.nextInt(5);
+        int vitalityForFighter = 3+randomNumber.nextInt(5);
+        int intelligenceForFighter = 1+randomNumber.nextInt(5);
+
+
+        // I created the fighter character to start the game
+        Fighter fighter1 = new Fighter(strengthForFighter,vitalityForFighter,intelligenceForFighter);
+
+
+        //Healer healer1 = new Healer(randomNumber);
+        //Tank tank1 = new Tank(randomNumber);
 
         // I added those characters to an array
         ArrayList<Character> charactersAreAtBeginning = new ArrayList<>();
         charactersAreAtBeginning.add(fighter1);
-        charactersAreAtBeginning.add(healer1);
-        charactersAreAtBeginning.add(tank1);
+        //charactersAreAtBeginning.add(healer1);
+        //charactersAreAtBeginning.add(tank1);
 
         System.out.println("Fighter created with "
                 + " S: " + fighter1.getStrength()
                 + ", V:" +  fighter1.getVitality()
                 + ", I: " + fighter1.getIntelligence()
                 + ". The HP is :" +  fighter1.getHp()
-                + ". The sword's of the fighter: " + fighter1.getInventory().get(0).getName());
+                + ". The sword's of the fighter: " + fighter1.getItemHoldingOnHand().getName());
 
-        System.out.println("healer created with "
+    /*   System.out.println("healer created with "
                 + " S: " + healer1.getStrength()
                 + ", V:" +  healer1.getVitality()
                 + ", I: " + healer1.getIntelligence()
@@ -49,10 +68,9 @@ public class Main {
                 + ", I: " + tank1.getIntelligence()
                 + ". The HP is :" +  tank1.getHp());
 
-
+*/
         return charactersAreAtBeginning;
     }
-
     public static void DisplayItemsInInventory(Character character) {
 
         if (character.getInventory().size() == 0) {
@@ -92,12 +110,36 @@ public class Main {
         System.out.println("--------------------------------------------------------");
         System.out.println();
     }
+ 
+    public static <E extends Character> void showAllWarriors(ArrayList<E> warriors) {
 
+
+        System.out.println();
+        System.out.println("--------------------------------------------------------");
+        System.out.printf("%-17s " , "warriors");
+        System.out.println();
+
+        for(int i = 0; i < warriors.size() ; i++) {
+
+
+            System.out.printf("%d. %-17s ", i+1,warriors.get(i).getRace());
+            // System.out.printf("%-14s ", );
+            // System.out.printf("%-10s ", );
+            System.out.println();
+
+
+
+        }
+        System.out.println("--------------------------------------------------------");
+        System.out.println();
+    }
 
 
 
 
     public static void main(String[] args) {
+
+
 
 
         ArrayList<Character> charactersAreAtBeginning = charactersAreAtBeginning();
@@ -115,6 +157,8 @@ public class Main {
 
 
         // I am creating the enemies for level 1
+
+
 
         ArrayList<Enemy> level1enemies = createEnemy(1);
 

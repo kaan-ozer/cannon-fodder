@@ -4,7 +4,7 @@ public interface Actions {
 
     // we need those methods, don't worry about them it is just a reminder for now
 
-    public void attack(ArrayList<Enemy> enemies, ArrayList<Character> characters);
+    public void attack(Enemy chosenEnemy, Character chosenCharacter);
     public double calculateAttackDamage(Character character);
     /*
     public void wield(Item item);

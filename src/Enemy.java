@@ -4,22 +4,20 @@ public class Enemy extends  Character{
 
     //constructor for Enemy
 
-    public Enemy(SecureRandom randomNumber) {
+    public Enemy(int strength,int vitality,int intelligence) {
+
         // page 3 of the project instruction (based on table values)
-
-        //str must be between 1-5 for the Enemy
-        int strength = 1+randomNumber.nextInt(5);
-        //vitality must be between 1-5 for the Enemy
-        int vitality = 1+randomNumber.nextInt(5);
-        //intelligence must be between 1-5 for the fighter
-        int intelligence = 1+randomNumber.nextInt(5);
-
-        this.setStrength(strength);
-        this.setVitality(vitality);
-        this.setIntelligence(intelligence);
-
-        //set HP
+        super(strength,vitality,intelligence);
+        //setHP
         this.setHp(calculateHp(strength,vitality,intelligence));
+        //SetRace
+        setRace("enemy");
+
+        //character will be born with an item which is given at the beginning
+        Sword shortSword = new Sword("short sword", 2,2);
+        addItemToInventory(this,shortSword);
+        setItemHoldingOnHand(shortSword);
+
     }
 
 
