@@ -1,6 +1,6 @@
 import java.security.SecureRandom;
 
-public abstract class Healer extends Character{
+public class Healer extends Character{
 
     public Healer(int strength,int vitality,int intelligence){
         super(strength,vitality,intelligence);

@@ -1,6 +1,6 @@
 import java.security.SecureRandom;
 
-public abstract class Tank extends Character {
+public class Tank extends Character {
 
     public Tank(int strength,int vitality,int intelligence){
         super(strength,vitality,intelligence);

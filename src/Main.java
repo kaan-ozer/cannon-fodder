@@ -27,6 +27,8 @@ public class Main {
         // I obtained an array which was filled with enemies for a specific level.
         return  activeEnemies;
     }
+
+    //done
     public static ArrayList<Character> creatCharacters () {
         SecureRandom randomNumber = new SecureRandom();
 
@@ -35,40 +37,50 @@ public class Main {
         int vitalityForFighter = 3+randomNumber.nextInt(5);
         int intelligenceForFighter = 1+randomNumber.nextInt(5);
 
+        //abilities for Healer
+        int strengthForHealer = 3+randomNumber.nextInt(5);
+        int vitalityForHealer = 1+randomNumber.nextInt(5);
+        int intelligenceForHealer = 6+randomNumber.nextInt(5);
+
+        //abilities for Tank
+        int strengthForTank = 1+randomNumber.nextInt(5);
+        int vitalityForTank = 6+randomNumber.nextInt(5);
+        int intelligenceForTank = 3+randomNumber.nextInt(5);
+
 
         // I created the fighter character to start the game
-        Fighter fighter1 = new Fighter(strengthForFighter,vitalityForFighter,intelligenceForFighter);
+        Fighter fighter = new Fighter(strengthForFighter,vitalityForFighter,intelligenceForFighter);
+        Healer healer = new Healer(strengthForHealer,vitalityForHealer,intelligenceForHealer);
+        Tank tank = new Tank(strengthForTank,vitalityForTank,intelligenceForTank);
 
-
-        //Healer healer1 = new Healer(randomNumber);
         //Tank tank1 = new Tank(randomNumber);
 
         // I added those characters to an array
         ArrayList<Character> charactersAreAtBeginning = new ArrayList<>();
-        charactersAreAtBeginning.add(fighter1);
+        charactersAreAtBeginning.add(fighter);
         //charactersAreAtBeginning.add(healer1);
         //charactersAreAtBeginning.add(tank1);
 
         System.out.println("Fighter created with "
-                + " S: " + fighter1.getStrength()
-                + ", V:" +  fighter1.getVitality()
-                + ", I: " + fighter1.getIntelligence()
-                + ". The HP is :" +  fighter1.getHp()
-                + ". The sword's of the fighter: " + fighter1.getItemHoldingOnHand().getName());
+                + " S: " + fighter.getStrength()
+                + ", V:" +  fighter.getVitality()
+                + ", I: " + fighter.getIntelligence()
+                + ". The HP is :" +  fighter.getHp()
+                + ". The sword's of the fighter: " + fighter.getItemHoldingOnHand().getName());
 
-    /*   System.out.println("healer created with "
-                + " S: " + healer1.getStrength()
-                + ", V:" +  healer1.getVitality()
-                + ", I: " + healer1.getIntelligence()
-                + ". The HP is :" +  healer1.getHp());
+       System.out.println("healer created with "
+                + " S: " + healer.getStrength()
+                + ", V:" +  healer.getVitality()
+                + ", I: " + healer.getIntelligence()
+                + ". The HP is :" +  healer.getHp());
 
         System.out.println("tank created with "
-                + " S: " + tank1.getStrength()
-                + ", V:" +  tank1.getVitality()
-                + ", I: " + tank1.getIntelligence()
-                + ". The HP is :" +  tank1.getHp());
+                + " S: " + tank.getStrength()
+                + ", V:" +  tank.getVitality()
+                + ", I: " + tank.getIntelligence()
+                + ". The HP is :" +  tank.getHp());
 
-*/
+
         return charactersAreAtBeginning;
     }
     public static void showAllEnemies(ArrayList<Enemy> enemies) {
@@ -76,7 +88,7 @@ public class Main {
 
         System.out.println();
         System.out.println("--------------------------------------------------------");
-        System.out.printf("%-17s " , "Enemies:");
+        System.out.printf("%-17s " , "Enemy List:");
         System.out.println();
 
         boolean isThereAnyEnemy = false;
@@ -102,24 +114,6 @@ public class Main {
         System.out.println();
     }
 
-
-  /*
-    public static <E extends Character>  E pick(ArrayList<E> warrior) {
-        System.out.println();
-        System.out.println("--------------------------------------------------------");
-        System.out.println("Choose the order of the warrior you would like to pick: ");
-        int input_content_order= scanner.nextInt();
-        scanner.nextLine();
-
-        int index = input_content_order-1;
-
-        return warrior.get(index);
-    }
-
-
-      Don't check for a while.
-
-   */
 
 
 
