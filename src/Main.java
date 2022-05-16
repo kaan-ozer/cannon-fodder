@@ -137,6 +137,23 @@ public class Main {
         return isThereAnyEnemy;
 
     }
+    public static boolean isThereAnyCharacter(ArrayList<Character> characters) {
+
+        boolean isThereAnyEnemy = false;
+
+        for(int i = 0; i < characters.size() ; i++) {
+
+            if (characters.get(i).isItAlive() == true) {
+
+                isThereAnyEnemy = true;
+
+            }
+        }
+
+        return isThereAnyEnemy;
+
+    }
+
 
 
 
@@ -180,40 +197,47 @@ public class Main {
 
             System.out.println("Fighter has been chosen...");
 
-            System.out.println();
-            showAllEnemies(level1enemies);
-            System.out.println("Please choose the enemy which you want to attack:");
-            int particularEnemyTableIndex = scanner.nextInt();
+            boolean checkForTheLoop = true;
 
-            int index = particularEnemyTableIndex - 1;
 
-            characters.get(0).getItemHoldingOnHand().attack(level1enemies.get(0),characters.get(0));
-
-            if (isThereAnyEnemy(level1enemies) == false) {
+            while (isThereAnyCharacter(characters)) {
 
 
 
-            }
-            else {
-                System.out.println("Enemies turn....");
+                System.out.println();
+                showAllEnemies(level1enemies);
+                System.out.println("Please choose the enemy which you want to attack:");
+                int particularEnemyTableIndex = scanner.nextInt();
 
-                for (int i = 0 ; i < level1enemies.size() ; i++) {
+                int index = particularEnemyTableIndex - 1;
 
-                    if (level1enemies.get(i).isItAlive()) {
+                characters.get(0).getItemHoldingOnHand().attack(level1enemies.get(0), characters.get(0));
 
-                        for (int j = 0 ; j < characters.size() ; j++) {
-                            if (characters.get(j).isItAlive())
-                                level1enemies.get(i).getItemHoldingOnHand().attack(characters.get(0),level1enemies.get(j));
-                        }
-
-
-                    }
+                if (isThereAnyEnemy(level1enemies) == false) {
+                    System.out.println("there is no enmy anymore");
+                    return;
 
                 }
 
+                else {
+                    System.out.println();
+                    System.out.println("Enemies turn....");
+                    System.out.println();
 
+                    for (int i = 0; i < level1enemies.size(); i++) {
+
+                        if (level1enemies.get(i).isItAlive()) {
+
+                            for (int j = 0; j < characters.size(); j++) {
+
+                                if (characters.get(j).isItAlive()) {
+                                    level1enemies.get(i).getItemHoldingOnHand().attack(characters.get(0), level1enemies.get(j));
+                                }
+                            }
+                        }
+                    }
+                }
             }
-
         }
 
         else if(characterDecision == 2) {
