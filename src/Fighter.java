@@ -1,6 +1,6 @@
 import java.security.SecureRandom;
 
-public class Fighter extends Character{
+public  class  Fighter extends Character{
 
 
 
@@ -11,7 +11,7 @@ public class Fighter extends Character{
         //setHP
         this.setHp(calculateHp(strength,vitality,intelligence));
         //SetRace
-        setRace("fighter");
+        setRace("Fighter");
 
         //character will be born with an item which is given at the beginning
         Sword shortSword = new Sword("short sword", 2,2);

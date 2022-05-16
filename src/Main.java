@@ -40,8 +40,8 @@ public class Main {
         Fighter fighter1 = new Fighter(strengthForFighter,vitalityForFighter,intelligenceForFighter);
 
 
-        //Healer healer1 = new Healer(randomNumber);
-        //Tank tank1 = new Tank(randomNumber);
+        Healer healer1 = new Healer(randomNumber);
+        Tank tank1 = new Tank(randomNumber);
 
         // I added those characters to an array
         ArrayList<Character> charactersAreAtBeginning = new ArrayList<>();
@@ -56,7 +56,7 @@ public class Main {
                 + ". The HP is :" +  fighter1.getHp()
                 + ". The sword's of the fighter: " + fighter1.getItemHoldingOnHand().getName());
 
-    /*   System.out.println("healer created with "
+       System.out.println("healer created with "
                 + " S: " + healer1.getStrength()
                 + ", V:" +  healer1.getVitality()
                 + ", I: " + healer1.getIntelligence()
