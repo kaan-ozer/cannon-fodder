@@ -4,13 +4,14 @@ public class Wand extends Item {
         super(name, weight, value);
     }
 
+
     public double calculateAttackDamage(Character character) {
 
         double attackDamage = getValue() * character.getStrength();
         return attackDamage;
     }
 
-    public void attack(Enemy chosenEnemy, Character chosenCharacter) {
+    public void attack(Character chosenEnemy, Character chosenCharacter) {
         System.out.println("You are attacking....");
         System.out.println("you gave " + calculateAttackDamage(chosenCharacter) + "to the enemy");
 
@@ -25,4 +26,6 @@ public class Wand extends Item {
 
 
     }
+
+
 }

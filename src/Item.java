@@ -11,7 +11,7 @@ public abstract class Item {
     }
 
     //kaan'll develop that part
-    public abstract void attack(Enemy chosenEnemy, Character chosenCharacter);
+    public abstract void attack(Character chosenEnemy, Character chosenCharacter);
 
     //getter-setters
     public String getName() {

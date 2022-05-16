@@ -8,6 +8,7 @@ public class Sword extends Item {
         super(name,weight,value);
     }
 
+
     // kaan 'll handle it
     public double calculateAttackDamage(Character character) {
 
@@ -15,7 +16,7 @@ public class Sword extends Item {
         return attackDamage;
     }
 
-    public void attack(Enemy chosenEnemy, Character chosenCharacter) {
+    public void attack(Character chosenEnemy, Character chosenCharacter) {
 
         System.out.println("You are attacking....");
         System.out.println("you gave " + calculateAttackDamage(chosenCharacter) + " damage to the enemy");

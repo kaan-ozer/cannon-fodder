@@ -192,9 +192,26 @@ public class Main {
             if (isThereAnyEnemy(level1enemies) == false) {
 
 
+
             }
             else {
-                
+                System.out.println("Enemies turn....");
+
+                for (int i = 0 ; i < level1enemies.size() ; i++) {
+
+                    if (level1enemies.get(i).isItAlive()) {
+
+                        for (int j = 0 ; j < characters.size() ; j++) {
+                            if (characters.get(j).isItAlive())
+                                level1enemies.get(i).getItemHoldingOnHand().attack(characters.get(0),level1enemies.get(j));
+                        }
+
+
+                    }
+
+                }
+
+
             }
 
         }
