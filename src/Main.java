@@ -1,10 +1,10 @@
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     public static SecureRandom randomNumber = new SecureRandom();
+    public static Scanner scanner = new Scanner(System.in);
 
 
     public static ArrayList<Enemy> createEnemy(int level) {
@@ -27,7 +27,7 @@ public class Main {
         // I obtained an array which was filled with enemies for a specific level.
         return  activeEnemies;
     }
-    public static ArrayList<Character> charactersAreAtBeginning () {
+    public static ArrayList<Character> creatCharacters () {
         SecureRandom randomNumber = new SecureRandom();
 
         //abilities for fighter
@@ -71,46 +71,18 @@ public class Main {
 */
         return charactersAreAtBeginning;
     }
-    public static void DisplayItemsInInventory(Character character) {
-
-        if (character.getInventory().size() == 0) {
-            System.out.println();
-            System.out.println("--------------------------------------------------------");
-            System.out.println("There is no any item which assigned to character right now.");
-            System.out.println("--------------------------------------------------------");
-            System.out.println();
-            return;
-        }
-
+  /*
+    public static <E extends Character>  E pick(ArrayList<E> warrior) {
         System.out.println();
         System.out.println("--------------------------------------------------------");
-        System.out.printf("%-17s " , "Item's name");
-        //System.out.printf("%-14s " , "");
-        //System.out.printf("%-10s " , "");
-        System.out.println();
+        System.out.println("Choose the order of the warrior you would like to pick: ");
+        int input_content_order= scanner.nextInt();
+        scanner.nextLine();
 
+        int index = input_content_order-1;
 
-        //System.out.printf("%-17s ", character.getInventory().get(0).getName());
-       // System.out.printf("%-14s ", character.getInventory().get(0);
-      //  System.out.printf("%-10s ",
-      //         );
-     //   System.out.println();
-
-        for(int i = 0; i < character.getInventory().size() ; i++) {
-
-
-                System.out.printf("%d. %-17s ", i+1,character.getInventory().get(i).getName());
-               // System.out.printf("%-14s ", );
-               // System.out.printf("%-10s ", );
-                System.out.println();
-
-
-
-        }
-        System.out.println("--------------------------------------------------------");
-        System.out.println();
+        return warrior.get(index);
     }
- 
     public static <E extends Character> void showAllWarriors(ArrayList<E> warriors) {
 
 
@@ -134,40 +106,38 @@ public class Main {
         System.out.println();
     }
 
+      Don't check for a while.
+
+   */
 
 
 
     public static void main(String[] args) {
 
+        System.out.println();
+        System.out.println("-------------------------------------");
+        System.out.println("Welcome to Cannon Fodder game....");
+        System.out.println("-------------------------------------");
+        System.out.println();
 
-
-
-        ArrayList<Character> charactersAreAtBeginning = charactersAreAtBeginning();
-
-        //test for seeing inventory.
-        DisplayItemsInInventory(charactersAreAtBeginning.get(0));
-
-        /*
-        System.out.println("----------------------------------");
-        for(Character character : charactersAreAtBeginning) {
-            character.showInfos();
-            System.out.println("----------------------------------");
-        }
-        */
-
-
-        // I am creating the enemies for level 1
-
-
-
-        ArrayList<Enemy> level1enemies = createEnemy(1);
-
-        System.out.println("Welcome to the game....");
+        int currentLevel = 0;
+        ArrayList<Enemy> level1enemies = createEnemy(0);
+        ArrayList<Character> charactersAreAtBeginning = creatCharacters();
         System.out.println();
 
 
-        System.out.println("You are in level 0....");
-        System.out.println("You have to beat " + Math.pow(2.0,0) + " enemy to move on....");
+        System.out.println("Creating Level " + currentLevel + ", with " + (int)Math.pow(2.0,currentLevel)  + " enemy soldier.");
+        System.out.println("Entering Level " +  currentLevel +  " Fighter enters.");
+        System.out.println();
+
+        System.out.println("It is your turn......");
+
+
+
+
+
+
+
 
 
 

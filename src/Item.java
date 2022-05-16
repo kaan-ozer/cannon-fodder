@@ -1,14 +1,19 @@
-public class Item {
+public abstract class Item {
     String name;
     int weight;
     double value;
 
+    //constructor
     public Item(String name, int weight, double value) {
         this.name = name;
         this.weight = weight;
         this.value = value;
     }
 
+    //kaan'll develop that part
+    public abstract void attack(Enemy chosenEnemy, Character chosenCharacter);
+
+    //getter-setters
     public String getName() {
         return name;
     }

@@ -3,12 +3,15 @@ import java.util.ArrayList;
 
 public abstract class Character {
 
+    //we have to add these
     private int strength;
     private int vitality;
     private int intelligence;
     private long hp;
+
+    //extra features
     private Item itemHoldingOnHand;
-    private boolean doesItLive;
+    private boolean isItAlive;
     private String race;
     // each character has an inventory which holds items
     private ArrayList<Item> inventory;
@@ -23,7 +26,7 @@ public abstract class Character {
         this.intelligence = intelligence;
         setHp(calculateHp(strength,vitality,intelligence));
         this.race = null;
-        this.doesItLive = true;
+        this.isItAlive = true;
         this.itemHoldingOnHand = null;
         this.inventory = new ArrayList<>();
     }
@@ -36,9 +39,43 @@ public abstract class Character {
         setHp(calculateHp(0,0,0));
         this.itemHoldingOnHand = null;
         this.race = null;
-        this.doesItLive = true;
+        this.isItAlive = true;
         this.itemHoldingOnHand = null;
         this.inventory = new ArrayList<>();
+    }
+
+    public  void listInventory() {
+
+        if (getInventory().size() == 0) {
+            System.out.println();
+            System.out.println("--------------------------------------------------------");
+            System.out.println("There is no any item which assigned to character right now.");
+            System.out.println("--------------------------------------------------------");
+            System.out.println();
+            return;
+        }
+
+        System.out.println();
+        System.out.println("--------------------------------------------------------");
+        System.out.printf("%-17s " , "Item's name");
+        System.out.printf("%-14s " ,"weight");
+        System.out.printf("%-10s " , "value");
+        System.out.println();
+
+
+        for(int i = 0; i < getInventory().size() ; i++) {
+
+
+            System.out.printf("%d. %-17s ", i+1,getInventory().get(i).getName());
+            System.out.printf("%-14s ", getInventory().get(i).getWeight());
+            System.out.printf("%-10s ", getInventory().get(i).getValue());
+            System.out.println();
+
+
+
+        }
+        System.out.println("--------------------------------------------------------");
+        System.out.println();
     }
 
     public double calculateYourInventoryWeight() {
@@ -60,7 +97,6 @@ public abstract class Character {
 
         //Character cannot carry much more than itself's strength
         if (updatedWeightInInventory < character.getStrength()) {
-            System.out.println(item.getName() + " added to the inventory.");
             character.getInventory().add(item);
         }
         else {
@@ -70,9 +106,25 @@ public abstract class Character {
 
     }
 
+    // it will calculate and return the hp value which its type is long.
+    public long calculateHp(int strength,int vitality, int intelligence){   //method for calculation of health point
+
+        long hp= Math.round(0.7*vitality+0.2*strength+0.1*intelligence);
+
+        return hp;
+    }
+
 
     //getter and setters
 
+
+    public boolean isItAlive() {
+        return isItAlive;
+    }
+
+    public void setItAlive(boolean itAlive) {
+        isItAlive = itAlive;
+    }
 
     public String getRace() {
         return race;
@@ -80,14 +132,6 @@ public abstract class Character {
 
     public void setRace(String race) {
         this.race = race;
-    }
-
-    public boolean isDoesItLive() {
-        return doesItLive;
-    }
-
-    public void setDoesItLive(boolean doesItLive) {
-        this.doesItLive = doesItLive;
     }
 
     public Item getItemHoldingOnHand() {
@@ -130,26 +174,13 @@ public abstract class Character {
         this.intelligence = intelligence;
     }
 
-    // it will calculate and return the hp value which its type is long.
-    public long calculateHp(int strength,int vitality, int intelligence){   //method for calculation of health point
-
-        long hp= Math.round(0.7*vitality+0.2*strength+0.1*intelligence);
-
-        return hp;
-    }
-
     public long getHp() {
         return hp;
     }
 
     public void setHp(long hp) {
-        if ((getHp() - hp) < 0 ) {
-            System.out.println("Warrior is dead");
-            setDoesItLive(false);
-        }
-        else {
+
             this.hp = hp;
-        }
 
     }
 }
