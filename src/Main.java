@@ -113,7 +113,7 @@ public class Main {
                     System.out.println();
                 }
             }
-            
+
             System.out.println("--------------------------------------------------------");
             System.out.println();
         }
@@ -188,6 +188,14 @@ public class Main {
             int index = particularEnemyTableIndex - 1;
 
             characters.get(0).getItemHoldingOnHand().attack(level1enemies.get(0),characters.get(0));
+
+            if (isThereAnyEnemy(level1enemies) == false) {
+
+
+            }
+            else {
+                
+            }
 
         }
 
