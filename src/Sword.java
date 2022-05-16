@@ -34,7 +34,7 @@ public class Sword extends Item {
 
 
 
-        if (chosenEnemy.isItAlive()) {
+        if (chosenEnemy.isItAlive()) {  //why we wrote it here?
             System.out.println("new hp for the " + chosenEnemy.getRace() + " is: " + chosenEnemy.getHp());
         }
 
