@@ -1,5 +1,6 @@
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
 
@@ -7,10 +8,19 @@ public class Main {
 
 
     public static ArrayList<Enemy> createEnemy(int level) {
+
+        //str must be between 1-5 for the Enemy
+        int strength = 1+randomNumber.nextInt(5);
+        //vitality must be between 1-5 for the Enemy
+        int vitality = 1+randomNumber.nextInt(5);
+        //intelligence must be between 1-5 for the fighter
+        int intelligence = 1+randomNumber.nextInt(5);
+
         ArrayList<Enemy> activeEnemies = new ArrayList<>();
+
         // We are creating enemies according to level via "2'n formula"
         for (int i = 0 ; i < Math.pow(2.0,level) ; i++) {
-            Enemy anEnemy = new Enemy(randomNumber);
+            Enemy anEnemy = new Enemy(strength,vitality,intelligence);
             //then I added those enemies to an array list to prepare enemies for that level, and it will help me to choose enemies easily.
             activeEnemies.add(anEnemy);
         }
@@ -100,7 +110,29 @@ public class Main {
         System.out.println("--------------------------------------------------------");
         System.out.println();
     }
+ 
+    public static <E extends Character> void showAllWarriors(ArrayList<E> warriors) {
 
+
+        System.out.println();
+        System.out.println("--------------------------------------------------------");
+        System.out.printf("%-17s " , "warriors");
+        System.out.println();
+
+        for(int i = 0; i < warriors.size() ; i++) {
+
+
+            System.out.printf("%d. %-17s ", i+1,warriors.get(i).getRace());
+            // System.out.printf("%-14s ", );
+            // System.out.printf("%-10s ", );
+            System.out.println();
+
+
+
+        }
+        System.out.println("--------------------------------------------------------");
+        System.out.println();
+    }
 
 
 
@@ -125,6 +157,8 @@ public class Main {
 
 
         // I am creating the enemies for level 1
+
+
 
         ArrayList<Enemy> level1enemies = createEnemy(1);
 

@@ -10,12 +10,15 @@ public class Fighter extends Character{
         super(strength,vitality,intelligence);
         //setHP
         this.setHp(calculateHp(strength,vitality,intelligence));
+        //SetRace
+        setRace("fighter");
 
         //character will be born with an item which is given at the beginning
         Sword shortSword = new Sword("short sword", 2,2);
         addItemToInventory(this,shortSword);
         setItemHoldingOnHand(shortSword);
     }
+
 
     //it will show the information of the Fighter
     public void showInfos() {
