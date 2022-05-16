@@ -40,8 +40,8 @@ public class Main {
         Fighter fighter1 = new Fighter(strengthForFighter,vitalityForFighter,intelligenceForFighter);
 
 
-        Healer healer1 = new Healer(randomNumber);
-        Tank tank1 = new Tank(randomNumber);
+        //Healer healer1 = new Healer(randomNumber);
+        //Tank tank1 = new Tank(randomNumber);
 
         // I added those characters to an array
         ArrayList<Character> charactersAreAtBeginning = new ArrayList<>();
@@ -56,7 +56,7 @@ public class Main {
                 + ". The HP is :" +  fighter1.getHp()
                 + ". The sword's of the fighter: " + fighter1.getItemHoldingOnHand().getName());
 
-       System.out.println("healer created with "
+    /*   System.out.println("healer created with "
                 + " S: " + healer1.getStrength()
                 + ", V:" +  healer1.getVitality()
                 + ", I: " + healer1.getIntelligence()
@@ -71,6 +71,38 @@ public class Main {
 */
         return charactersAreAtBeginning;
     }
+    public static void showAllEnemies(ArrayList<Enemy> enemies) {
+
+
+        System.out.println();
+        System.out.println("--------------------------------------------------------");
+        System.out.printf("%-17s " , "Enemies:");
+        System.out.println();
+
+        boolean isThereAnyEnemy = false;
+
+
+        for(int i = 0; i < enemies.size() ; i++) {
+
+            if (enemies.get(i).isItAlive() == true) {
+
+                isThereAnyEnemy = true;
+
+                System.out.printf("%d. %-17s ", i + 1, enemies.get(i).getRace() + (i + 1));
+                // System.out.printf("%-14s ", );
+                // System.out.printf("%-10s ", );
+                System.out.println();
+            }
+        }
+
+        if (isThereAnyEnemy == false) {
+            System.out.println("there is no enemy");
+        }
+        System.out.println("--------------------------------------------------------");
+        System.out.println();
+    }
+
+
   /*
     public static <E extends Character>  E pick(ArrayList<E> warrior) {
         System.out.println();
@@ -83,28 +115,7 @@ public class Main {
 
         return warrior.get(index);
     }
-    public static <E extends Character> void showAllWarriors(ArrayList<E> warriors) {
 
-
-        System.out.println();
-        System.out.println("--------------------------------------------------------");
-        System.out.printf("%-17s " , "warriors");
-        System.out.println();
-
-        for(int i = 0; i < warriors.size() ; i++) {
-
-
-            System.out.printf("%d. %-17s ", i+1,warriors.get(i).getRace());
-            // System.out.printf("%-14s ", );
-            // System.out.printf("%-10s ", );
-            System.out.println();
-
-
-
-        }
-        System.out.println("--------------------------------------------------------");
-        System.out.println();
-    }
 
       Don't check for a while.
 
@@ -122,7 +133,7 @@ public class Main {
 
         int currentLevel = 0;
         ArrayList<Enemy> level1enemies = createEnemy(0);
-        ArrayList<Character> charactersAreAtBeginning = creatCharacters();
+        ArrayList<Character> characters = creatCharacters();
         System.out.println();
 
 
@@ -130,7 +141,51 @@ public class Main {
         System.out.println("Entering Level " +  currentLevel +  " Fighter enters.");
         System.out.println();
 
+        System.out.println("---------------");
         System.out.println("It is your turn......");
+        System.out.println("---------------");
+        System.out.println();
+
+        String actionMenu = "Choose your character: \n"
+                + "1.Fighter\n"
+                + "2.Tank\n"
+                + "3.Healer";
+        System.out.println(actionMenu);
+        System.out.println();
+
+
+        System.out.println("Choose the character which you want to play:");
+        int characterDecision = scanner.nextInt();
+        System.out.println();
+
+        if (characterDecision == 1) {
+
+            System.out.println("Fighter has been chosen...");
+
+            System.out.println();
+            showAllEnemies(level1enemies);
+            System.out.println("Please choose the enemy which you want to attack:");
+            int particularEnemyTableIndex = scanner.nextInt();
+
+            int index = particularEnemyTableIndex - 1;
+
+            characters.get(0).getItemHoldingOnHand().attack(level1enemies.get(0),characters.get(0));
+
+        }
+
+        else if(characterDecision == 2) {
+            System.out.println("in progress...");
+        }
+
+        else if(characterDecision == 3) {
+            System.out.println("in progress...");
+        }
+
+        else{
+            System.out.println("you entered an invalid number...");
+        }
+
+
 
 
 

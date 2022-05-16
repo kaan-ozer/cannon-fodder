@@ -18,20 +18,23 @@ public class Sword extends Item {
     public void attack(Enemy chosenEnemy, Character chosenCharacter) {
 
         System.out.println("You are attacking....");
-        System.out.println("you gave " + calculateAttackDamage(chosenCharacter) + "to the enemy");
+        System.out.println("you gave " + calculateAttackDamage(chosenCharacter) + " damage to the enemy");
 
         if (chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter) < 0) {
             chosenEnemy.setHp(chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter));
-            System.out.println("Warrior is dead");
-         //   chosenEnemy.setDoesItLive(false);
+            System.out.println("Enemy is dead");
+            chosenEnemy.setHp(0);
+            chosenEnemy.setItAlive(false);
         }
-        else
+        else {
             chosenEnemy.setHp(chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter));
+        }
 
 
-     //   if (chosenEnemy.isDoesItLive())
-      //  System.out.println("new hp for the enemy is: " + chosenEnemy.getHp());
 
+        if (chosenEnemy.isItAlive()) {
+            System.out.println("new hp for the enemy is: " + chosenEnemy.getHp());
+        }
 
     }
 
