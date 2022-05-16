@@ -18,26 +18,35 @@ public class Main {
         return  activeEnemies;
     }
     public static ArrayList<Character> charactersAreAtBeginning () {
+        SecureRandom randomNumber = new SecureRandom();
 
-        // I created three characters to start the game
-        Fighter fighter1 = new Fighter(randomNumber);
-        Healer healer1 = new Healer(randomNumber);
-        Tank tank1 = new Tank(randomNumber);
+        //abilities for fighter
+        int strengthForFighter = 6+randomNumber.nextInt(5);
+        int vitalityForFighter = 3+randomNumber.nextInt(5);
+        int intelligenceForFighter = 1+randomNumber.nextInt(5);
+
+
+        // I created the fighter character to start the game
+        Fighter fighter1 = new Fighter(strengthForFighter,vitalityForFighter,intelligenceForFighter);
+
+
+        //Healer healer1 = new Healer(randomNumber);
+        //Tank tank1 = new Tank(randomNumber);
 
         // I added those characters to an array
         ArrayList<Character> charactersAreAtBeginning = new ArrayList<>();
         charactersAreAtBeginning.add(fighter1);
-        charactersAreAtBeginning.add(healer1);
-        charactersAreAtBeginning.add(tank1);
+        //charactersAreAtBeginning.add(healer1);
+        //charactersAreAtBeginning.add(tank1);
 
         System.out.println("Fighter created with "
                 + " S: " + fighter1.getStrength()
                 + ", V:" +  fighter1.getVitality()
                 + ", I: " + fighter1.getIntelligence()
                 + ". The HP is :" +  fighter1.getHp()
-                + ". The sword's of the fighter: " + fighter1.getInventory().get(0).getName());
+                + ". The sword's of the fighter: " + fighter1.getItemHoldingOnHand().getName());
 
-        System.out.println("healer created with "
+    /*   System.out.println("healer created with "
                 + " S: " + healer1.getStrength()
                 + ", V:" +  healer1.getVitality()
                 + ", I: " + healer1.getIntelligence()
@@ -49,10 +58,9 @@ public class Main {
                 + ", I: " + tank1.getIntelligence()
                 + ". The HP is :" +  tank1.getHp());
 
-
+*/
         return charactersAreAtBeginning;
     }
-
     public static void DisplayItemsInInventory(Character character) {
 
         if (character.getInventory().size() == 0) {
@@ -98,6 +106,8 @@ public class Main {
 
 
     public static void main(String[] args) {
+
+
 
 
         ArrayList<Character> charactersAreAtBeginning = charactersAreAtBeginning();

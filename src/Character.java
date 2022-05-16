@@ -9,17 +9,19 @@ public abstract class Character {
     private long hp;
     private Item itemHoldingOnHand;
     // each character has an inventory which holds items
-    private ArrayList<Item> inventory = new ArrayList<>();
+    private ArrayList<Item> inventory;
 
 
     public abstract void showInfos();
 
-    public Character(SecureRandom randomNumber) {
+    public Character(int strength,int vitality,int intelligence) {
 
-        this.setStrength(0);  // page 3 of the project instruction (based on table values)
-        this.setVitality(0);
-        this.setIntelligence(0);
-        this.setItemHoldingOnHand(null);
+        this.strength = strength;  // page 3 of the project instruction (based on table values)
+        this.vitality = vitality;
+        this.intelligence = intelligence;
+        setHp(calculateHp(strength,vitality,intelligence));
+        this.itemHoldingOnHand = null;
+        this.inventory = new ArrayList<>();
     }
 
     //default constructor
@@ -27,6 +29,8 @@ public abstract class Character {
         this.strength = 0;
         this.vitality = 0;
         this.intelligence = 0;
+        setHp(calculateHp(0,0,0));
+        this.itemHoldingOnHand = null;
     }
 
     public double calculateYourInventoryWeight() {
