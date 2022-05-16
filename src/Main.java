@@ -85,16 +85,45 @@ public class Main {
 
         return charactersAreAtBeginning;
     }
+
     public static void showAllEnemies(ArrayList<Enemy> enemies) {
 
 
-        System.out.println();
-        System.out.println("--------------------------------------------------------");
-        System.out.printf("%-17s " , "Enemy List:");
-        System.out.println();
+        if (isThereAnyEnemy(enemies) == false) {
+            System.out.println("There is no enemy around");
+        }
+
+        else{
+            System.out.println();
+            System.out.println("--------------------------------------------------------");
+            System.out.printf("%-17s " , "Enemy List:");
+            System.out.println();
+
+
+
+
+            for(int i = 0; i < enemies.size() ; i++) {
+
+                if (enemies.get(i).isItAlive() == true) {
+
+
+                    System.out.printf("%d. %-17s ", i + 1, enemies.get(i).getRace() + (i + 1));
+                    // System.out.printf("%-14s ", );
+                    // System.out.printf("%-10s ", );
+                    System.out.println();
+                }
+            }
+            
+            System.out.println("--------------------------------------------------------");
+            System.out.println();
+        }
+
+
+    }
+
+    public static boolean isThereAnyEnemy(ArrayList<Enemy> enemies) {
 
         boolean isThereAnyEnemy = false;
-
 
         for(int i = 0; i < enemies.size() ; i++) {
 
@@ -102,18 +131,11 @@ public class Main {
 
                 isThereAnyEnemy = true;
 
-                System.out.printf("%d. %-17s ", i + 1, enemies.get(i).getRace() + (i + 1));
-                // System.out.printf("%-14s ", );
-                // System.out.printf("%-10s ", );
-                System.out.println();
             }
         }
 
-        if (isThereAnyEnemy == false) {
-            System.out.println("there is no enemy");
-        }
-        System.out.println("--------------------------------------------------------");
-        System.out.println();
+        return isThereAnyEnemy;
+
     }
 
 
