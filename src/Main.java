@@ -66,19 +66,21 @@ public class Main {
                 + ", V:" +  fighter.getVitality()
                 + ", I: " + fighter.getIntelligence()
                 + ". The HP is :" +  fighter.getHp()
-                + ". The sword's of the fighter: " + fighter.getItemHoldingOnHand().getName());
+                + ". The weapon of the fighter is: " + fighter.getItemHoldingOnHand().getName());
 
        System.out.println("healer created with "
                 + " S: " + healer.getStrength()
                 + ", V:" +  healer.getVitality()
                 + ", I: " + healer.getIntelligence()
-                + ". The HP is :" +  healer.getHp());
+                + ". The HP is :" +  healer.getHp()
+               + ". The weapon of the healer is: " + healer.getItemHoldingOnHand().getName());
 
         System.out.println("tank created with "
                 + " S: " + tank.getStrength()
                 + ", V:" +  tank.getVitality()
                 + ", I: " + tank.getIntelligence()
-                + ". The HP is :" +  tank.getHp());
+                + ". The HP is :" +  tank.getHp()
+                + ". The weapon of the healer is: " + "in progress ");
 
 
         return charactersAreAtBeginning;
