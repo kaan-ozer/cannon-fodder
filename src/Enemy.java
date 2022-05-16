@@ -14,8 +14,7 @@ public class Enemy extends  Character{
         setRace("enemy");
 
         //character will be born with an item which is given at the beginning
-        Sword shortSword = new Sword("short sword", 2,1);
-        addItemToInventory(this,shortSword);
+        Sword shortSword = new Sword("short sword", 1,1);
         setItemHoldingOnHand(shortSword);
 
     }

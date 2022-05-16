@@ -154,6 +154,67 @@ public class Main {
 
     }
 
+    public static void gameTable(ArrayList<Character> characters,ArrayList<Enemy> enemies) {
+
+        while (isThereAnyCharacter(characters)) {
+
+            System.out.println();
+            System.out.println("----------------------------------");
+            System.out.println("Your turn....");
+            System.out.println("----------------------------------");
+
+            System.out.println();
+            showAllEnemies(enemies);
+            System.out.println("Please choose the enemy which you want to attack:");
+            int particularEnemyTableIndex = scanner.nextInt();
+            System.out.println();
+
+
+            int index = particularEnemyTableIndex - 1;
+            System.out.println("----------------------------------");
+            characters.get(0).getItemHoldingOnHand().attack(enemies.get(0), characters.get(0));
+            System.out.println("----------------------------------");
+
+            if (isThereAnyEnemy(enemies) == false) {
+                System.out.println("there is no enmy anymore");
+                System.out.println("----------------------------------");
+                return;
+
+            }
+
+            else {
+                System.out.println();
+                System.out.println("----------------------------------");
+                System.out.println("Enemies turn....");
+                System.out.println("----------------------------------");
+                System.out.println();
+
+                boolean passTheTurn = false;
+
+                for (int i = 0; i < enemies.size(); i++) {
+
+                    if (enemies.get(i).isItAlive()) {
+
+                        for (int j = 0; j < characters.size(); j++) {
+
+                            if (characters.get(j).isItAlive()) {
+                                System.out.println("----------------------------------");
+                                enemies.get(i).getItemHoldingOnHand().attack(characters.get(0), enemies.get(j));
+                                System.out.println("----------------------------------");
+                                 passTheTurn = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (passTheTurn)
+                        break;
+                }
+            }
+        }
+
+
+    }
+
 
 
 
@@ -197,47 +258,16 @@ public class Main {
 
             System.out.println("Fighter has been chosen...");
 
-            boolean checkForTheLoop = true;
 
+           while(isThereAnyCharacter(characters)) {
+               gameTable(characters, createEnemy(currentLevel));
+               currentLevel++;
 
-            while (isThereAnyCharacter(characters)) {
+               System.out.println();
+               System.out.println("Next level is starting");
+               System.out.println();
+           }
 
-
-
-                System.out.println();
-                showAllEnemies(level1enemies);
-                System.out.println("Please choose the enemy which you want to attack:");
-                int particularEnemyTableIndex = scanner.nextInt();
-
-                int index = particularEnemyTableIndex - 1;
-
-                characters.get(0).getItemHoldingOnHand().attack(level1enemies.get(0), characters.get(0));
-
-                if (isThereAnyEnemy(level1enemies) == false) {
-                    System.out.println("there is no enmy anymore");
-                    return;
-
-                }
-
-                else {
-                    System.out.println();
-                    System.out.println("Enemies turn....");
-                    System.out.println();
-
-                    for (int i = 0; i < level1enemies.size(); i++) {
-
-                        if (level1enemies.get(i).isItAlive()) {
-
-                            for (int j = 0; j < characters.size(); j++) {
-
-                                if (characters.get(j).isItAlive()) {
-                                    level1enemies.get(i).getItemHoldingOnHand().attack(characters.get(0), level1enemies.get(j));
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         else if(characterDecision == 2) {
