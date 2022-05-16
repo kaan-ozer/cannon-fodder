@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Sword extends Item implements Actions{
+public class Sword extends Item {
 
 
     public Sword(String name, int weight,
@@ -8,6 +8,7 @@ public class Sword extends Item implements Actions{
         super(name,weight,value);
     }
 
+    // kaan 'll handle it
     public double calculateAttackDamage(Character character) {
 
         double attackDamage = getValue() * character.getStrength();
@@ -19,10 +20,17 @@ public class Sword extends Item implements Actions{
         System.out.println("You are attacking....");
         System.out.println("you gave " + calculateAttackDamage(chosenCharacter) + "to the enemy");
 
-        chosenEnemy.setHp(chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter));
+        if (chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter) < 0) {
+            chosenEnemy.setHp(chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter));
+            System.out.println("Warrior is dead");
+         //   chosenEnemy.setDoesItLive(false);
+        }
+        else
+            chosenEnemy.setHp(chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter));
 
-        if (chosenEnemy.isDoesItLive())
-        System.out.println("new hp for the enemy is: " + chosenEnemy.getHp());
+
+     //   if (chosenEnemy.isDoesItLive())
+      //  System.out.println("new hp for the enemy is: " + chosenEnemy.getHp());
 
 
     }
