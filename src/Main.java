@@ -27,7 +27,6 @@ public class Main {
         // I obtained an array which was filled with enemies for a specific level.
         return  activeEnemies;
     }
-
     //done
     public static ArrayList<Character> creatCharacters () {
         SecureRandom randomNumber = new SecureRandom();
@@ -85,7 +84,6 @@ public class Main {
 
         return charactersAreAtBeginning;
     }
-
     public static void showAllEnemies(ArrayList<Enemy> enemies) {
 
 
@@ -120,7 +118,6 @@ public class Main {
 
 
     }
-
     public static boolean isThereAnyEnemy(ArrayList<Enemy> enemies) {
 
         boolean isThereAnyEnemy = false;
@@ -154,7 +151,7 @@ public class Main {
 
     }
 
-    public static void gameTable(ArrayList<Character> characters,ArrayList<Enemy> enemies) {
+    public static void gameTable(ArrayList<Character> characters,ArrayList<Enemy> enemies,int characterIndex) {
 
         while (isThereAnyCharacter(characters)) {
 
@@ -171,8 +168,9 @@ public class Main {
 
 
             int index = particularEnemyTableIndex - 1;
+
             System.out.println("----------------------------------");
-            characters.get(0).getItemHoldingOnHand().attack(enemies.get(0), characters.get(0));
+            characters.get(characterIndex-1).getItemHoldingOnHand().attack(enemies.get(index), characters.get(characterIndex-1));
             System.out.println("----------------------------------");
 
             if (isThereAnyEnemy(enemies) == false) {
@@ -260,12 +258,16 @@ public class Main {
 
 
            while(isThereAnyCharacter(characters)) {
-               gameTable(characters, createEnemy(currentLevel));
+               gameTable(characters, createEnemy(currentLevel),characterDecision);
                currentLevel++;
 
-               System.out.println();
-               System.out.println("Next level is starting");
-               System.out.println();
+               if(isThereAnyCharacter(characters)) {
+                   System.out.println();
+                   System.out.println("Next level is starting");
+                   System.out.println();
+
+               }
+
            }
 
         }
