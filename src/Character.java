@@ -98,7 +98,7 @@ public abstract class Character {
         //Character cannot carry much more than itself's strength
         if (updatedWeightInInventory < character.getStrength()) {
             character.getInventory().add(item);
-            System.out.println(item.getName() + " has been added to your inventory0");
+            System.out.println(item.getName() + " has been added to your inventory");
         }
         else {
             System.out.println("Character cannot carry much more than itself's strength which be " + character.getStrength() );

@@ -248,10 +248,17 @@ public class Main {
                     }
                     else if(input == 3) {
                         // if there is a problem to add your holding item to your inventory due to weight
+                        // there is a bug when you choose twice the 3 option
                         // this method 'll develop
-                        System.out.println("item which you hold has been changed.");
-                        characters.get(characterIndex-1).addItemToInventory(characters.get(characterIndex-1),characters.get(characterIndex-1).getItemHoldingOnHand());
-                        characters.get(characterIndex-1).setItemHoldingOnHand(droppedItem);
+                        if (didYouAddBefore == false) {
+                            System.out.println("item which you hold has been changed.");
+                            characters.get(characterIndex - 1).addItemToInventory(characters.get(characterIndex - 1), characters.get(characterIndex - 1).getItemHoldingOnHand());
+                            characters.get(characterIndex - 1).setItemHoldingOnHand(droppedItem);
+                            didYouAddBefore = true;
+                        }
+                        else {
+                            System.out.println("you already get this");
+                        }
                     }
                     else if (input == 4) {
                         break;
