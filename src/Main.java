@@ -217,24 +217,48 @@ public class Main {
                 System.out.println();
 
                 String menu2 = "Choose the process: \n"
-                            + "1. Add this item to the inventory\n"
-                            + "2. list inventory\n"
-                            + "3. wield this item";
+                        + "1. Add this item to the inventory\n"
+                        + "2. list inventory\n"
+                        + "3. wield this item\n"
+                        + "4. to quit";
 
-                System.out.println(menu2);
-                int input = scanner.nextInt();
+                boolean didYouAddBefore = false;
 
-                if (input == 1) {
-                    characters.get(characterIndex-1).addItemToInventory(characters.get(characterIndex-1),droppedItem);
+                while (true) {
+                    System.out.println();
+                    System.out.println("*********************************");
+                    System.out.println(menu2);
+                    System.out.println("*********************************");
+                    System.out.println();
+
+                    int input = scanner.nextInt();
+
+                    if (input == 1) {
+                        if (didYouAddBefore == false) {
+                            characters.get(characterIndex - 1).addItemToInventory(characters.get(characterIndex - 1), droppedItem);
+                            didYouAddBefore = true;
+                        }
+                        else {
+                            System.out.println("you already got this item");
+                        }
+
+                    }
+                    else if(input == 2) {
+                        characters.get(characterIndex-1).listInventory();
+                    }
+                    else if(input == 3) {
+                        // if there is a problem to add your holding item to your inventory due to weight
+                        // this method 'll develop
+                        System.out.println("item which you hold has been changed.");
+                        characters.get(characterIndex-1).addItemToInventory(characters.get(characterIndex-1),characters.get(characterIndex-1).getItemHoldingOnHand());
+                        characters.get(characterIndex-1).setItemHoldingOnHand(droppedItem);
+                    }
+                    else if (input == 4) {
+                        break;
+                    }
                 }
-                else if(input == 2) {
-                    characters.get(characterIndex-1).listInventory();
-                }
-                else if(input == 3) {
-                    System.out.println("item which you hold has been changed.");
-                    characters.get(characterIndex-1).addItemToInventory(characters.get(characterIndex-1),characters.get(characterIndex-1).getItemHoldingOnHand());
-                    characters.get(characterIndex-1).setItemHoldingOnHand(droppedItem);
-                }
+
+
 
                 return;
 
