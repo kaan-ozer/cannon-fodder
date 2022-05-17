@@ -16,8 +16,7 @@ public abstract class Character {
     // each character has an inventory which holds items
     private ArrayList<Item> inventory;
 
-
-    public abstract void showInfos();
+    //CONSTRUCTORS
 
     public Character(int strength,int vitality,int intelligence) {
 
@@ -44,6 +43,11 @@ public abstract class Character {
         this.inventory = new ArrayList<>();
     }
 
+
+    //METHODS
+
+    public abstract void showInfos();
+
     public  void listInventory() {
 
         if (getInventory().size() == 0) {
@@ -54,6 +58,7 @@ public abstract class Character {
             System.out.println();
             return;
         }
+
 
         System.out.println();
         System.out.println("--------------------------------------------------------");
@@ -66,12 +71,13 @@ public abstract class Character {
         for(int i = 0; i < getInventory().size() ; i++) {
 
 
-            System.out.printf("%d. %-17s ", i+1,getInventory().get(i).getName());
-            System.out.printf("%-14s ", getInventory().get(i).getWeight());
-            System.out.printf("%-10s ", getInventory().get(i).getValue());
-            System.out.println();
+            if (getInventory().get(i) != null){
+                System.out.printf("%d. %-17s ", i + 1, getInventory().get(i).getName());
+                System.out.printf("%-14s ", getInventory().get(i).getWeight());
+                System.out.printf("%-10s ", getInventory().get(i).getValue());
+                System.out.println();
 
-
+            }
 
         }
         System.out.println("--------------------------------------------------------");
@@ -107,6 +113,15 @@ public abstract class Character {
 
     }
 
+    public void removeItemFromInventory(Character character, Item item) {
+
+        for (int i = 0 ; i < character.getInventory().size() ; i++) {
+            if (character.getInventory().get(i) == item)
+            character.getInventory().set(i, null);
+        }
+
+    }
+
     // it will calculate and return the hp value which its type is long.
     public long calculateHp(int strength,int vitality, int intelligence){   //method for calculation of health point
 
@@ -116,7 +131,7 @@ public abstract class Character {
     }
 
 
-    //getter and setters
+    //GETTER AND SETTERS
 
 
     public boolean isItAlive() {

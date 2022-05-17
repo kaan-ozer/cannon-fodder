@@ -237,15 +237,18 @@ public class Main {
 
                     if (input == 1) {
                         if (didYouAddBefore == false) {
+
                             characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), droppedItem);
                             didYouAddBefore = true;
                         }
                         else {
+
                             System.out.println("you already got this item");
                         }
 
                     }
                     else if(input == 2) {
+
                         characters.get(characterIndex).listInventory();
                     }
                     else if(input == 3) {
@@ -258,7 +261,15 @@ public class Main {
                             characters.get(characterIndex).setItemHoldingOnHand(droppedItem);
                             didYouAddBefore = true;
                         }
+                        else if(didYouAddBefore == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItem ) {
+                            characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
+                            characters.get(characterIndex).removeItemFromInventory(characters.get(characterIndex),droppedItem);
+
+                            characters.get(characterIndex).setItemHoldingOnHand(droppedItem);
+
+                        }
                         else {
+
                             System.out.println("you already get this");
                         }
                     }
