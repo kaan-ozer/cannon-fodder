@@ -177,6 +177,8 @@ public class Main {
 
     public static void gameTable(ArrayList<Character> characters,ArrayList<Enemy> enemies,int characterIndex) {
 
+
+
         while (isThereAnyCharacter(characters)) {
 
             System.out.println();
@@ -196,7 +198,7 @@ public class Main {
 
 
             System.out.println("----------------------------------");
-            characters.get(characterIndex-1).getItemHoldingOnHand().attack(enemies.get(index), characters.get(characterIndex-1));
+            characters.get(characterIndex).getItemHoldingOnHand().attack(enemies.get(index), characters.get(characterIndex));
             System.out.println("----------------------------------");
 
             if (isThereAnyEnemy(enemies) == false) {
@@ -235,7 +237,7 @@ public class Main {
 
                     if (input == 1) {
                         if (didYouAddBefore == false) {
-                            characters.get(characterIndex - 1).addItemToInventory(characters.get(characterIndex - 1), droppedItem);
+                            characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), droppedItem);
                             didYouAddBefore = true;
                         }
                         else {
@@ -244,7 +246,7 @@ public class Main {
 
                     }
                     else if(input == 2) {
-                        characters.get(characterIndex-1).listInventory();
+                        characters.get(characterIndex).listInventory();
                     }
                     else if(input == 3) {
                         // if there is a problem to add your holding item to your inventory due to weight
@@ -252,8 +254,8 @@ public class Main {
                         // this method 'll develop
                         if (didYouAddBefore == false) {
                             System.out.println("item which you hold has been changed.");
-                            characters.get(characterIndex - 1).addItemToInventory(characters.get(characterIndex - 1), characters.get(characterIndex - 1).getItemHoldingOnHand());
-                            characters.get(characterIndex - 1).setItemHoldingOnHand(droppedItem);
+                            characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
+                            characters.get(characterIndex).setItemHoldingOnHand(droppedItem);
                             didYouAddBefore = true;
                         }
                         else {
@@ -346,7 +348,9 @@ public class Main {
                int characterDecision = scanner.nextInt();
                System.out.println();
 
-               gameTable(characters, createEnemy(currentLevel), characterDecision);
+               int characterIndex = characterDecision-1;
+
+               gameTable(characters, createEnemy(currentLevel), characterIndex);
                currentLevel++;
 
                if (isThereAnyCharacter(characters)) {
