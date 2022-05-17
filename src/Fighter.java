@@ -14,7 +14,7 @@ public  class  Fighter extends Character{
         setRace("Fighter");
 
         //character will be born with an item which is given at the beginning
-        Sword shortSword = new Sword("short sword", 2,5);
+        Sword shortSword = new Sword("short sword", 2,2);
         setItemHoldingOnHand(shortSword);
     }
 

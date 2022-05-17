@@ -18,7 +18,7 @@ public class Sword extends Item {
 
     public void attack(Character chosenEnemy, Character chosenCharacter) {
 
-        System.out.println( chosenCharacter.getRace() + " are attacking....");
+        System.out.println( chosenCharacter.getRace() + " is attacking....");
         System.out.println( chosenCharacter.getRace() + " gave " + calculateAttackDamage(chosenCharacter) + " damage to the " + chosenEnemy.getRace());
 
         if (chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter) <= 0) {
