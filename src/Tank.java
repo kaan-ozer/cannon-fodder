@@ -9,6 +9,10 @@ public class Tank extends Character {
 
         setRace("Tank");
 
+        Shield shield = new Shield("shield",2,2);
+        addItemToInventory(this,shield);
+        setItemHoldingOnHand(shield);
+
     }
     public void showInfos(){
         System.out.println("Character's type is Tank...");

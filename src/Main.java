@@ -27,7 +27,6 @@ public class Main {
         // I obtained an array which was filled with enemies for a specific level.
         return  activeEnemies;
     }
-
     //done
     public static ArrayList<Character> creatCharacters () {
         SecureRandom randomNumber = new SecureRandom();
@@ -85,7 +84,6 @@ public class Main {
 
         return charactersAreAtBeginning;
     }
-
     public static void showAllEnemies(ArrayList<Enemy> enemies) {
 
 
@@ -117,6 +115,29 @@ public class Main {
             System.out.println("--------------------------------------------------------");
             System.out.println();
         }
+
+
+    }
+
+    public static Item dropItem() {
+
+        int number = randomNumber.nextInt(10);
+
+        if (number < 5) {
+            Sword longSword = new Sword("longSword",2,2);
+            return longSword;
+        }
+
+        else if(number >5 && number < 8) {
+            Sword brokenSword = new Sword("brokenSword",1,1.2);
+            return brokenSword;
+        }
+
+        else {
+            Sword excalibur = new Sword("excalibur",1,2.5);
+            return excalibur;
+        }
+
 
 
     }
@@ -154,7 +175,9 @@ public class Main {
 
     }
 
-    public static void gameTable(ArrayList<Character> characters,ArrayList<Enemy> enemies) {
+    public static void gameTable(ArrayList<Character> characters,ArrayList<Enemy> enemies,int characterIndex) {
+
+
 
         while (isThereAnyCharacter(characters)) {
 
@@ -164,20 +187,99 @@ public class Main {
             System.out.println("----------------------------------");
 
             System.out.println();
+
             showAllEnemies(enemies);
             System.out.println("Please choose the enemy which you want to attack:");
             int particularEnemyTableIndex = scanner.nextInt();
             System.out.println();
 
-
             int index = particularEnemyTableIndex - 1;
+//we need try catch here to catch the boundOfexception
+
+
             System.out.println("----------------------------------");
-            characters.get(0).getItemHoldingOnHand().attack(enemies.get(0), characters.get(0));
+            characters.get(characterIndex).getItemHoldingOnHand().attack(enemies.get(index), characters.get(characterIndex));
             System.out.println("----------------------------------");
 
             if (isThereAnyEnemy(enemies) == false) {
+
+
+
+                System.out.println();
+                System.out.println("----------------------------------");
                 System.out.println("there is no enmy anymore");
                 System.out.println("----------------------------------");
+
+                Item droppedItem = dropItem();
+
+                System.out.println();
+                System.out.println("*********************************");
+                System.out.println(droppedItem.getName() + " has dropped");
+                System.out.println("*********************************");
+                System.out.println();
+
+                String menu2 = "Choose the process: \n"
+                        + "1. Add this item to the inventory\n"
+                        + "2. list inventory\n"
+                        + "3. wield this item\n"
+                        + "4. to quit";
+
+                boolean didYouAddBefore = false;
+
+                while (true) {
+                    System.out.println();
+                    System.out.println("*********************************");
+                    System.out.println(menu2);
+                    System.out.println("*********************************");
+                    System.out.println();
+
+                    int input = scanner.nextInt();
+
+                    if (input == 1) {
+                        if (didYouAddBefore == false) {
+
+                            characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), droppedItem);
+                            didYouAddBefore = true;
+                        }
+                        else {
+
+                            System.out.println("you already got this item");
+                        }
+
+                    }
+                    else if(input == 2) {
+
+                        characters.get(characterIndex).listInventory();
+                    }
+                    else if(input == 3) {
+                        // if there is a problem to add your holding item to your inventory due to weight
+                        // there is a bug when you choose twice the 3 option
+                        // this method 'll develop
+                        if (didYouAddBefore == false) {
+                            System.out.println("item which you hold has been changed.");
+                            characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
+                            characters.get(characterIndex).setItemHoldingOnHand(droppedItem);
+                            didYouAddBefore = true;
+                        }
+                        else if(didYouAddBefore == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItem ) {
+                            characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
+                            characters.get(characterIndex).removeItemFromInventory(characters.get(characterIndex),droppedItem);
+
+                            characters.get(characterIndex).setItemHoldingOnHand(droppedItem);
+
+                        }
+                        else {
+
+                            System.out.println("you already get this");
+                        }
+                    }
+                    else if (input == 4) {
+                        break;
+                    }
+                }
+
+
+
                 return;
 
             }
@@ -242,47 +344,34 @@ public class Main {
         System.out.println("---------------");
         System.out.println();
 
-        String actionMenu = "Choose your character: \n"
-                + "1.Fighter\n"
-                + "2.Tank\n"
-                + "3.Healer";
-        System.out.println(actionMenu);
-        System.out.println();
-
-
-        System.out.println("Choose the character which you want to play:");
-        int characterDecision = scanner.nextInt();
-        System.out.println();
-
-        if (characterDecision == 1) {
-
-            System.out.println("Fighter has been chosen...");
-
 
            while(isThereAnyCharacter(characters)) {
-               gameTable(characters, createEnemy(currentLevel));
+
+               String actionMenu = "Choose your character: \n"
+                       + "1.Fighter\n"
+                       + "2.Tank\n"
+                       + "3.Healer";
+               System.out.println(actionMenu);
+               System.out.println();
+
+
+               System.out.println("Choose the character which you want to play:");
+               int characterDecision = scanner.nextInt();
+               System.out.println();
+
+               int characterIndex = characterDecision-1;
+
+               gameTable(characters, createEnemy(currentLevel), characterIndex);
                currentLevel++;
 
-               System.out.println();
-               System.out.println("Next level is starting");
-               System.out.println();
+               if (isThereAnyCharacter(characters)) {
+                   System.out.println();
+                   System.out.println("Next level is starting");
+                   System.out.println();
+
+               }
+
            }
-
-        }
-
-        else if(characterDecision == 2) {
-            System.out.println("in progress...");
-        }
-
-        else if(characterDecision == 3) {
-            System.out.println("in progress...");
-        }
-
-        else{
-            System.out.println("you entered an invalid number...");
-        }
-
-
 
 
 
