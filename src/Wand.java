@@ -7,7 +7,7 @@ public class Wand extends Item {
 
     public double calculateAttackDamage(Character character) {
 
-        double attackDamage = getValue() * character.getStrength();
+        double attackDamage = getValue() * character.getIntelligence();// wand damage will calculate based on intelligence
         return attackDamage;
     }
 

@@ -121,21 +121,33 @@ public class Main {
 
     public static Item dropItem() {
 
-        int number = randomNumber.nextInt(10);
+        int number = randomNumber.nextInt(101);
 
         if (number < 5) {
             Sword longSword = new Sword("longSword",2,2);
             return longSword;
         }
 
-        else if(number >5 && number < 8) {
+        else if(number >5 && number < 20) {
             Sword brokenSword = new Sword("brokenSword",1,1.2);
             return brokenSword;
         }
 
-        else {
+        else if( number < 20) {
             Sword excalibur = new Sword("excalibur",1,2.5);
             return excalibur;
+        }
+        else if(number>20 && number < 45){
+            Wand woodenWand=new Wand("woodenWand",1,1.5);
+                return woodenWand;
+        }
+        else if(number>45&& number < 70){
+            Wand boneWand=new Wand("boneWand", 2,2.3);
+            return boneWand;
+        }
+        else {
+            Wand steelWand=new Wand("steelWand", 2,2.6);
+            return steelWand;
         }
 
 
