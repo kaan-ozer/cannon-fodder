@@ -312,7 +312,7 @@ public class Main {
 
                             if (characters.get(j).isItAlive()) {
                                 System.out.println("----------------------------------");
-                                enemies.get(i).getItemHoldingOnHand().attack(characters.get(0), enemies.get(j));
+                                enemies.get(i).getItemHoldingOnHand().attack(characters.get(j), enemies.get(j));
                                 System.out.println("----------------------------------");
                                  passTheTurn = true;
                                 break;
