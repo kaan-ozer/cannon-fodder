@@ -34,7 +34,8 @@ public class Sword extends Item {
 
 
 
-        if (chosenEnemy.isItAlive()) {  //why we wrote it here?
+        if (chosenEnemy.isItAlive()) {  //why we wrote it here? - we checked if enemy is alive or not
+            //if enemy is alive, we will prin out the new hp value after the enemy got damage by character
             System.out.println("new hp for the " + chosenEnemy.getRace() + " is: " + chosenEnemy.getHp());
         }
 

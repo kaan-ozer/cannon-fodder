@@ -57,8 +57,9 @@ public class Main {
         // I added those characters to an array
         ArrayList<Character> charactersAreAtBeginning = new ArrayList<>();
         charactersAreAtBeginning.add(fighter);
-        //charactersAreAtBeginning.add(healer1);
-        //charactersAreAtBeginning.add(tank1);
+        charactersAreAtBeginning.add(tank);
+        charactersAreAtBeginning.add(healer);
+
 
         System.out.println("Fighter created with "
                 + " S: " + fighter.getStrength()
@@ -118,30 +119,29 @@ public class Main {
 
 
     }
-
     public static Item dropItem() {
 
         int number = randomNumber.nextInt(101);
 
-        if (number < 5) {
+        if (number <= 24) {
             Sword longSword = new Sword("longSword",2,2);
             return longSword;
         }
 
-        else if(number >5 && number < 20) {
+        else if(number >= 25 && number <= 39) {
             Sword brokenSword = new Sword("brokenSword",1,1.2);
             return brokenSword;
         }
 
-        else if( number < 20) {
+        else if( number >= 40  && number <= 45 ) {
             Sword excalibur = new Sword("excalibur",1,2.5);
             return excalibur;
         }
-        else if(number>20 && number < 45){
+        else if(number < 70 && number > 45){
             Wand woodenWand=new Wand("woodenWand",1,1.5);
                 return woodenWand;
         }
-        else if(number>45&& number < 70){
+        else if(number < 90 && number >= 70){
             Wand boneWand=new Wand("boneWand", 2,2.3);
             return boneWand;
         }
@@ -153,7 +153,6 @@ public class Main {
 
 
     }
-
     public static boolean isThereAnyEnemy(ArrayList<Enemy> enemies) {
 
         boolean isThereAnyEnemy = false;
