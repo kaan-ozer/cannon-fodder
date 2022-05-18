@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Sword extends Item {
+public  class Sword extends Item {
 
 
     public Sword(String name, int weight,
@@ -14,6 +14,12 @@ public class Sword extends Item {
 
         double attackDamage = getValue() * character.getStrength();
         return attackDamage;
+    }
+
+    @Override
+    public void SpecialAction(Item chosenItem, Character chosenEnemy, Character chosenCharacter) {
+        System.out.println("special action activated !"+chosenCharacter.getRace()+"is using "+chosenItem.name+"to keep "+chosenEnemy.getRace()+" away for one turn");
+        System.out.println(chosenEnemy.getRace()+"is frozen");//in  the main we have to stop our character and also the enemy for one turn  from attacking
     }
 
     public void attack(Character chosenEnemy, Character chosenCharacter) {

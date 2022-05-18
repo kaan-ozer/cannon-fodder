@@ -170,7 +170,7 @@ public class Main {
     }
     public static boolean isThereAnyCharacter(ArrayList<Character> characters) {
 
-        boolean isThereAnyEnemy = false;
+        boolean isThereAnyEnemy = false;   //name better to be isThereAnyCharacter
 
         for(int i = 0; i < characters.size() ; i++) {
 
@@ -218,7 +218,7 @@ public class Main {
 
                     System.out.println();
                     System.out.println("----------------------------------");
-                    System.out.println("there is no enmy anymore");
+                    System.out.println("there is no enemy anymore");
                     System.out.println("----------------------------------");
 
                     Item droppedItem = dropItem();
@@ -233,7 +233,8 @@ public class Main {
                             + "1. Add this item to the inventory\n"
                             + "2. list inventory\n"
                             + "3. wield this item\n"
-                            + "4. to quit";
+                            + "4. to quit\n"
+                            + "5.test this item\n";  //there should be- test this item -option to show the item info before we decide to pick it up . better to change menu order
 
                     boolean didYouAddBefore = false;
 
@@ -286,6 +287,11 @@ public class Main {
                         }
                         else if (input == 4) {
                             break;
+                        }
+                        else if (input==5){
+                            if (didYouAddBefore == true||!didYouAddBefore) {
+                               droppedItem.printItemInfo();
+                            }
                         }
                     }
 
