@@ -335,6 +335,7 @@ public class Main {
     public static int characterMenu(ArrayList<Character> characters) {
 
         while(true) {
+            System.out.println();
             String isFighterAlive = characters.get(0).isItAlive() ? "Alive" : "Dead";
             String isTankAlive = characters.get(1).isItAlive() ? "Alive" : "Dead";
             String isHealerAlive = characters.get(2).isItAlive() ? "Alive" : "Dead";
