@@ -11,6 +11,14 @@ public class Wand extends Item {
         return attackDamage;
     }
 
+    @Override
+    public void SpecialAction(Item chosenItem, Character chosenEnemy, Character chosenCharacter) {
+        System.out.println(" special action activated !"+chosenCharacter.getRace()+"starts healing");
+
+        //it should be developed in order to contain name of the selected character to be healed
+
+    }
+
     public void attack(Character chosenEnemy, Character chosenCharacter) {
         System.out.println( chosenCharacter.getRace() + " is attacking....");
         System.out.println( chosenCharacter.getRace() + " gave " + calculateAttackDamage(chosenCharacter) + " damage to the " + chosenEnemy.getRace());
