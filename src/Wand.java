@@ -1,5 +1,6 @@
+import java.util.Scanner;
 public class Wand extends Item {
-
+    public static Scanner scanner = new Scanner(System.in);
     public Wand(String name, int weight, double value) {
         super(name, weight, value);
     }
@@ -11,13 +12,55 @@ public class Wand extends Item {
         return attackDamage;
     }
 
+
+
+
+
+
     @Override
-    public void SpecialAction(Item chosenItem, Character chosenEnemy, Character chosenCharacter) {
-        System.out.println(" special action activated !"+chosenCharacter.getRace()+"starts healing");
+    public void SpecialAction(Character chosenEnemy, Character chosenCharacter,Character characterToHeal) {
+        System.out.println(" special action  for wand activated ! ");
+        if (chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter) <= 0) {
+            chosenEnemy.setHp(0);
+            chosenEnemy.setItAlive(false);
+            System.out.println(chosenEnemy.getRace() + " is dead");
+        }
+
+        else {
+            attack(chosenEnemy,chosenCharacter);
+        }
+
+
+
+        if (chosenEnemy.isItAlive()) {  //why we wrote it here? - we checked if enemy is alive or not
+            //if enemy is alive, we will prin out the new hp value after the enemy got damage by character
+            System.out.println("new hp for the " + chosenEnemy.getRace() + " is: " + chosenEnemy.getHp());
+        }
+        System.out.println("enter 1 to heal fighter ,enter 2  to heal tank, enter 3 to heal healer:  ");
+
+
+        System.out.println(characterToHeal.getRace()+"is healed");
+        characterToHeal.setItAlive(true);//even if our character dies  we will set its living status "true" after healing
+        characterToHeal.setHp(characterToHeal.getHp()+(long) calculateAttackDamage(chosenEnemy));
+        //we increase character hp with the size of the damage done by enemy to make its hp full
+
+        System.out.println("Hp of the  "+characterToHeal.getRace() +" after healing is :"+ characterToHeal.getHp());
+
+
+
+
+
+
+
 
         //it should be developed in order to contain name of the selected character to be healed
 
     }
+
+
+
+
+
 
     public void attack(Character chosenEnemy, Character chosenCharacter) {
         System.out.println( chosenCharacter.getRace() + " is attacking....");

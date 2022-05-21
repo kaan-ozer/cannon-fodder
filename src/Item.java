@@ -12,7 +12,7 @@ public abstract class Item {
 
     //kaan'll develop that part
     public abstract void attack(Character chosenEnemy, Character chosenCharacter);
-    public abstract  void SpecialAction(Item chosenItem,Character chosenEnemy, Character chosenCharacter);
+    public abstract  void SpecialAction(/*Item chosenItem,*/Character chosenEnemy, Character chosenCharacter,Character characterToHeal);
     //each weapon has a Special action(page 2 of project instruction)
     public void printItemInfo(){
         System.out.println("name: "+getName()+"  weight: "+getWeight()+"   value: "+getValue());
