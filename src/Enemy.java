@@ -13,12 +13,28 @@ public class Enemy extends  Character{
         //SetRace
         setRace("enemy");
 
-        //character will be born with an item which is given at the beginning
-        Sword shortSword = new Sword("short sword", 1,1);
-        setItemHoldingOnHand(shortSword);
 
-    }
 
+        int number = Main.randomNumber.nextInt(101);
+
+        if (number < 80) {
+            Sword longSword = new Sword("longSword",2,2);
+            setItemHoldingOnHand(longSword);
+        }
+
+        else if(number >80 && number < 90) {
+            Wand woodenWand=new Wand("woodenWand",1,1.5);
+            setItemHoldingOnHand(woodenWand);
+        }
+
+        else if(number<80 && number < 90){
+            Shield  bucklerShieled=new Shield("bucklerShiled",1,2);
+           setItemHoldingOnHand(bucklerShieled);
+        }
+        else{
+            System.out.println("drops nothing");
+
+    }   }
 
     //it will show the information of the Enemy
     public void showInfos() {
