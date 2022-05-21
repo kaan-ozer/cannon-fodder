@@ -27,7 +27,6 @@ public class Main {
         // I obtained an array which was filled with enemies for a specific level.
         return  activeEnemies;
     }
-    //done
     public static ArrayList<Character> creatCharacters () {
         SecureRandom randomNumber = new SecureRandom();
 
@@ -57,8 +56,9 @@ public class Main {
         // I added those characters to an array
         ArrayList<Character> charactersAreAtBeginning = new ArrayList<>();
         charactersAreAtBeginning.add(fighter);
-        //charactersAreAtBeginning.add(healer1);
-        //charactersAreAtBeginning.add(tank1);
+        charactersAreAtBeginning.add(tank);
+        charactersAreAtBeginning.add(healer);
+
 
         System.out.println("Fighter created with "
                 + " S: " + fighter.getStrength()
@@ -118,30 +118,31 @@ public class Main {
 
 
     }
-
     public static Item dropItem() {
 
         int number = randomNumber.nextInt(101);
 
-        if (number < 5) {
+        if (number <= 24) {
             Sword longSword = new Sword("longSword",2,2);
             return longSword;
         }
 
-        else if(number >5 && number < 20) {
+        else if(number >= 25 && number <= 39) {
             Sword brokenSword = new Sword("brokenSword",1,1.2);
             return brokenSword;
         }
 
-        else if( number < 20) {
+        else if( number >= 40  && number <= 45 ) {
             Sword excalibur = new Sword("excalibur",1,2.5);
             return excalibur;
         }
-        else if(number>20 && number < 40){
+
+        else if(number < 70 && number > 45){
             Wand woodenWand=new Wand("woodenWand",1,1.5);
                 return woodenWand;
         }
-        else if(number>40&& number < 65){
+        else if(number < 90 && number >= 70){
+
             Wand boneWand=new Wand("boneWand", 2,2.3);
             return boneWand;
         }
@@ -164,7 +165,6 @@ public class Main {
 
 
     }
-
     public static boolean isThereAnyEnemy(ArrayList<Enemy> enemies) {
 
         boolean isThereAnyEnemy = false;
@@ -183,7 +183,7 @@ public class Main {
     }
     public static boolean isThereAnyCharacter(ArrayList<Character> characters) {
 
-        boolean isThereAnyEnemy = false;
+        boolean isThereAnyEnemy = false;   //name better to be isThereAnyCharacter
 
         for(int i = 0; i < characters.size() ; i++) {
 
@@ -197,149 +197,190 @@ public class Main {
         return isThereAnyEnemy;
 
     }
-
     public static void gameTable(ArrayList<Character> characters,ArrayList<Enemy> enemies,int characterIndex) {
 
 
 
         while (isThereAnyCharacter(characters)) {
 
-            System.out.println();
-            System.out.println("----------------------------------");
-            System.out.println("Your turn....");
-            System.out.println("----------------------------------");
+            if(characters.get(characterIndex).isItAlive()) {
+                System.out.println();
+                System.out.println("----------------------------------");
+                System.out.println("Your turn....");
+                System.out.println("----------------------------------");
 
-            System.out.println();
+                System.out.println();
 
-            showAllEnemies(enemies);
-            System.out.println("Please choose the enemy which you want to attack:");
-            int particularEnemyTableIndex = scanner.nextInt();
-            System.out.println();
+                showAllEnemies(enemies);
+                System.out.println("Please choose the enemy which you want to attack:");
+                int particularEnemyTableIndex = scanner.nextInt();
+                System.out.println();
 
-            int index = particularEnemyTableIndex - 1;
+
+                int index = particularEnemyTableIndex - 1;
 //we need try catch here to catch the boundOfexception
 
 
-            System.out.println("----------------------------------");
-            characters.get(characterIndex).getItemHoldingOnHand().attack(enemies.get(index), characters.get(characterIndex));
-            System.out.println("----------------------------------");
-
-            if (isThereAnyEnemy(enemies) == false) {
-
-
-
-                System.out.println();
                 System.out.println("----------------------------------");
-                System.out.println("there is no enmy anymore");
+                characters.get(characterIndex).getItemHoldingOnHand().attack(enemies.get(index), characters.get(characterIndex));
                 System.out.println("----------------------------------");
 
-                Item droppedItem = dropItem();
+                if (isThereAnyEnemy(enemies) == false) {
 
-                System.out.println();
-                System.out.println("*********************************");
-                System.out.println(droppedItem.getName() + " has dropped");
-                System.out.println("*********************************");
-                System.out.println();
 
-                String menu2 = "Choose the process: \n"
-                        + "1. Add this item to the inventory\n"
-                        + "2. list inventory\n"
-                        + "3. wield this item\n"
-                        + "4. to quit";
 
-                boolean didYouAddBefore = false;
+                    System.out.println();
+                    System.out.println("----------------------------------");
+                    System.out.println("there is no enemy anymore");
+                    System.out.println("----------------------------------");
 
-                while (true) {
+                    Item droppedItem = dropItem();
+
                     System.out.println();
                     System.out.println("*********************************");
-                    System.out.println(menu2);
+                    System.out.println(droppedItem.getName() + " has dropped");
                     System.out.println("*********************************");
                     System.out.println();
 
-                    int input = scanner.nextInt();
+                    String menu2 = "Choose the process: \n"
+                            + "1. Add this item to the inventory\n"
+                            + "2. list inventory\n"
+                            + "3. wield this item\n"
+                            + "4. to quit\n"
+                            + "5.test this item\n";  //there should be- test this item -option to show the item info before we decide to pick it up . better to change menu order
 
-                    if (input == 1) {
-                        if (didYouAddBefore == false) {
+                    boolean didYouAddBefore = false;
 
-                            characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), droppedItem);
-                            didYouAddBefore = true;
-                        }
-                        else {
+                    while (true) {
+                        System.out.println();
+                        System.out.println("*********************************");
+                        System.out.println(menu2);
+                        System.out.println("*********************************");
+                        System.out.println();
 
-                            System.out.println("you already got this item");
-                        }
+                        int input = scanner.nextInt();
 
-                    }
-                    else if(input == 2) {
+                        if (input == 1) {
+                            if (didYouAddBefore == false) {
 
-                        characters.get(characterIndex).listInventory();
-                    }
-                    else if(input == 3) {
-                        // if there is a problem to add your holding item to your inventory due to weight
-                        // there is a bug when you choose twice the 3 option
-                        // this method 'll develop
-                        if (didYouAddBefore == false) {
-                            System.out.println("item which you hold has been changed.");
-                            characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
-                            characters.get(characterIndex).setItemHoldingOnHand(droppedItem);
-                            didYouAddBefore = true;
-                        }
-                        else if(didYouAddBefore == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItem ) {
-                            characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
-                            characters.get(characterIndex).removeItemFromInventory(characters.get(characterIndex),droppedItem);
+                                characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), droppedItem);
+                                didYouAddBefore = true;
+                            }
+                            else {
 
-                            characters.get(characterIndex).setItemHoldingOnHand(droppedItem);
+                                System.out.println("you already got this item");
+                            }
 
                         }
-                        else {
+                        else if(input == 2) {
 
-                            System.out.println("you already get this");
+                            characters.get(characterIndex).listInventory();
                         }
-                    }
-                    else if (input == 4) {
-                        break;
-                    }
-                }
+                        else if(input == 3) {
+                            // if there is a problem to add your holding item to your inventory due to weight
+                            // there is a bug when you choose twice the 3 option
+                            // this method 'll develop
+                            if (didYouAddBefore == false) {
+                                System.out.println("item which you hold has been changed.");
+                                characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
+                                characters.get(characterIndex).setItemHoldingOnHand(droppedItem);
+                                didYouAddBefore = true;
+                            }
+                            else if(didYouAddBefore == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItem ) {
+                                characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
+                                characters.get(characterIndex).removeItemFromInventory(characters.get(characterIndex),droppedItem);
 
+                                characters.get(characterIndex).setItemHoldingOnHand(droppedItem);
 
+                            }
+                            else {
 
-                return;
-
-            }
-
-            else {
-                System.out.println();
-                System.out.println("----------------------------------");
-                System.out.println("Enemies turn....");
-                System.out.println("----------------------------------");
-                System.out.println();
-
-                boolean passTheTurn = false;
-
-                for (int i = 0; i < enemies.size(); i++) {
-
-                    if (enemies.get(i).isItAlive()) {
-
-                        for (int j = 0; j < characters.size(); j++) {
-
-                            if (characters.get(j).isItAlive()) {
-                                System.out.println("----------------------------------");
-                                enemies.get(i).getItemHoldingOnHand().attack(characters.get(0), enemies.get(j));
-                                System.out.println("----------------------------------");
-                                 passTheTurn = true;
-                                break;
+                                System.out.println("you already get this");
+                            }
+                        }
+                        else if (input == 4) {
+                            break;
+                        }
+                        else if (input==5){
+                            if (didYouAddBefore == true||!didYouAddBefore) {
+                               droppedItem.printItemInfo();
                             }
                         }
                     }
-                    if (passTheTurn)
-                        break;
+
+
+
+                    return;
+
+                }
+
+                else {
+                    System.out.println();
+                    System.out.println("----------------------------------");
+                    System.out.println("Enemies turn....");
+                    System.out.println("----------------------------------");
+                    System.out.println();
+
+                    boolean passTheTurn = false;
+
+                    for (int i = 0; i < enemies.size(); i++) {
+
+                        if (enemies.get(i).isItAlive()) {
+
+                            for (int j = 0; j < characters.size(); j++) {
+
+                                if (characters.get(j).isItAlive()) {
+                                    System.out.println("----------------------------------");
+                                    enemies.get(i).getItemHoldingOnHand().attack(characters.get(j), enemies.get(j));
+                                    System.out.println("----------------------------------");
+                                    passTheTurn = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (passTheTurn)
+                            break;
+                    }
                 }
             }
+            else {
+                characterIndex = characterMenu(characters);
+            }
+
         }
 
 
     }
+    public static int characterMenu(ArrayList<Character> characters) {
 
+        while(true) {
+            System.out.println();
+            String isFighterAlive = characters.get(0).isItAlive() ? "Alive" : "Dead";
+            String isTankAlive = characters.get(1).isItAlive() ? "Alive" : "Dead";
+            String isHealerAlive = characters.get(2).isItAlive() ? "Alive" : "Dead";
+
+            String actionMenu = "Choose your character: \n"
+                    + "1.Fighter (" + isFighterAlive + ")\n"
+                    + "2.Tank (" + isTankAlive + ")\n"
+                    + "3.Healer (" + isHealerAlive + ")";
+
+            System.out.println(actionMenu);
+            System.out.println();
+
+            System.out.println("Choose the character which you want to play:");
+            int characterDecision = scanner.nextInt();
+            int characterIndex = characterDecision - 1;
+
+            if (!characters.get(characterIndex).isItAlive()) {
+                System.out.println("You cannot choose that character because he is already dead...");
+                continue;
+            } else {
+                System.out.println();
+                return characterIndex;
+            }
+
+        }
+    }
 
 
 
@@ -370,19 +411,11 @@ public class Main {
 
            while(isThereAnyCharacter(characters)) {
 
-               String actionMenu = "Choose your character: \n"
-                       + "1.Fighter\n"
-                       + "2.Tank\n"
-                       + "3.Healer";
-               System.out.println(actionMenu);
-               System.out.println();
 
+               int characterIndex = characterMenu(characters);
 
-               System.out.println("Choose the character which you want to play:");
-               int characterDecision = scanner.nextInt();
-               System.out.println();
+               //we need to check if  the charcter is alive here.unless it will continue to hit even though it is dead.
 
-               int characterIndex = characterDecision-1;
 
                gameTable(characters, createEnemy(currentLevel), characterIndex);
                currentLevel++;
