@@ -174,7 +174,7 @@ public abstract class Character {
         return itemHoldingOnHand;
     }
 
-    public static void setItemHoldingOnHand(Item itemHoldingOnHand) {
+    public void setItemHoldingOnHand(Item itemHoldingOnHand) {
         this.itemHoldingOnHand = itemHoldingOnHand;
     }
 
