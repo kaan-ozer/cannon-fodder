@@ -402,7 +402,7 @@ public class Main {
                     }
                 }
 
-                System.out.println("bom1");
+         
             }
 
             else if(process == 2) {
@@ -466,12 +466,11 @@ public class Main {
             }
 
             else {
-                System.out.println("bom2");
-
+                System.out.println("invalid number...");
 
             }
 
-                System.out.println("bom3");
+
             System.out.println();
 
             }
