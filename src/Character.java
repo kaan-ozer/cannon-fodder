@@ -1,5 +1,6 @@
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class Character {
 
@@ -47,6 +48,25 @@ public abstract class Character {
     //METHODS
 
     public abstract void showInfos();
+
+    public void wield() {
+        Scanner scanner = new Scanner(System.in);
+
+        listInventory();
+
+        System.out.println("Please choose the item via numbers");
+        int decision = scanner.nextInt();
+
+        int index = decision -1;
+
+
+        addItemToInventory(this,getItemHoldingOnHand());
+        System.out.println(getItemHoldingOnHand().getName() + " added your inventory.");
+        setItemHoldingOnHand(inventory.get(index));
+        System.out.println(inventory.get(index).getName() + " is wielded");
+
+
+    }
 
     public  void listInventory() {
 

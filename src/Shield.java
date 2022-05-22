@@ -29,11 +29,6 @@ public  class Shield extends Item{
     public void SpecialAction(boolean isSpecialActionWithShield ,Character chosenEnemy, Character chosenCharacter,Character C) {
         System.out.println("special action activated !"+chosenCharacter.getRace()+"to  stun"+chosenEnemy.getRace());
         System.out.println(chosenEnemy.getRace()+"stunned");
-
-
-
-        //later maybe in main we have to keep enemy away from attacking at least for one turn or for simulating this situation we can attack  by character two times in a row
-        //later maybe in main we have to keep enemy away from attacking at least for one turn or for simulating this situation we can attack  by character two times in a row
     }
 
     public void attack(Character chosenEnemy, Character chosenCharacter) {

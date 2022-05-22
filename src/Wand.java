@@ -1,6 +1,5 @@
-import java.util.Scanner;
 public class Wand extends Item {
-    public static Scanner scanner = new Scanner(System.in);
+
     public Wand(String name, int weight, double value) {
         super(name, weight, value);
     }
@@ -11,11 +10,6 @@ public class Wand extends Item {
         double attackDamage = getValue() * character.getIntelligence();// wand damage will calculate based on intelligence
         return attackDamage;
     }
-
-
-
-
-
 
     @Override
     public void SpecialAction(boolean isSpecialActionWithWand,Character chosenEnemy, Character chosenCharacter,Character characterToHeal) {
@@ -41,7 +35,7 @@ public class Wand extends Item {
 
         System.out.println(characterToHeal.getRace()+"  is healed");
         characterToHeal.setItAlive(true);
-                                          //even if our character dies  we will set its living status "true" after healing
+        //even if our character dies  we will set its living status "true" after healing
         characterToHeal.setHp(characterToHeal.getHp()+1+(long) calculateAttackDamage(chosenEnemy));
         //we increase character hp with the size of the damage done by enemy to make its hp full
 
@@ -50,18 +44,7 @@ public class Wand extends Item {
 
 
 
-
-
-
-
-        //it should be developed in order to contain name of the selected character to be healed
-
     }
-
-
-
-
-
 
     public void attack(Character chosenEnemy, Character chosenCharacter) {
         System.out.println( chosenCharacter.getRace() + " is attacking....");
