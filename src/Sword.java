@@ -32,6 +32,7 @@ public  class Sword extends Item {
             chosenEnemy.setHp(0);
             chosenEnemy.setItAlive(false);
             System.out.println(chosenEnemy.getRace() + " is dead");
+
         }
 
         else {
