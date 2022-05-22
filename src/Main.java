@@ -199,6 +199,7 @@ public class Main {
 
 
             while (true) {
+
             String menu2= "Choose the process: \n"
                     + "1. Normal Attack\n"
                     + "2. Special Attack(in progress)\n"
@@ -209,6 +210,7 @@ public class Main {
             System.out.println("Please choose the process:");
             int process = scanner.nextInt();
             System.out.println();
+
 
             if(process == 1) {
 
@@ -400,9 +402,10 @@ public class Main {
                     }
                 }
 
+                System.out.println("bom1");
             }
 
-            if(process == 2) {
+            else if(process == 2) {
                 /*
                 boolean isActionWithWand=false;
                 boolean isActionWithShield=false;
@@ -456,15 +459,19 @@ public class Main {
                     System.out.println("There is no item in your inventory yet");
                     System.out.println("-----------------------------------------");
                 }
+
                 else {
                     characters.get(characterIndex).wield();
                 }
             }
 
             else {
-                System.out.println("invalid number...");
+                System.out.println("bom2");
+
+
             }
 
+                System.out.println("bom3");
             System.out.println();
 
             }
