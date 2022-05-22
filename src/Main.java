@@ -234,13 +234,23 @@ public class Main {
                 if (enemies.get(index).isItAlive() == false) {
                     Item droppedItem = enemies.get(index).dropItem();
 
-                    System.out.println();
-                    System.out.println("*********************************");
-                    System.out.println(droppedItem.getName() + " has dropped" + "by" + enemies.get(index).getRace());
-                    System.out.println("*********************************");
-                    System.out.println();
+                    if(droppedItem != null) {
+                        System.out.println();
+                        System.out.println("*********************************");
+                        System.out.println(droppedItem.getName() + " has dropped" + "by " + enemies.get(index).getRace());
+                        System.out.println("*********************************");
+                        System.out.println();
 
-                    droppedItems.add(droppedItem);
+                        droppedItems.add(droppedItem);
+                    }
+                    else {
+                        System.out.println();
+                        System.out.println("*********************************");
+                        System.out.println( "nothing has dropped" + "by " + enemies.get(index).getRace());
+                        System.out.println("*********************************");
+                        System.out.println();
+                    }
+
                 }
 
                 //unless there is enemy, I can collect the ıtems.
@@ -253,21 +263,13 @@ public class Main {
                     System.out.println("----------------------------------");
 
 
-                    //it'll print out the all items on the ground - k
-                    showAllDroppedItems(droppedItems);
 
-                    // I choose the item from the table
-                    System.out.println("Please choose the item which you want to take:");
-                    int particularItemTableIndex = scanner.nextInt();
-                    System.out.println();
-
-                    int itemIndex = particularItemTableIndex - 1;
 
 
                     String menu3 = "Choose the process: \n"
-                            + "1. ADD THIS ITEM TO THE INVENTORY\n"
+                            + "1. LOOK AT ITEMS WHİCH BE ON THE GROUND TO ADD YOUR INVENTORY\n"
                             + "2. LIST INVENTORY\n"
-                            + "3. WIELD\n"
+                            + "3. WIELD ITEM FROM GROUND\n"
                             + "4. NEXT\n"
                             + "5. EXAMINE\n";  //there should be- test this item -option to show the item info before we decide to pick it up . better to change menu order
 
@@ -286,6 +288,16 @@ public class Main {
                         if (input == 1) {
                             if (didYouAddBefore == false) {
 
+                                //it'll print out the all items on the ground - k
+                                showAllDroppedItems(droppedItems);
+
+                                // I choose the item from the table
+                                System.out.println("Please choose the item ");
+                                int particularItemTableIndex = scanner.nextInt();
+                                System.out.println();
+
+                                int itemIndex = particularItemTableIndex - 1;
+
                                 characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), droppedItems.get(itemIndex));
                                 didYouAddBefore = true;
                             } else {
@@ -299,6 +311,18 @@ public class Main {
                             characters.get(characterIndex).listInventory();
                         }
                         else if (input == 3) {
+                            //it'll print out the all items on the ground - k
+                            showAllDroppedItems(droppedItems);
+
+                            // I choose the item from the table
+                            System.out.println("Please choose the item ");
+                            int particularItemTableIndex = scanner.nextInt();
+                            System.out.println();
+
+                            int itemIndex = particularItemTableIndex - 1;
+
+
+
                             // if there is a problem to add your holding item to your inventory due to weight
                             // there is a bug when you choose twice the 3 option
                             // this method 'll develop
@@ -322,6 +346,17 @@ public class Main {
                             break;
                         }
                         else if (input == 5) {
+
+                            //it'll print out the all items on the ground - k
+                            showAllDroppedItems(droppedItems);
+
+                            // I choose the item from the table
+                            System.out.println("Please pick the item ");
+                            int particularItemTableIndex = scanner.nextInt();
+                            System.out.println();
+
+                            int itemIndex = particularItemTableIndex - 1;
+
                             if (didYouAddBefore == true || !didYouAddBefore) {
                                 droppedItems.get(itemIndex).printItemInfo();
                             }

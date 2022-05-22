@@ -79,6 +79,7 @@ public class Enemy extends  Character{
             return smallShield;
         }
         else {
+            System.out.println("Drops nothing");
             return null;
         }
 
