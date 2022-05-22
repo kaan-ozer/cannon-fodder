@@ -62,9 +62,10 @@ public abstract class Character {
 
         addItemToInventory(this,getItemHoldingOnHand());
         System.out.println(getItemHoldingOnHand().getName() + " added your inventory.");
-        
+
         setItemHoldingOnHand(inventory.get(index));
         System.out.println(inventory.get(index).getName() + " is wielded");
+        getInventory().remove(index);
 
 
     }
