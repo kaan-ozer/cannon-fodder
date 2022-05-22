@@ -62,6 +62,7 @@ public abstract class Character {
 
         addItemToInventory(this,getItemHoldingOnHand());
         System.out.println(getItemHoldingOnHand().getName() + " added your inventory.");
+        
         setItemHoldingOnHand(inventory.get(index));
         System.out.println(inventory.get(index).getName() + " is wielded");
 
@@ -137,7 +138,7 @@ public abstract class Character {
 
         for (int i = 0 ; i < character.getInventory().size() ; i++) {
             if (character.getInventory().get(i) == item)
-            character.getInventory().set(i, null);
+            character.getInventory().remove(i);
         }
 
     }
