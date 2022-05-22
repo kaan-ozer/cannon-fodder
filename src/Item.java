@@ -18,6 +18,7 @@ public abstract class Item {
         System.out.println("name: "+getName()+"  weight: "+getWeight()+"   value: "+getValue());
 
 
+
     }
 
 
