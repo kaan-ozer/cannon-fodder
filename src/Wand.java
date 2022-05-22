@@ -18,7 +18,7 @@ public class Wand extends Item {
 
 
     @Override
-    public void SpecialAction(Character chosenEnemy, Character chosenCharacter,Character characterToHeal) {
+    public void SpecialAction(boolean isSpecialActionWithWand,Character chosenEnemy, Character chosenCharacter,Character characterToHeal) {
         System.out.println(" special action  for wand activated ! ");
         if (chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter) <= 0) {
             chosenEnemy.setHp(0);
@@ -33,15 +33,16 @@ public class Wand extends Item {
 
 
         if (chosenEnemy.isItAlive()) {  //why we wrote it here? - we checked if enemy is alive or not
-            //if enemy is alive, we will prin out the new hp value after the enemy got damage by character
+            //if enemy is alive, we will print out the new hp value after the enemy got damage by character
             System.out.println("new hp for the " + chosenEnemy.getRace() + " is: " + chosenEnemy.getHp());
         }
         System.out.println("enter 1 to heal fighter ,enter 2  to heal tank, enter 3 to heal healer:  ");
 
 
-        System.out.println(characterToHeal.getRace()+"is healed");
-        characterToHeal.setItAlive(true);//even if our character dies  we will set its living status "true" after healing
-        characterToHeal.setHp(characterToHeal.getHp()+(long) calculateAttackDamage(chosenEnemy));
+        System.out.println(characterToHeal.getRace()+"  is healed");
+        characterToHeal.setItAlive(true);
+                                          //even if our character dies  we will set its living status "true" after healing
+        characterToHeal.setHp(characterToHeal.getHp()+1+(long) calculateAttackDamage(chosenEnemy));
         //we increase character hp with the size of the damage done by enemy to make its hp full
 
         System.out.println("Hp of the  "+characterToHeal.getRace() +" after healing is :"+ characterToHeal.getHp());
