@@ -1,7 +1,12 @@
-public  abstract class Shield extends Item{
+public  class Shield extends Item{
 
     public Shield(String name,int weight,double value){
         super(name, weight, value);
+    }
+
+    @Override
+    public void attack(Character chosenEnemy, Character chosenCharacter) {
+
     }
 
     public double calculateDefence(Character character){

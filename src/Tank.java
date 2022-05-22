@@ -9,7 +9,8 @@ public class Tank extends Character {
 
         setRace("Tank");
 
-        Shield shield = new Shield("shield",2,2);
+
+        Shield shield = new Shield("shield",1,1);
         addItemToInventory(this,shield);
         setItemHoldingOnHand(shield);
 

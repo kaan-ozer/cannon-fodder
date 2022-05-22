@@ -220,9 +220,9 @@ public class Main {
 
                 String menu2 = "Choose the process: \n"
                         + "1. Add this item to the inventory\n"
-                        + "2. list inventory\n"
-                        + "3. wield this item\n"
-                        + "4. to quit";
+                        + "2. List inventory\n"
+                        + "3. Wield this item\n"
+                        + "4. Quit";
 
                 boolean didYouAddBefore = false;
 
@@ -243,7 +243,7 @@ public class Main {
                         }
                         else {
 
-                            System.out.println("you already got this item");
+                            System.out.println("You already got this item");
                         }
 
                     }
@@ -256,7 +256,7 @@ public class Main {
                         // there is a bug when you choose twice the 3 option
                         // this method 'll develop
                         if (didYouAddBefore == false) {
-                            System.out.println("item which you hold has been changed.");
+                            System.out.println("Item which you hold has been changed.");
                             characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
                             characters.get(characterIndex).setItemHoldingOnHand(droppedItem);
                             didYouAddBefore = true;
@@ -270,7 +270,7 @@ public class Main {
                         }
                         else {
 
-                            System.out.println("you already get this");
+                            System.out.println("You already get this");
                         }
                     }
                     else if (input == 4) {
