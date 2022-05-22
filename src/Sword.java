@@ -17,9 +17,8 @@ public  class Sword extends Item {
     }
 
     @Override
-    public void SpecialAction(Item chosenItem, Character chosenEnemy, Character chosenCharacter) {
-        System.out.println("special action activated !"+chosenCharacter.getRace()+"is using "+chosenItem.name+"to keep "+chosenEnemy.getRace()+" away for one turn");
-        System.out.println(chosenEnemy.getRace()+"is frozen");//in  the main we have to stop our character and also the enemy for one turn  from attacking
+    public void SpecialAction(boolean isSpecialActionWithSword,Character chosenEnemy, Character chosenCharacter,Character C) {//I will fix it just there should be  one more parameter
+        System.out.println("special action activated !" + chosenCharacter.getRace() + "to keep " + chosenEnemy.getRace() + " away for one turn");
     }
 
     public void attack(Character chosenEnemy, Character chosenCharacter) {
