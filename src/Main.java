@@ -266,8 +266,8 @@ public class Main {
                                 + "---Dropped Items---\n"
                                 + "1. Pick and Examine\n"
                                 + "2. Wield \n"
-                                + "3. Pick and Add Your Inventory\n"
-                                + "---Inventory Items---\n\n"
+                                + "3. Pick and Add Your Inventory\n\n"
+                                + "---Inventory Items---\n"
                                 + "4. Pick and Wield \n"
                                 + "5. List Inventory\n"
                                 + "6. Drop Item From Your Inventory \n"
@@ -294,7 +294,7 @@ public class Main {
                                 System.out.println();
 
                                 int itemIndex = particularItemTableIndex - 1;
-                            
+
 
 
                                 droppedItems.get(itemIndex).printItemInfo();
