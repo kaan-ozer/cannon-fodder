@@ -275,7 +275,7 @@ public class Main {
 
 
 
-                    boolean didYouAddBefore = false;
+
 
                     while (true) {
                         System.out.println();
@@ -303,7 +303,6 @@ public class Main {
                             droppedItems.get(itemIndex).printItemInfo();
 
                         }
-
                         else if (input == 2) {
                             //it'll print out the all items on the ground - k
                             showAllDroppedItems(droppedItems);
@@ -320,14 +319,14 @@ public class Main {
                             // if there is a problem to add your holding item to your inventory due to weight
                             // there is a bug when you choose twice the 3 option
                             // this method 'll develop
-                            if (didYouAddBefore == false) {
+                            if (droppedItems.get(itemIndex).isItTaken == false) {
                                 System.out.println("item which you hold has been changed.");
                                 characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
                                 characters.get(characterIndex).setItemHoldingOnHand(droppedItems.get(itemIndex));
-                                didYouAddBefore = true;
+                                droppedItems.get(itemIndex).isItTaken = true;
                             }
 
-                            else if (didYouAddBefore == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItems.get(itemIndex)) {
+                            else if (droppedItems.get(itemIndex).isItTaken == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItems.get(itemIndex)) {
                                 characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
                                 characters.get(characterIndex).removeItemFromInventory(droppedItems.get(itemIndex));
 
@@ -341,22 +340,23 @@ public class Main {
                             }
                         }
                         else if (input == 3) {
+                            //it'll print out the all items on the ground - k
+                            showAllDroppedItems(droppedItems);
 
-                            if (didYouAddBefore == false) {
+                            // I choose the item from the table
+                            System.out.println("Please choose the item ");
+                            int particularItemTableIndex = scanner.nextInt();
+                            System.out.println();
 
-                                //it'll print out the all items on the ground - k
-                                showAllDroppedItems(droppedItems);
+                            int itemIndex = particularItemTableIndex - 1;
 
-                                // I choose the item from the table
-                                System.out.println("Please choose the item ");
-                                int particularItemTableIndex = scanner.nextInt();
-                                System.out.println();
-
-                                int itemIndex = particularItemTableIndex - 1;
+                            if (droppedItems.get(itemIndex).isItTaken == false) {
 
                                 characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), droppedItems.get(itemIndex));
-                                didYouAddBefore = true;
-                            } else {
+                                droppedItems.get(itemIndex).isItTaken = true;
+                            }
+
+                            else {
 
                                 System.out.println("you already got this item");
                             }
@@ -364,23 +364,35 @@ public class Main {
                         }
                         else if (input == 4) {
 
-                            if (characters.get(characterIndex).getInventory().size() != 0 )
-                            characters.get(characterIndex).listInventory();
-                            else
+                            if (characters.get(characterIndex).getInventory().size() != 0 ) {
+                                characters.get(characterIndex).listInventory();
+                            }
+
+                            else {
                                 System.out.println("you don't have any item....");
+                                continue;
+                            }
+
                         }
                         else if (input == 5) {
 
-                            characters.get(characterIndex).listInventory();
+                            if (characters.get(characterIndex).getInventory().size() != 0) {
+                                characters.get(characterIndex).listInventory();
 
-                            System.out.println("Please pick the item ");
-                            int particularItemTableIndex = scanner.nextInt();
-                            System.out.println();
+                                System.out.println("Please pick the item ");
+                                int particularItemTableIndex = scanner.nextInt();
+                                System.out.println();
 
-                            int itemIndex = particularItemTableIndex - 1;
+                                int itemIndex = particularItemTableIndex - 1;
 
-                            System.out.println(characters.get(characterIndex).getInventory().get(itemIndex).getName() + " removed from your inventory....");
-                            characters.get(characterIndex).removeItemFromInventory(characters.get(characterIndex).getInventory().get(itemIndex));
+                                System.out.println(characters.get(characterIndex).getInventory().get(itemIndex).getName() + " removed from your inventory....");
+                                characters.get(characterIndex).removeItemFromInventory(characters.get(characterIndex).getInventory().get(itemIndex));
+
+                            }
+                            else {
+                                System.out.println("There is no item in your inventory");
+                                continue;
+                            }
 
 
                         }

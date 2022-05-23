@@ -2,12 +2,14 @@ public abstract class Item {
     String name;
     int weight;
     double value;
+    boolean isItTaken;
 
     //constructor
     public Item(String name, int weight, double value) {
         this.name = name;
         this.weight = weight;
         this.value = value;
+        this.isItTaken = false;
     }
 
     //kaan'll develop that part
