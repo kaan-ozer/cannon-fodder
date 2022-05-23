@@ -263,12 +263,15 @@ public class Main {
 
 
                         String menu3 = "Choose the process: \n"
-                                + "1. Pick The Dropped Item And Examine\n"
-                                + "2. Wield The Item Which You Take From Ground\n"
-                                + "3. Pick Item From Ground And Add Your Inventory\n"
-                                + "4. List Inventory\n"
-                                + "5. Drop Item From Your Inventory \n"
-                                + "6. Next \n";
+                                + "---Dropped Items---\n"
+                                + "1. Pick and Examine\n"
+                                + "2. Wield \n"
+                                + "3. Pick and Add Your Inventory\n"
+                                + "---Inventory Items---\n"
+                                + "4. Pick and Wield \n"
+                                + "5. List Inventory\n"
+                                + "6. Drop Item From Your Inventory \n"
+                                + "7. Next \n";
 
 
                         while (true) {
@@ -280,7 +283,7 @@ public class Main {
 
                             int input = scanner.nextInt();
 
-                            if (input == 1) {
+                            if(input == 1) {
 
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedItems);
@@ -296,7 +299,8 @@ public class Main {
 
                                 droppedItems.get(itemIndex).printItemInfo();
 
-                            } else if (input == 2) {
+                            }
+                            else if(input == 2) {
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedItems);
 
@@ -326,7 +330,8 @@ public class Main {
 
                                     System.out.println("you already get this");
                                 }
-                            } else if (input == 3) {
+                            }
+                            else if(input == 3) {
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedItems);
 
@@ -346,7 +351,41 @@ public class Main {
                                     System.out.println("you already got this item");
                                 }
 
-                            } else if (input == 4) {
+                            }
+                            else if(input == 4) {
+
+                                if (characters.get(characterIndex).getInventory().size() != 0) {
+                                    characters.get(characterIndex).listInventory();
+
+                                    System.out.println("Please pick the item ");
+                                    int particularItemTableIndex = scanner.nextInt();
+                                    System.out.println();
+
+                                    int itemIndex = particularItemTableIndex - 1;
+
+                                    characters.get(characterIndex).getInventory().add(characters.get(characterIndex).getItemHoldingOnHand());
+
+                                    System.out.println();
+                                    System.out.println("----------------------------");
+                                    System.out.println(characters.get(characterIndex).getItemHoldingOnHand().getName() + "Added your inventory");
+                                    System.out.println("----------------------------");
+                                    characters.get(characterIndex).setItemHoldingOnHand(characters.get(characterIndex).getInventory().get(itemIndex));
+                                    System.out.println(characters.get(characterIndex).getInventory().get(itemIndex).getName() + " is wielded");
+                                    System.out.println("----------------------------");
+                                    System.out.println();
+
+
+                                } else {
+                                    System.out.println();
+                                    System.out.println("--------------------------------------");
+                                    System.out.println("There is no item in your inventory");
+                                    System.out.println("--------------------------------------");
+                                    System.out.println();
+                                    continue;
+                                }
+
+                            }
+                            else if(input == 5) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
                                     characters.get(characterIndex).listInventory();
@@ -359,7 +398,8 @@ public class Main {
                                     continue;
                                 }
 
-                            } else if (input == 5) {
+                            }
+                            else if(input == 6) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
                                     characters.get(characterIndex).listInventory();
@@ -383,7 +423,8 @@ public class Main {
                                 }
 
 
-                            } else if (input == 6) {
+                            }
+                            else if(input == 7) {
                                 break;
                             }
 
@@ -557,7 +598,6 @@ public class Main {
         System.out.println();
 
         Thread.sleep(1500);
-
 
 
         while (isThereAnyCharacter(characters)) {
