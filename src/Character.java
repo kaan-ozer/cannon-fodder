@@ -135,11 +135,11 @@ public abstract class Character {
 
     }
 
-    public void removeItemFromInventory(Character character, Item item) {
+    public void removeItemFromInventory(Item item) {
 
-        for (int i = 0 ; i < character.getInventory().size() ; i++) {
-            if (character.getInventory().get(i) == item)
-            character.getInventory().remove(i);
+        for (int i = 0 ; i < getInventory().size() ; i++) {
+            if (getInventory().get(i) == item)
+            getInventory().remove(i);
         }
 
     }

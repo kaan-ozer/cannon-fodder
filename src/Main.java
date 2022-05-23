@@ -27,7 +27,6 @@ public class Main {
         // I obtained an array which was filled with enemies for a specific level.
         return activeEnemies;
     }
-
     public static ArrayList<Character> creatCharacters() {
         SecureRandom randomNumber = new SecureRandom();
 
@@ -85,7 +84,6 @@ public class Main {
 
         return charactersAreAtBeginning;
     }
-
     public static void showAllEnemies(ArrayList<Enemy> enemies) {
 
 
@@ -116,7 +114,6 @@ public class Main {
 
 
     }
-
     public static void showAllDroppedItems(ArrayList<Item> droppedItems) {
 
 
@@ -139,8 +136,6 @@ public class Main {
         System.out.println("--------------------------------------------------------");
         System.out.println();
     }
-
-
     public static boolean isThereAnyEnemy(ArrayList<Enemy> enemies) {
 
         boolean isThereAnyEnemy = false;
@@ -157,7 +152,6 @@ public class Main {
         return isThereAnyEnemy;
 
     }
-
     public static boolean isThereAnyCharacter(ArrayList<Character> characters) {
 
         boolean isThereAnyEnemy = false;   //name better to be isThereAnyCharacter
@@ -174,7 +168,6 @@ public class Main {
         return isThereAnyEnemy;
 
     }
-
     public static void gameTable(ArrayList<Character> characters, ArrayList<Enemy> enemies) throws InterruptedException {
         // we send two array when we called that method. -k
         //first array for characters and other array is for enemies. -k
@@ -268,12 +261,18 @@ public class Main {
 
 
 
+
+
                     String menu3 = "Choose the process: \n"
-                            + "1. LOOK AT ITEMS WHİCH BE ON THE GROUND TO ADD YOUR INVENTORY\n"
-                            + "2. LIST INVENTORY\n"
-                            + "3. WIELD ITEM FROM GROUND\n"
-                            + "4. NEXT\n"
-                            + "5. EXAMINE\n";  //there should be- test this item -option to show the item info before we decide to pick it up . better to change menu order
+                            + "1. Pick The Dropped Item And Examine\n"
+                            + "2. Wield The Item Which You Take From Ground\n"
+                            + "3. Pick Item From Ground And Add Your Inventory\n"
+                            + "4. List Inventory\n"
+                            + "5. Drop Item From Your Inventory \n"
+                            + "6. Next \n";
+
+
+
 
 
                     boolean didYouAddBefore = false;
@@ -288,31 +287,24 @@ public class Main {
                         int input = scanner.nextInt();
 
                         if (input == 1) {
-                            if (didYouAddBefore == false) {
 
-                                //it'll print out the all items on the ground - k
-                                showAllDroppedItems(droppedItems);
+                            //it'll print out the all items on the ground - k
+                            showAllDroppedItems(droppedItems);
 
-                                // I choose the item from the table
-                                System.out.println("Please choose the item ");
-                                int particularItemTableIndex = scanner.nextInt();
-                                System.out.println();
+                            // I choose the item from the table
+                            System.out.println("Please pick the item ");
+                            int particularItemTableIndex = scanner.nextInt();
+                            System.out.println();
 
-                                int itemIndex = particularItemTableIndex - 1;
+                            int itemIndex = particularItemTableIndex - 1;
+                            System.out.println("Test");
 
-                                characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), droppedItems.get(itemIndex));
-                                didYouAddBefore = true;
-                            } else {
 
-                                System.out.println("you already got this item");
-                            }
+                            droppedItems.get(itemIndex).printItemInfo();
 
                         }
+
                         else if (input == 2) {
-
-                            characters.get(characterIndex).listInventory();
-                        }
-                        else if (input == 3) {
                             //it'll print out the all items on the ground - k
                             showAllDroppedItems(droppedItems);
 
@@ -333,35 +325,67 @@ public class Main {
                                 characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
                                 characters.get(characterIndex).setItemHoldingOnHand(droppedItems.get(itemIndex));
                                 didYouAddBefore = true;
-                            } else if (didYouAddBefore == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItems.get(itemIndex)) {
+                            }
+
+                            else if (didYouAddBefore == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItems.get(itemIndex)) {
                                 characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
-                                characters.get(characterIndex).removeItemFromInventory(characters.get(characterIndex), droppedItems.get(itemIndex));
+                                characters.get(characterIndex).removeItemFromInventory(droppedItems.get(itemIndex));
 
                                 characters.get(characterIndex).setItemHoldingOnHand(droppedItems.get(itemIndex));
 
-                            } else {
+                            }
+
+                            else {
 
                                 System.out.println("you already get this");
                             }
                         }
+                        else if (input == 3) {
+
+                            if (didYouAddBefore == false) {
+
+                                //it'll print out the all items on the ground - k
+                                showAllDroppedItems(droppedItems);
+
+                                // I choose the item from the table
+                                System.out.println("Please choose the item ");
+                                int particularItemTableIndex = scanner.nextInt();
+                                System.out.println();
+
+                                int itemIndex = particularItemTableIndex - 1;
+
+                                characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), droppedItems.get(itemIndex));
+                                didYouAddBefore = true;
+                            } else {
+
+                                System.out.println("you already got this item");
+                            }
+
+                        }
                         else if (input == 4) {
-                            break;
+
+                            if (characters.get(characterIndex).getInventory().size() != 0 )
+                            characters.get(characterIndex).listInventory();
+                            else
+                                System.out.println("you don't have any item....");
                         }
                         else if (input == 5) {
 
-                            //it'll print out the all items on the ground - k
-                            showAllDroppedItems(droppedItems);
+                            characters.get(characterIndex).listInventory();
 
-                            // I choose the item from the table
                             System.out.println("Please pick the item ");
                             int particularItemTableIndex = scanner.nextInt();
                             System.out.println();
 
                             int itemIndex = particularItemTableIndex - 1;
 
-                            if (didYouAddBefore == true || !didYouAddBefore) {
-                                droppedItems.get(itemIndex).printItemInfo();
-                            }
+                            System.out.println(characters.get(characterIndex).getInventory().get(itemIndex).getName() + " removed from your inventory....");
+                            characters.get(characterIndex).removeItemFromInventory(characters.get(characterIndex).getInventory().get(itemIndex));
+
+
+                        }
+                        else if (input == 6) {
+                            break;
                         }
 
 
@@ -402,7 +426,7 @@ public class Main {
                     }
                 }
 
-         
+
             }
 
             else if(process == 2) {
@@ -478,7 +502,6 @@ public class Main {
 
 
     }
-
     public static int characterMenu(ArrayList<Character> characters) {
 
         // that method prints out the character menu and it will continue by you choose a character which is alive. -k
@@ -510,7 +533,6 @@ public class Main {
 
         }
     }
-
     public static boolean wantUseSpecialAction(int userInput) {
         boolean haveSpecialAction = false;
 
@@ -526,8 +548,6 @@ public class Main {
         }
         return haveSpecialAction;
     }
-
-
 
     public static void main(String[] args) throws InterruptedException {
 
