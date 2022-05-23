@@ -544,6 +544,8 @@ public class Main {
         System.out.println("-------------------------------------");
         System.out.println();
 
+        Thread.sleep(1000);
+
         int currentLevel = 0;
         ArrayList<Enemy> level1enemies = createEnemy(0);
         ArrayList<Character> characters = creatCharacters();
@@ -554,10 +556,8 @@ public class Main {
         System.out.println("Entering Level " + currentLevel + " Fighter enters.");
         System.out.println();
 
-        System.out.println("---------------");
-        System.out.println("It is your turn......");
-        System.out.println("---------------");
-        System.out.println();
+        Thread.sleep(1500);
+
 
 
         while (isThereAnyCharacter(characters)) {

@@ -8,7 +8,7 @@ public class Healer extends Character{
         this.setHp(calculateHp(strength,vitality,intelligence));
         setRace("Healer");
 
-        Wand woodWand= new Wand("wood wand",2,1);
+        Wand woodWand= new Wand("wood wand",1,0.7);
         setItemHoldingOnHand(woodWand);
 
 
