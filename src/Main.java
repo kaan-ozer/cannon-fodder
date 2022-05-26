@@ -198,7 +198,7 @@ public class Main {
 
 
             while (true) {
-
+                
                 String menu2 = "Choose the process: \n"
                         + "1. Normal Attack\n"
                         + "2. Special Attack(in progress)\n"
@@ -206,7 +206,10 @@ public class Main {
                         + "4. Wield item from your inventory\n"
                         + "5. Drop item from your inventory";
 
+                System.out.println("----------------------------------------");
                 System.out.println(menu2);
+                System.out.println("----------------------------------------");
+
                 System.out.println("Please choose the process:");
                 int process = scanner.nextInt();
                 System.out.println();
@@ -272,7 +275,7 @@ public class Main {
                                 + "4. Pick and Wield \n"
                                 + "5. List Inventory\n"
                                 + "6. Drop Item From Your Inventory \n\n"
-                                + "6. ---Next Level--- \n"
+                                + "---Next Level--- \n"
                                 + "7. Next \n";
 
 
@@ -323,13 +326,17 @@ public class Main {
                                     characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
                                     characters.get(characterIndex).setItemHoldingOnHand(droppedItems.get(itemIndex));
                                     droppedItems.get(itemIndex).isItTaken = true;
-                                } else if (droppedItems.get(itemIndex).isItTaken == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItems.get(itemIndex)) {
+                                }
+
+                                else if (droppedItems.get(itemIndex).isItTaken == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItems.get(itemIndex)) {
                                     characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
                                     characters.get(characterIndex).removeItemFromInventory(droppedItems.get(itemIndex));
 
                                     characters.get(characterIndex).setItemHoldingOnHand(droppedItems.get(itemIndex));
 
-                                } else {
+                                }
+
+                                else {
 
                                     System.out.println("you already get this");
                                 }
@@ -374,6 +381,7 @@ public class Main {
                                     System.out.println("----------------------------");
                                     characters.get(characterIndex).setItemHoldingOnHand(characters.get(characterIndex).getInventory().get(itemIndex));
                                     System.out.println(characters.get(characterIndex).getInventory().get(itemIndex).getName() + " is wielded");
+                                    characters.get(characterIndex).getInventory().remove(itemIndex);
                                     System.out.println("----------------------------");
                                     System.out.println();
 
