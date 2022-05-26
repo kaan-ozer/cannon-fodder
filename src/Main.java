@@ -203,7 +203,8 @@ public class Main {
                         + "1. Normal Attack\n"
                         + "2. Special Attack(in progress)\n"
                         + "3. See Your İnventory\n"
-                        + "4. Wield item from your inventory\n";
+                        + "4. Wield item from your inventory\n"
+                        + "4. Drop item from your inventory";
 
                 System.out.println(menu2);
                 System.out.println("Please choose the process:");
