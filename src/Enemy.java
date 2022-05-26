@@ -29,7 +29,7 @@ public class Enemy extends  Character{
         }
 
         else if(number<80 && number < 90){
-            Shield  bucklerShieled=new Shield("bucklerShiled",1,2);
+            Shield  bucklerShieled=new Shield("bucklerShield",1,2);
             setItemHoldingOnHand(bucklerShieled);
         }
 

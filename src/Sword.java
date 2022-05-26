@@ -19,6 +19,8 @@ public  class Sword extends Item {
     @Override
     public void SpecialAction(boolean isSpecialActionWithSword,Character chosenEnemy, Character chosenCharacter,Character C) {//I will fix it just there should be  one more parameter
         System.out.println("special action activated !" + chosenCharacter.getRace() + "to keep " + chosenEnemy.getRace() + " away for one turn");
+        System.out.println(chosenCharacter.getRace()+"can not cause dame for few turns...");
+
     }
 
     public void attack(Character chosenEnemy, Character chosenCharacter) {

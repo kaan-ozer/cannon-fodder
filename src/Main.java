@@ -210,12 +210,13 @@ public class Main {
                 int process = scanner.nextInt();
                 System.out.println();
 
+                int particularEnemyTableIndex=0; ///I put it outside of if  because  I need it fpr special action body
 
                 if (process == 1) {
 
                     showAllEnemies(enemies);
                     System.out.println("Please choose the enemy which you want to attack:");
-                    int particularEnemyTableIndex = scanner.nextInt();
+                     particularEnemyTableIndex = scanner.nextInt();
                     System.out.println();
 
 
@@ -466,24 +467,18 @@ public class Main {
 
 
                 } else if (process == 2) {
-                /*
+
                 boolean isActionWithWand=false;
                 boolean isActionWithShield=false;
                 boolean isActionWithSword=false;
 
-                System.out.println("for special action press 1 for normal action press 0: ");
-                int playerDecision=scanner.nextInt();
-                switch (playerDecision){
-                    case 0:
-                        characters.get(characterIndex).getItemHoldingOnHand().attack(enemies.get(index), characters.get(characterIndex));//is this break necessary?
-                        break;
 
-                    case 1:if (characters.get(characterIndex).getItemHoldingOnHand().getClass().getName().equals("Wand")){
+                    if (characters.get(characterIndex).getItemHoldingOnHand().getClass().getName().equals("Wand")){
                         isActionWithWand=true;
                         System.out.println("enter: 1-to heal fighter ,  2-to heal tank ,   3-to heal healer  ");
                         int healChoice=scanner.nextInt();
                         if (healChoice==1){//heal the fighter
-                            characters.get(characterIndex).getItemHoldingOnHand().SpecialAction(isActionWithWand,enemies.get(particularEnemyTableIndex),characters.get(characterIndex),characters.get(characterIndex-2));
+                            characters.get(characterIndex).getItemHoldingOnHand().SpecialAction(isActionWithWand,enemies.get(particularEnemyTableIndex),characters.get(characterIndex),characters.get(characterIndex));
                             //<<<<<<<break;
                         }
                         else if (healChoice==2){//heal the tank
@@ -496,17 +491,22 @@ public class Main {
                     else if (characters.get(characterIndex).getItemHoldingOnHand().getClass().getName().equals("Sword")){
                         isActionWithSword=true;
                         characters.get(characterIndex).getItemHoldingOnHand().SpecialAction(isActionWithSword,enemies.get(particularEnemyTableIndex),characters.get(characterIndex),characters.get(characterIndex));
+
                         break;
                     }
                     else if (characters.get(characterIndex).getItemHoldingOnHand().getClass().getName().equals("Shield")){
                         break;
                     }
-                }
                   boolean passTheTurn = false;   //if the special action is for" sword "one turn of enemy and character  should be passed
                     if (isActionWithSword){passTheTurn=true;
                      }
- */
-                } else if (process == 3) {
+
+                }
+
+
+
+
+                else if (process == 3) {
                     characters.get(characterIndex).listInventory();
                 } else if (process == 4) {
 
@@ -563,7 +563,7 @@ public class Main {
         }
     }
 
-    public static boolean wantUseSpecialAction(int userInput) {
+   /* public static boolean wantUseSpecialAction(int userInput) {
         boolean haveSpecialAction = false;
 
         if (userInput == 1) {
@@ -575,7 +575,7 @@ public class Main {
 
         }
         return haveSpecialAction;
-    }
+    }*/
 
     public static void main(String[] args) throws InterruptedException {
 
