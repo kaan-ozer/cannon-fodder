@@ -186,15 +186,16 @@ public class Main {
         // this loop will continue until you don't have any alive character. -k
         while (isThereAnyCharacter(characters)) {
 
-            System.out.println();
-            System.out.println("----------------------------------");
-            System.out.println("Your turn....");
-            System.out.println("----------------------------------");
-            System.out.println();
 
             int characterIndex = 0;
             // you should choose a character
             try {
+                System.out.println();
+                System.out.println("----------------------------------");
+                System.out.println("Your turn....");
+                System.out.println("----------------------------------");
+                System.out.println();
+
                 characterIndex = characterMenu(characters);
             }
             catch (IndexOutOfBoundsException e) {
@@ -208,7 +209,7 @@ public class Main {
                 System.out.println("-------------------------");
                 continue;
             }
-      
+
 
 
 
