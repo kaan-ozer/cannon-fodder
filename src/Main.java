@@ -186,26 +186,46 @@ public class Main {
         // this loop will continue until you don't have any alive character. -k
         while (isThereAnyCharacter(characters)) {
 
-            System.out.println();
-            System.out.println("----------------------------------");
-            System.out.println("Your turn....");
-            System.out.println("----------------------------------");
-            System.out.println();
 
-
+            int characterIndex = 0;
             // you should choose a character
-            int characterIndex = characterMenu(characters);
+            try {
+                System.out.println();
+                System.out.println("----------------------------------");
+                System.out.println("Your turn....");
+                System.out.println("----------------------------------");
+                System.out.println();
+
+                characterIndex = characterMenu(characters);
+            }
+            catch (IndexOutOfBoundsException e) {
+                System.out.println();
+                System.out.println("*******************");
+                System.out.println("You entered invalid value....");
+                System.out.println("*******************");
+                System.out.println();
+                System.out.println("-------------------------");
+                System.out.println("You have to choose it again....");
+                System.out.println("-------------------------");
+                continue;
+            }
+
+
 
 
             while (true) {
-
+                
                 String menu2 = "Choose the process: \n"
                         + "1. Normal Attack\n"
                         + "2. Special Attack(in progress)\n"
                         + "3. See Your İnventory\n"
-                        + "4. Wield item from your inventory\n";
+                        + "4. Wield item from your inventory\n"
+                        + "5. Drop item from your inventory";
 
+                System.out.println("----------------------------------------");
                 System.out.println(menu2);
+                System.out.println("----------------------------------------");
+
                 System.out.println("Please choose the process:");
                 int process = scanner.nextInt();
                 System.out.println();
@@ -271,11 +291,13 @@ public class Main {
                                 + "---Inventory Items---\n"
                                 + "4. Pick and Wield \n"
                                 + "5. List Inventory\n"
-                                + "6. Drop Item From Your Inventory \n"
+                                + "6. Drop Item From Your Inventory \n\n"
+                                + "---Next Level--- \n"
                                 + "7. Next \n";
 
 
                         while (true) {
+
                             System.out.println();
                             System.out.println("*********************************");
                             System.out.println(menu3);
@@ -321,13 +343,17 @@ public class Main {
                                     characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
                                     characters.get(characterIndex).setItemHoldingOnHand(droppedItems.get(itemIndex));
                                     droppedItems.get(itemIndex).isItTaken = true;
-                                } else if (droppedItems.get(itemIndex).isItTaken == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItems.get(itemIndex)) {
+                                }
+
+                                else if (droppedItems.get(itemIndex).isItTaken == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItems.get(itemIndex)) {
                                     characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
                                     characters.get(characterIndex).removeItemFromInventory(droppedItems.get(itemIndex));
 
                                     characters.get(characterIndex).setItemHoldingOnHand(droppedItems.get(itemIndex));
 
-                                } else {
+                                }
+
+                                else {
 
                                     System.out.println("you already get this");
                                 }
@@ -372,6 +398,7 @@ public class Main {
                                     System.out.println("----------------------------");
                                     characters.get(characterIndex).setItemHoldingOnHand(characters.get(characterIndex).getInventory().get(itemIndex));
                                     System.out.println(characters.get(characterIndex).getInventory().get(itemIndex).getName() + " is wielded");
+                                    characters.get(characterIndex).getInventory().remove(itemIndex);
                                     System.out.println("----------------------------");
                                     System.out.println();
 
@@ -466,7 +493,7 @@ public class Main {
                     }
 
 
-                } else if (process == 2) {
+                else if (process == 2) {/*
 
                 boolean isActionWithWand=false;
                 boolean isActionWithShield=false;
@@ -501,14 +528,17 @@ public class Main {
                     if (isActionWithSword){passTheTurn=true;
                      }
 
+
                 }
+
 
 
 
 
                 else if (process == 3) {
                     characters.get(characterIndex).listInventory();
-                } else if (process == 4) {
+                }
+                else if (process == 4) {
 
                     if (characters.get(characterIndex).getInventory().size() == 0) {
                         System.out.println("-----------------------------------------");
@@ -517,9 +547,42 @@ public class Main {
                     } else {
                         characters.get(characterIndex).wield();
                     }
-                } else {
-                    System.out.println("invalid number...");
+                }
+                else if(process == 5) {
 
+                    if (characters.get(characterIndex).getInventory().size() != 0) {
+                        characters.get(characterIndex).listInventory();
+
+                        System.out.println("Please pick the item ");
+                        int particularItemTableIndex = scanner.nextInt();
+                        System.out.println();
+
+                        int itemIndex = particularItemTableIndex - 1;
+
+                        System.out.println(characters.get(characterIndex).getInventory().get(itemIndex).getName() + " removed from your inventory....");
+                        characters.get(characterIndex).removeItemFromInventory(characters.get(characterIndex).getInventory().get(itemIndex));
+
+                    } else {
+                        System.out.println();
+                        System.out.println("--------------------------------------");
+                        System.out.println("There is no item in your inventory");
+                        System.out.println("--------------------------------------");
+                        System.out.println();
+                        continue;
+                    }
+
+
+                }
+                else {
+                    System.out.println();
+                    System.out.println("*******************");
+                    System.out.println("You entered invalid value....");
+                    System.out.println("*******************");
+                    System.out.println();
+                    System.out.println("-------------------------");
+                    System.out.println("You have to choose it again....");
+                    System.out.println("-------------------------");
+                    continue;
                 }
 
 
@@ -609,8 +672,12 @@ public class Main {
             currentLevel++;
 
             if (isThereAnyCharacter(characters)) {
+                currentLevel++;
                 System.out.println();
                 System.out.println("Next level is starting");
+                System.out.println();
+                System.out.println("Creating Level " + currentLevel + ", with " + (int) Math.pow(2.0, currentLevel) + " enemy soldier.");
+                System.out.println("Entering Level " + currentLevel + " Fighter enters.");
                 System.out.println();
 
             }
