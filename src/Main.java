@@ -670,8 +670,12 @@ public class Main {
             currentLevel++;
 
             if (isThereAnyCharacter(characters)) {
+                currentLevel++;
                 System.out.println();
                 System.out.println("Next level is starting");
+                System.out.println();
+                System.out.println("Creating Level " + currentLevel + ", with " + (int) Math.pow(2.0, currentLevel) + " enemy soldier.");
+                System.out.println("Entering Level " + currentLevel + " Fighter enters.");
                 System.out.println();
 
             }
