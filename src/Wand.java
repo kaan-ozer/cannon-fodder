@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Wand extends Item {
 
     public Wand(String name, int weight, double value) {
@@ -13,8 +14,8 @@ public class Wand extends Item {
 
     @Override
     public void SpecialAction(boolean isSpecialActionWithWand,Character chosenEnemy, Character chosenCharacter,Character characterToHeal) {
-        System.out.println(" special action  for wand activated ! ");
-        if (chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter) <= 0) {
+        System.out.println("special action  for wand activated ! ");
+       /* if (chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter) <= 0) {
             chosenEnemy.setHp(0);
             chosenEnemy.setItAlive(false);
             System.out.println(chosenEnemy.getRace() + " is dead");
@@ -29,8 +30,7 @@ public class Wand extends Item {
         if (chosenEnemy.isItAlive()) {  //why we wrote it here? - we checked if enemy is alive or not
             //if enemy is alive, we will print out the new hp value after the enemy got damage by character
             System.out.println("new hp for the " + chosenEnemy.getRace() + " is: " + chosenEnemy.getHp());
-        }
-        System.out.println("enter 1 to heal fighter ,enter 2  to heal tank, enter 3 to heal healer:  ");
+        }*/
 
 
         System.out.println(characterToHeal.getRace()+"  is healed");
