@@ -192,9 +192,24 @@ public class Main {
             System.out.println("----------------------------------");
             System.out.println();
 
-
+            int characterIndex = 0;
             // you should choose a character
-            int characterIndex = characterMenu(characters);
+            try {
+                characterIndex = characterMenu(characters);
+            }
+            catch (IndexOutOfBoundsException e) {
+                System.out.println();
+                System.out.println("*******************");
+                System.out.println("You entered invalid value....");
+                System.out.println("*******************");
+                System.out.println();
+                System.out.println("-------------------------");
+                System.out.println("You have to choose it again....");
+                System.out.println("-------------------------");
+                continue;
+            }
+      
+
 
 
             while (true) {
@@ -556,8 +571,15 @@ public class Main {
 
                 }
                 else {
-                    System.out.println("invalid number...");
-
+                    System.out.println();
+                    System.out.println("*******************");
+                    System.out.println("You entered invalid value....");
+                    System.out.println("*******************");
+                    System.out.println();
+                    System.out.println("-------------------------");
+                    System.out.println("You have to choose it again....");
+                    System.out.println("-------------------------");
+                    continue;
                 }
 
 
