@@ -271,11 +271,13 @@ public class Main {
                                 + "---Inventory Items---\n"
                                 + "4. Pick and Wield \n"
                                 + "5. List Inventory\n"
-                                + "6. Drop Item From Your Inventory \n"
+                                + "6. Drop Item From Your Inventory \n\n"
+                                + "6. ---Next Level--- \n"
                                 + "7. Next \n";
 
 
                         while (true) {
+                            
                             System.out.println();
                             System.out.println("*********************************");
                             System.out.println(menu3);
