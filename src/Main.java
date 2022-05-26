@@ -204,7 +204,7 @@ public class Main {
                         + "2. Special Attack(in progress)\n"
                         + "3. See Your İnventory\n"
                         + "4. Wield item from your inventory\n"
-                        + "4. Drop item from your inventory";
+                        + "5. Drop item from your inventory";
 
                 System.out.println(menu2);
                 System.out.println("Please choose the process:");
@@ -277,7 +277,7 @@ public class Main {
 
 
                         while (true) {
-                            
+
                             System.out.println();
                             System.out.println("*********************************");
                             System.out.println(menu3);
@@ -468,8 +468,8 @@ public class Main {
                     }
 
 
-                } else if (process == 2) {
-                /*
+                }
+                else if (process == 2) {/*
                 boolean isActionWithWand=false;
                 boolean isActionWithShield=false;
                 boolean isActionWithSword=false;
@@ -508,10 +508,11 @@ public class Main {
                   boolean passTheTurn = false;   //if the special action is for" sword "one turn of enemy and character  should be passed
                     if (isActionWithSword){passTheTurn=true;
                      }
- */
-                } else if (process == 3) {
+ */}
+                else if (process == 3) {
                     characters.get(characterIndex).listInventory();
-                } else if (process == 4) {
+                }
+                else if (process == 4) {
 
                     if (characters.get(characterIndex).getInventory().size() == 0) {
                         System.out.println("-----------------------------------------");
@@ -520,7 +521,33 @@ public class Main {
                     } else {
                         characters.get(characterIndex).wield();
                     }
-                } else {
+                }
+                else if(process == 5) {
+
+                    if (characters.get(characterIndex).getInventory().size() != 0) {
+                        characters.get(characterIndex).listInventory();
+
+                        System.out.println("Please pick the item ");
+                        int particularItemTableIndex = scanner.nextInt();
+                        System.out.println();
+
+                        int itemIndex = particularItemTableIndex - 1;
+
+                        System.out.println(characters.get(characterIndex).getInventory().get(itemIndex).getName() + " removed from your inventory....");
+                        characters.get(characterIndex).removeItemFromInventory(characters.get(characterIndex).getInventory().get(itemIndex));
+
+                    } else {
+                        System.out.println();
+                        System.out.println("--------------------------------------");
+                        System.out.println("There is no item in your inventory");
+                        System.out.println("--------------------------------------");
+                        System.out.println();
+                        continue;
+                    }
+
+
+                }
+                else {
                     System.out.println("invalid number...");
 
                 }

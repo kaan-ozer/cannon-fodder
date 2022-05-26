@@ -1,8 +1,10 @@
 public abstract class Item {
+
     String name;
     int weight;
     double value;
     boolean isItTaken;
+    boolean isItOnTheGround;
 
     //constructor
     public Item(String name, int weight, double value) {
