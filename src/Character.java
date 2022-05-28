@@ -8,26 +8,29 @@ public abstract class Character {
     private int strength;
     private int vitality;
     private int intelligence;
-    private long hp;
+    private double hp;
 
     //extra features
-    private Item itemHoldingOnHand;
+    private Weapon weaponHoldingOnHand;
     private boolean isItAlive;
     private String race;
     // each character has an inventory which holds items
-    private ArrayList<Item> inventory;
+    private ArrayList<Weapon> inventory;
 
     //CONSTRUCTORS
 
     public Character(int strength,int vitality,int intelligence) {
 
+        //main data members
         this.strength = strength;  // page 3 of the project instruction (based on table values)
         this.vitality = vitality;
         this.intelligence = intelligence;
-        setHp(calculateHp(strength,vitality,intelligence));
+        this.hp = 0;
+        //extra data members
         this.race = null;
         this.isItAlive = true;
-        this.itemHoldingOnHand = null;
+        this.weaponHoldingOnHand = null;
+        //inventory for each character
         this.inventory = new ArrayList<>();
     }
 
@@ -36,11 +39,10 @@ public abstract class Character {
         this.strength = 0;
         this.vitality = 0;
         this.intelligence = 0;
-        setHp(calculateHp(0,0,0));
-        this.itemHoldingOnHand = null;
+        this.hp = 0;
+        this.weaponHoldingOnHand = null;
         this.race = null;
         this.isItAlive = true;
-        this.itemHoldingOnHand = null;
         this.inventory = new ArrayList<>();
     }
 
@@ -49,65 +51,16 @@ public abstract class Character {
 
     public abstract void showInfos();
 
-    public void wield() {
-        Scanner scanner = new Scanner(System.in);
+    public abstract void wield();
 
-        listInventory();
+    public abstract void listInventory();
 
-        System.out.println("Please choose the item via numbers");
-        int decision = scanner.nextInt();
-
-        int index = decision -1;
-
-
-        addItemToInventory(this,getItemHoldingOnHand());
-        System.out.println(getItemHoldingOnHand().getName() + " added your inventory.");
-
-        setItemHoldingOnHand(inventory.get(index));
-        System.out.println(inventory.get(index).getName() + " is wielded");
-        getInventory().remove(index);
-
-
-    }
-
-    public  void listInventory() {
-
-        if (getInventory().size() == 0) {
-            System.out.println();
-            System.out.println("--------------------------------------------------------");
-            System.out.println("There is no any item which assigned to character right now.");
-            System.out.println("--------------------------------------------------------");
-            System.out.println();
-            return;
-        }
-
-
-        System.out.println();
-        System.out.println("--------------------------------------------------------");
-        System.out.printf("%-17s " , "Item's name");
-        System.out.printf("%-14s " ,"weight");
-        System.out.printf("%-10s " , "value");
-        System.out.println();
-
-
-        for(int i = 0; i < getInventory().size() ; i++) {
-
-
-            if (getInventory().get(i) != null){
-                System.out.printf("%d. %-17s ", i + 1, getInventory().get(i).getName());
-                System.out.printf("%-14s ", getInventory().get(i).getWeight());
-                System.out.printf("%-10s ", getInventory().get(i).getValue());
-                System.out.println();
-
-            }
-
-        }
-        System.out.println("--------------------------------------------------------");
-        System.out.println();
-    }
+    public abstract void addItemToInventory(Weapon item);
 
     public double calculateYourInventoryWeight() {
+
         double totalWeightInInventory =0;
+
         for (int i = 0; i < getInventory().size() ; i++) {
             //if there is an item add its weight to the total weight
             if (getInventory().get(i) != null) {
@@ -118,24 +71,7 @@ public abstract class Character {
         return totalWeightInInventory;
     }
 
-    public void addItemToInventory(Character character, Item item) {
-
-        //character try to take an item and we calculate the totalweight.
-        double updatedWeightInInventory = item.weight + calculateYourInventoryWeight();
-
-        //Character cannot carry much more than itself's strength
-        if (updatedWeightInInventory < character.getStrength()) {
-            character.getInventory().add(item);
-            System.out.println(item.getName() + " has been added to your inventory");
-        }
-        else {
-            System.out.println("Character cannot carry much more than itself's strength which be " + character.getStrength() );
-            System.out.println("Your inventory's current weight is: " + calculateYourInventoryWeight());
-        }
-
-    }
-
-    public void removeItemFromInventory(Item item) {
+    public void removeItemFromInventory(Weapon item) {
 
         for (int i = 0 ; i < getInventory().size() ; i++) {
             if (getInventory().get(i) == item)
@@ -155,7 +91,6 @@ public abstract class Character {
 
     //GETTER AND SETTERS
 
-
     public boolean isItAlive() {
         return isItAlive;
     }
@@ -172,19 +107,19 @@ public abstract class Character {
         this.race = race;
     }
 
-    public Item getItemHoldingOnHand() {
-        return itemHoldingOnHand;
+    public Weapon getWeaponHoldingOnHand() {
+        return weaponHoldingOnHand;
     }
 
-    public void setItemHoldingOnHand(Item itemHoldingOnHand) {
-        this.itemHoldingOnHand = itemHoldingOnHand;
+    public void setWeaponHoldingOnHand(Weapon weaponHoldingOnHand) {
+        this.weaponHoldingOnHand = weaponHoldingOnHand;
     }
 
-    public ArrayList<Item> getInventory() {
+    public ArrayList<Weapon> getInventory() {
         return inventory;
     }
 
-    public void setInventory(ArrayList<Item> inventory) {
+    public void setInventory(ArrayList<Weapon> inventory) {
         this.inventory = inventory;
     }
 
@@ -212,13 +147,19 @@ public abstract class Character {
         this.intelligence = intelligence;
     }
 
-    public long getHp() {
+    public double getHp() {
         return hp;
     }
 
-    public void setHp(long hp) {
+    public void setHp(double hp,int strength,int vitality,int intelligence) {
 
+        double boundary = calculateHp(strength,vitality,intelligence);
+
+        if (hp < boundary)
             this.hp = hp;
+        else
+            this.hp = boundary;
+
 
     }
 }
