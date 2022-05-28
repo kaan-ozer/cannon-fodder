@@ -40,8 +40,10 @@ public  class  Fighter extends Character{
             return;
         }
 
-
         System.out.println();
+        System.out.println("Fighter wields " + getWeaponHoldingOnHand() + ",  wears LeatherArmor.");
+        System.out.println();
+
         System.out.println("--------------------------------------------------------");
         System.out.printf("%-17s " , "Item's name");
         System.out.printf("%-14s " ,"weight");
