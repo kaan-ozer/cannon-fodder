@@ -1,4 +1,4 @@
-public abstract class Item {
+public class Item {
 
     String name;
     int weight;
@@ -13,9 +13,8 @@ public abstract class Item {
         this.isItTaken = false;
     }
 
-    //kaan'll develop that part
-    public abstract void attack(Character chosenEnemy, Character chosenCharacter);
-    public abstract  void SpecialAction(boolean specialAction,Character chosenEnemy, Character chosenCharacter,Character characterTo);
+
+
     //each weapon has a Special action(page 2 of project instruction)
     public void printItemInfo(){
         System.out.println("name: "+getName()+"  weight: "+getWeight()+"   value: "+getValue());

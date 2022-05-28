@@ -12,7 +12,7 @@ public class Tank extends Character {
         setRace("Tank");
 
         Shield shield = new Shield("shield",1,0.5);
-        setItemHoldingOnHand(shield);
+        setWeaponHoldingOnHand(shield);
     }
 
     public void showInfos(){
@@ -60,15 +60,15 @@ public class Tank extends Character {
         System.out.println();
     }
 
-    public void addItemToInventory(Item item) {
+    public void addItemToInventory(Weapon weapon) {
 
         //character try to take an item and we calculate the totalweight.
-        double updatedWeightInInventory = item.weight + calculateYourInventoryWeight();
+        double updatedWeightInInventory = weapon.weight + calculateYourInventoryWeight();
 
         //Character cannot carry much more than itself's strength
         if (updatedWeightInInventory < getStrength()) {
-            getInventory().add(item);
-            System.out.println(item.getName() + " has been added to Tank's inventory");
+            getInventory().add(weapon);
+            System.out.println(weapon.getName() + " has been added to Tank's inventory");
         }
 
         else {
@@ -90,10 +90,10 @@ public class Tank extends Character {
         int index = decision -1;
 
 
-        addItemToInventory(getItemHoldingOnHand());
-        System.out.println(getItemHoldingOnHand().getName() + " which you hold before is added Tank's inventory.");
+        addItemToInventory(getWeaponHoldingOnHand());
+        System.out.println(getWeaponHoldingOnHand().getName() + " which you hold before is added Tank's inventory.");
 
-        setItemHoldingOnHand(getInventory().get(index));
+        setWeaponHoldingOnHand(getInventory().get(index));
         System.out.println(getInventory().get(index).getName() + " is wielded now");
 
         getInventory().remove(index);

@@ -67,14 +67,14 @@ public class Main {
                 + ", V:" + fighter.getVitality()
                 + ", I: " + fighter.getIntelligence()
                 + ". The HP is :" + fighter.getHp()
-                + ". The weapon of the fighter is: " + fighter.getItemHoldingOnHand().getName());
+                + ". The weapon of the fighter is: " + fighter.getWeaponHoldingOnHand().getName());
 
         System.out.println("healer created with "
                 + " S: " + healer.getStrength()
                 + ", V:" + healer.getVitality()
                 + ", I: " + healer.getIntelligence()
                 + ". The HP is :" + healer.getHp()
-                + ". The weapon of the healer is: " + healer.getItemHoldingOnHand().getName());
+                + ". The weapon of the healer is: " + healer.getWeaponHoldingOnHand().getName());
 
         System.out.println("tank created with "
                 + " S: " + tank.getStrength()
@@ -118,7 +118,7 @@ public class Main {
 
     }
 
-    public static void showAllDroppedItems(ArrayList<Item> droppedItems) {
+    public static void showAllDroppedItems(ArrayList<Weapon> droppedWeapons) {
 
 
         System.out.println();
@@ -127,10 +127,10 @@ public class Main {
         System.out.println();
 
 
-        for (int i = 0; i < droppedItems.size(); i++) {
+        for (int i = 0; i < droppedWeapons.size(); i++) {
 
 
-            System.out.printf("%d. %-17s ", i + 1, droppedItems.get(i).getName() + (i + 1));
+            System.out.printf("%d. %-17s ", i + 1, droppedWeapons.get(i).getName() + (i + 1));
             // System.out.printf("%-14s ", );
             // System.out.printf("%-10s ", );
             System.out.println();
@@ -182,7 +182,7 @@ public class Main {
 
 
         // I created an array to gather and keep until the end of the level. -k
-        ArrayList<Item> droppedItems = new ArrayList<>();
+        ArrayList<Weapon> droppedWeapons = new ArrayList<>();
 
         // this loop will continue until you don't have any alive character. -k
         while (isThereAnyCharacter(characters)) {
@@ -247,23 +247,23 @@ public class Main {
 
                     // you are attacking that enemy. - k
                     System.out.println("----------------------------------");
-                    characters.get(characterIndex).getItemHoldingOnHand().attack(enemies.get(index), characters.get(characterIndex));
+                    characters.get(characterIndex).getWeaponHoldingOnHand().attack(enemies.get(index), characters.get(characterIndex));
                     System.out.println("----------------------------------");
                     Thread.sleep(1500);
 
                     // if the enemy dies an item will drop and I added that item to the droppedItems arraylist to reach them at the end of the level. -k
                     if (enemies.get(index).isItAlive() == false) {
-                        Item droppedItem = enemies.get(index).dropItem();
+                        Weapon droppedWeapon= enemies.get(index).dropWeapon();
 
-                        if (droppedItem != null) {
+                        if (droppedWeapon != null) {
 
                             System.out.println();
                             System.out.println("*********************************");
-                            System.out.println(droppedItem.getName() + " has dropped" + "by " + enemies.get(index).getRace());
+                            System.out.println(droppedWeapon.getName() + " has dropped" + "by " + enemies.get(index).getRace());
                             System.out.println("*********************************");
                             System.out.println();
 
-                            droppedItems.add(droppedItem);
+                            droppedWeapons.add(droppedWeapon);
                         }
 
                         else {
@@ -313,7 +313,7 @@ public class Main {
                             if (input == 1) {
 
                                 //it'll print out the all items on the ground - k
-                                showAllDroppedItems(droppedItems);
+                                showAllDroppedItems(droppedWeapons);
 
                                 // I choose the item from the table
                                 System.out.println("Please pick the item ");
@@ -322,13 +322,13 @@ public class Main {
 
                                 int itemIndex = particularItemTableIndex - 1;
 
-                                droppedItems.get(itemIndex).printItemInfo();
+                                droppedWeapons.get(itemIndex).printItemInfo();
 
                             }
 
                             else if (input == 2) {
                                 //it'll print out the all items on the ground - k
-                                showAllDroppedItems(droppedItems);
+                                showAllDroppedItems(droppedWeapons);
 
                                 // I choose the item from the table
                                 System.out.println("Please choose the item ");
@@ -341,18 +341,18 @@ public class Main {
                                 // if there is a problem to add your holding item to your inventory due to weight
                                 // there is a bug when you choose twice the 3 option
                                 // this method 'll develop
-                                if (droppedItems.get(itemIndex).isItTaken == false) {
+                                if (droppedWeapons.get(itemIndex).isItTaken == false) {
                                     System.out.println("item which you hold has been changed.");
-                                    characters.get(characterIndex).addItemToInventory(characters.get(characterIndex).getItemHoldingOnHand());
-                                    characters.get(characterIndex).setItemHoldingOnHand(droppedItems.get(itemIndex));
-                                    droppedItems.get(itemIndex).isItTaken = true;
+                                    characters.get(characterIndex).addItemToInventory(characters.get(characterIndex).getWeaponHoldingOnHand());
+                                    characters.get(characterIndex).setWeaponHoldingOnHand(droppedWeapons.get(itemIndex));
+                                    droppedWeapons.get(itemIndex).isItTaken = true;
                                 }
 
-                                else if (droppedItems.get(itemIndex).isItTaken == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItems.get(itemIndex)) {
-                                    characters.get(characterIndex).addItemToInventory(characters.get(characterIndex).getItemHoldingOnHand());
-                                    characters.get(characterIndex).removeItemFromInventory(droppedItems.get(itemIndex));
+                                else if (droppedWeapons.get(itemIndex).isItTaken == true && characters.get(characterIndex).getWeaponHoldingOnHand() != droppedWeapons.get(itemIndex)) {
+                                    characters.get(characterIndex).addItemToInventory(characters.get(characterIndex).getWeaponHoldingOnHand());
+                                    characters.get(characterIndex).removeItemFromInventory(droppedWeapons.get(itemIndex));
 
-                                    characters.get(characterIndex).setItemHoldingOnHand(droppedItems.get(itemIndex));
+                                    characters.get(characterIndex).setWeaponHoldingOnHand(droppedWeapons.get(itemIndex));
 
                                 }
 
@@ -364,7 +364,7 @@ public class Main {
 
                             else if (input == 3) {
                                 //it'll print out the all items on the ground - k
-                                showAllDroppedItems(droppedItems);
+                                showAllDroppedItems(droppedWeapons);
 
                                 // I choose the item from the table
                                 System.out.println("Please choose the item ");
@@ -373,10 +373,10 @@ public class Main {
 
                                 int itemIndex = particularItemTableIndex - 1;
 
-                                if (droppedItems.get(itemIndex).isItTaken == false) {
+                                if (droppedWeapons.get(itemIndex).isItTaken == false) {
 
-                                    characters.get(characterIndex).addItemToInventory(droppedItems.get(itemIndex));
-                                    droppedItems.get(itemIndex).isItTaken = true;
+                                    characters.get(characterIndex).addItemToInventory(droppedWeapons.get(itemIndex));
+                                    droppedWeapons.get(itemIndex).isItTaken = true;
                                 }
 
                                 else {
@@ -397,13 +397,13 @@ public class Main {
 
                                     int itemIndex = particularItemTableIndex - 1;
 
-                                    characters.get(characterIndex).getInventory().add(characters.get(characterIndex).getItemHoldingOnHand());
+                                    characters.get(characterIndex).getInventory().add(characters.get(characterIndex).getWeaponHoldingOnHand());
 
                                     System.out.println();
                                     System.out.println("----------------------------");
-                                    System.out.println(characters.get(characterIndex).getItemHoldingOnHand().getName() + "Added your inventory");
+                                    System.out.println(characters.get(characterIndex).getWeaponHoldingOnHand().getName() + "Added your inventory");
                                     System.out.println("----------------------------");
-                                    characters.get(characterIndex).setItemHoldingOnHand(characters.get(characterIndex).getInventory().get(itemIndex));
+                                    characters.get(characterIndex).setWeaponHoldingOnHand(characters.get(characterIndex).getInventory().get(itemIndex));
                                     System.out.println(characters.get(characterIndex).getInventory().get(itemIndex).getName() + " is wielded");
                                     characters.get(characterIndex).getInventory().remove(itemIndex);
                                     System.out.println("----------------------------");
@@ -489,7 +489,7 @@ public class Main {
                                     if (characters.get(j).isItAlive()) {
 
                                         System.out.println("----------------------------------");
-                                        enemies.get(i).getItemHoldingOnHand().attack(characters.get(j), enemies.get(i));
+                                        enemies.get(i).getWeaponHoldingOnHand().attack(characters.get(j), enemies.get(i));
                                         System.out.println("----------------------------------");
                                         passTheTurn = true;
                                         break;
@@ -520,7 +520,9 @@ public class Main {
                         System.out.println("-----------------------------------------");
                         System.out.println("There is no item in your inventory yet");
                         System.out.println("-----------------------------------------");
-                    } else {
+                    }
+
+                    else {
                         characters.get(characterIndex).wield();
                     }
 
@@ -540,7 +542,9 @@ public class Main {
                         System.out.println(characters.get(characterIndex).getInventory().get(itemIndex).getName() + " removed from your inventory....");
                         characters.get(characterIndex).removeItemFromInventory(characters.get(characterIndex).getInventory().get(itemIndex));
 
-                    } else {
+                    }
+
+                    else {
                         System.out.println();
                         System.out.println("--------------------------------------");
                         System.out.println("There is no item in your inventory");
@@ -628,19 +632,17 @@ public class Main {
             //we need to check if  the charcter is alive here.unless it will continue to hit even though it is dead.
 
 
+            System.out.println();
+            System.out.println("Next level is starting");
+            System.out.println();
+            System.out.println("Creating Level " + currentLevel + ", with " + (int) Math.pow(2.0, currentLevel) + " enemy soldier.");
+            System.out.println("Entering Level " + currentLevel + " Fighter enters.");
+            System.out.println();
+
             gameTable(characters, createEnemy(currentLevel));
             currentLevel++;
 
-            if (isThereAnyCharacter(characters)) {
 
-                currentLevel++;
-                System.out.println();
-                System.out.println("Next level is starting");
-                System.out.println();
-                System.out.println("Creating Level " + currentLevel + ", with " + (int) Math.pow(2.0, currentLevel) + " enemy soldier.");
-                System.out.println("Entering Level " + currentLevel + " Fighter enters.");
-                System.out.println();
-            }
         }
     }
 }

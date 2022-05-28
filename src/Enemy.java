@@ -1,7 +1,7 @@
 import java.security.SecureRandom;
 import java.util.Scanner;
 
-public class Enemy extends  Character{
+public class Enemy extends Character{
 
     //constructor for Enemy
 
@@ -21,23 +21,23 @@ public class Enemy extends  Character{
 
         if (number < 80) {
             Sword longSword = new Sword("longSword",2,2);
-            setItemHoldingOnHand(longSword);
+            setWeaponHoldingOnHand(longSword);
         }
 
         else if(number >80 && number < 90) {
             Wand woodenWand=new Wand("woodenWand",1,1.5);
-            setItemHoldingOnHand(woodenWand);
+            setWeaponHoldingOnHand(woodenWand);
         }
 
         else if(number<80 && number < 90){
             Shield  bucklerShieled=new Shield("bucklerShield",1,2);
-            setItemHoldingOnHand(bucklerShieled);
+            setWeaponHoldingOnHand(bucklerShieled);
         }
 
 
     }
 
-    public static Item dropItem() {
+    public static Weapon dropWeapon() {
 
         SecureRandom random = new SecureRandom();
 
@@ -132,7 +132,7 @@ public class Enemy extends  Character{
         System.out.println();
     }
 
-    public void addItemToInventory(Item item) {
+    public void addItemToInventory(Weapon item) {
 
         //character try to take an item and we calculate the totalweight.
         double updatedWeightInInventory = item.weight + calculateYourInventoryWeight();
@@ -151,6 +151,7 @@ public class Enemy extends  Character{
 
     }
 
+
     public void wield() {
 
         Scanner scanner = new Scanner(System.in);
@@ -162,10 +163,10 @@ public class Enemy extends  Character{
         int index = decision -1;
 
 
-        addItemToInventory(getItemHoldingOnHand());
-        System.out.println(getItemHoldingOnHand().getName() + " which you hold before is added Enemy's inventory.");
+        addItemToInventory(getWeaponHoldingOnHand());
+        System.out.println(getWeaponHoldingOnHand().getName() + " which you hold before is added Enemy's inventory.");
 
-        setItemHoldingOnHand(getInventory().get(index));
+        setWeaponHoldingOnHand(getInventory().get(index));
         System.out.println(getInventory().get(index).getName() + " is wielded now");
 
         getInventory().remove(index);

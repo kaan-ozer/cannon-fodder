@@ -16,7 +16,7 @@ public  class  Fighter extends Character{
 
         //character will be born with an item which is given at the beginning
         Sword shortSword = new Sword("short sword", 1,1);
-        setItemHoldingOnHand(shortSword);
+        setWeaponHoldingOnHand(shortSword);
     }
 
     //it will show the information of the Fighter
@@ -65,7 +65,7 @@ public  class  Fighter extends Character{
         System.out.println();
     }
 
-    public void addItemToInventory(Item item) {
+    public void addItemToInventory(Weapon item) {
 
         //character try to take an item and we calculate the totalweight.
         double updatedWeightInInventory = item.weight + calculateYourInventoryWeight();
@@ -95,10 +95,10 @@ public  class  Fighter extends Character{
         int index = decision -1;
 
 
-        addItemToInventory(getItemHoldingOnHand());
-        System.out.println(getItemHoldingOnHand().getName() + " which you hold before is added Fighter's inventory.");
+        addItemToInventory(getWeaponHoldingOnHand());
+        System.out.println(getWeaponHoldingOnHand().getName() + " which you hold before is added Fighter's inventory.");
 
-        setItemHoldingOnHand(getInventory().get(index));
+        setWeaponHoldingOnHand(getInventory().get(index));
         System.out.println(getInventory().get(index).getName() + " is wielded now");
 
         getInventory().remove(index);

@@ -11,7 +11,7 @@ public class Healer extends Character{
         setRace("Healer");
 
         Wand woodWand= new Wand("wood wand",1,0.7);
-        setItemHoldingOnHand(woodWand);
+        setWeaponHoldingOnHand(woodWand);
     }
 
     public void showInfos(){
@@ -58,7 +58,7 @@ public class Healer extends Character{
         System.out.println();
     }
 
-    public void addItemToInventory(Item item) {
+    public void addItemToInventory(Weapon item) {
 
         //character try to take an item and we calculate the totalweight.
         double updatedWeightInInventory = item.weight + calculateYourInventoryWeight();
@@ -88,10 +88,10 @@ public class Healer extends Character{
         int index = decision -1;
 
 
-        addItemToInventory(getItemHoldingOnHand());
-        System.out.println(getItemHoldingOnHand().getName() + " which you hold before is added Healer's inventory.");
+        addItemToInventory(getWeaponHoldingOnHand());
+        System.out.println(getWeaponHoldingOnHand().getName() + " which you hold before is added Healer's inventory.");
 
-        setItemHoldingOnHand(getInventory().get(index));
+        setWeaponHoldingOnHand(getInventory().get(index));
         System.out.println(getInventory().get(index).getName() + " is wielded now");
 
         getInventory().remove(index);

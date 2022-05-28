@@ -11,11 +11,11 @@ public abstract class Character {
     private long hp;
 
     //extra features
-    private Item itemHoldingOnHand;
+    private Weapon weaponHoldingOnHand;
     private boolean isItAlive;
     private String race;
     // each character has an inventory which holds items
-    private ArrayList<Item> inventory;
+    private ArrayList<Weapon> inventory;
 
     //CONSTRUCTORS
 
@@ -29,7 +29,7 @@ public abstract class Character {
         //extra data members
         this.race = null;
         this.isItAlive = true;
-        this.itemHoldingOnHand = null;
+        this.weaponHoldingOnHand = null;
         //inventory for each character
         this.inventory = new ArrayList<>();
     }
@@ -40,10 +40,9 @@ public abstract class Character {
         this.vitality = 0;
         this.intelligence = 0;
         this.hp = 0;
-        this.itemHoldingOnHand = null;
+        this.weaponHoldingOnHand = null;
         this.race = null;
         this.isItAlive = true;
-        this.itemHoldingOnHand = null;
         this.inventory = new ArrayList<>();
     }
 
@@ -56,7 +55,7 @@ public abstract class Character {
 
     public abstract void listInventory();
 
-    public abstract void addItemToInventory(Item item);
+    public abstract void addItemToInventory(Weapon item);
 
     public double calculateYourInventoryWeight() {
 
@@ -72,7 +71,7 @@ public abstract class Character {
         return totalWeightInInventory;
     }
 
-    public void removeItemFromInventory(Item item) {
+    public void removeItemFromInventory(Weapon item) {
 
         for (int i = 0 ; i < getInventory().size() ; i++) {
             if (getInventory().get(i) == item)
@@ -108,19 +107,19 @@ public abstract class Character {
         this.race = race;
     }
 
-    public Item getItemHoldingOnHand() {
-        return itemHoldingOnHand;
+    public Weapon getWeaponHoldingOnHand() {
+        return weaponHoldingOnHand;
     }
 
-    public void setItemHoldingOnHand(Item itemHoldingOnHand) {
-        this.itemHoldingOnHand = itemHoldingOnHand;
+    public void setWeaponHoldingOnHand(Weapon weaponHoldingOnHand) {
+        this.weaponHoldingOnHand = weaponHoldingOnHand;
     }
 
-    public ArrayList<Item> getInventory() {
+    public ArrayList<Weapon> getInventory() {
         return inventory;
     }
 
-    public void setInventory(ArrayList<Item> inventory) {
+    public void setInventory(ArrayList<Weapon> inventory) {
         this.inventory = inventory;
     }
 

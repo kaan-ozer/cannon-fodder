@@ -1,5 +1,6 @@
+import java.util.ArrayList;
 
-public  class Shield extends Item{
+public  class Shield extends Weapon implements IWeaponDamage,IWeaponSkills {
 
     public Shield(String name,int weight,double value){
 
@@ -25,27 +26,33 @@ public  class Shield extends Item{
         return attackDamage;
     }
 
-    @Override
-    public void SpecialAction(boolean isSpecialActionWithShield ,Character chosenEnemy, Character chosenCharacter,Character C) {
-        System.out.println("special action activated !"+chosenCharacter.getRace()+"to  stun"+chosenEnemy.getRace());
-        System.out.println(chosenEnemy.getRace()+"stunned");
-    }
-
     public void attack(Character chosenEnemy, Character chosenCharacter) {
 
-        System.out.println(chosenCharacter.getRace() + " are attacking....");
-        System.out.println(chosenCharacter.getRace() + " gave " + calculateAttackDamage(chosenCharacter) + " damage to the " + chosenEnemy.getRace());
+        System.out.println( chosenCharacter.getRace() + " is attacking....");
+        System.out.println( chosenCharacter.getRace() + " gave " + calculateAttackDamage(chosenCharacter) + " damage to the " + chosenEnemy.getRace());
 
-        if (chosenEnemy.getHp() - (long) calculateAttackDamage(chosenCharacter) <= 0) {
+        if (chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter) <= 0) {
 
             chosenEnemy.setHp(0,chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
             chosenEnemy.setItAlive(false);
             System.out.println(chosenEnemy.getRace() + " is dead");
-        } else {
-            chosenEnemy.setHp(chosenEnemy.getHp() - (long) calculateAttackDamage(chosenCharacter),chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
+        }
+
+        else {
+
+            chosenEnemy.setHp(chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter),chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
         }
 
 
+
+        if (chosenEnemy.isItAlive()) {  //why we wrote it here? - we checked if enemy is alive or not
+            //if enemy is alive, we will prin out the new hp value after the enemy got damage by character
+            System.out.println("new hp for the " + chosenEnemy.getRace() + " is: " + chosenEnemy.getHp());
+        }
+
+    }
+
+    public void SpecialAction(Character chosenEnemy, ArrayList<Character> characters) {
 
     }
 
