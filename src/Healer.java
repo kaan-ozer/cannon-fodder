@@ -97,4 +97,7 @@ public class Healer extends Character{
         getInventory().remove(index);
     }
 
+
+
+
 }

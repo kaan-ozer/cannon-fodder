@@ -43,7 +43,7 @@ public class Sword extends Weapon implements IWeaponDamage,IWeaponSkills {
     }
 
     @Override
-    public void SpecialAction(Character chosenEnemy, ArrayList<Character> characters) {
+    public void SpecialAction(ArrayList<Character> characters) {
 
     }
 

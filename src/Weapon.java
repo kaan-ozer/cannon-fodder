@@ -11,7 +11,7 @@ public abstract class Weapon extends Item implements IWeaponSkills {
 
     public abstract void attack(Character chosenEnemy, Character chosenCharacter);
 
-    public abstract void SpecialAction(Character chosenEnemy, ArrayList<Character> characters);
+    public abstract void SpecialAction(ArrayList<Character> characters);
 
 
 

@@ -8,7 +8,7 @@ public abstract class Character {
     private int strength;
     private int vitality;
     private int intelligence;
-    private long hp;
+    private double hp;
 
     //extra features
     private Weapon weaponHoldingOnHand;
@@ -147,13 +147,13 @@ public abstract class Character {
         this.intelligence = intelligence;
     }
 
-    public long getHp() {
+    public double getHp() {
         return hp;
     }
 
-    public void setHp(long hp,int strength,int vitality,int intelligence) {
+    public void setHp(double hp,int strength,int vitality,int intelligence) {
 
-        long boundary = calculateHp(strength,vitality,intelligence);
+        double boundary = calculateHp(strength,vitality,intelligence);
 
         if (hp < boundary)
             this.hp = hp;

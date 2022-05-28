@@ -1,3 +1,4 @@
+import javax.xml.stream.events.Characters;
 import java.security.SecureRandom;
 import java.util.*;
 
@@ -507,6 +508,232 @@ public class Main {
                 }
 
                 else if (process == 2) {
+
+                    characters.get(characterIndex).getWeaponHoldingOnHand().SpecialAction(characters);
+
+                    if (isThereAnyEnemy(enemies) == false) {
+
+                        Thread.sleep(2000);
+                        System.out.println();
+                        System.out.println("----------------------------------");
+                        System.out.println("there is no enemy anymore");
+                        System.out.println("----------------------------------");
+
+
+                        String menu3 = "Choose the process: \n\n"
+                                + "---Dropped Items---\n"
+                                + "1. Pick and Examine\n"
+                                + "2. Wield \n"
+                                + "3. Pick and Add Your Inventory\n\n"
+                                + "---Inventory Items---\n"
+                                + "4. Pick and Wield \n"
+                                + "5. List Inventory\n"
+                                + "6. Drop Item From Your Inventory \n\n"
+                                + "---Next Level--- \n"
+                                + "7. Next \n";
+
+
+                        while (true) {
+
+                            System.out.println();
+                            System.out.println("*********************************");
+                            System.out.println(menu3);
+                            System.out.println("*********************************");
+                            System.out.println();
+
+                            int input = scanner.nextInt();
+
+                            if (input == 1) {
+
+                                //it'll print out the all items on the ground - k
+                                showAllDroppedItems(droppedWeapons);
+
+                                // I choose the item from the table
+                                System.out.println("Please pick the item ");
+                                int particularItemTableIndex = scanner.nextInt();
+                                System.out.println();
+
+                                int itemIndex = particularItemTableIndex - 1;
+
+                                droppedWeapons.get(itemIndex).printItemInfo();
+
+                            }
+
+                            else if (input == 2) {
+                                //it'll print out the all items on the ground - k
+                                showAllDroppedItems(droppedWeapons);
+
+                                // I choose the item from the table
+                                System.out.println("Please choose the item ");
+                                int particularItemTableIndex = scanner.nextInt();
+                                System.out.println();
+
+                                int itemIndex = particularItemTableIndex - 1;
+
+
+                                // if there is a problem to add your holding item to your inventory due to weight
+                                // there is a bug when you choose twice the 3 option
+                                // this method 'll develop
+                                if (droppedWeapons.get(itemIndex).isItTaken == false) {
+                                    System.out.println("item which you hold has been changed.");
+                                    characters.get(characterIndex).addItemToInventory(characters.get(characterIndex).getWeaponHoldingOnHand());
+                                    characters.get(characterIndex).setWeaponHoldingOnHand(droppedWeapons.get(itemIndex));
+                                    droppedWeapons.get(itemIndex).isItTaken = true;
+                                }
+
+                                else if (droppedWeapons.get(itemIndex).isItTaken == true && characters.get(characterIndex).getWeaponHoldingOnHand() != droppedWeapons.get(itemIndex)) {
+                                    characters.get(characterIndex).addItemToInventory(characters.get(characterIndex).getWeaponHoldingOnHand());
+                                    characters.get(characterIndex).removeItemFromInventory(droppedWeapons.get(itemIndex));
+
+                                    characters.get(characterIndex).setWeaponHoldingOnHand(droppedWeapons.get(itemIndex));
+
+                                }
+
+                                else {
+
+                                    System.out.println("you already get this");
+                                }
+                            }
+
+                            else if (input == 3) {
+                                //it'll print out the all items on the ground - k
+                                showAllDroppedItems(droppedWeapons);
+
+                                // I choose the item from the table
+                                System.out.println("Please choose the item ");
+                                int particularItemTableIndex = scanner.nextInt();
+                                System.out.println();
+
+                                int itemIndex = particularItemTableIndex - 1;
+
+                                if (droppedWeapons.get(itemIndex).isItTaken == false) {
+
+                                    characters.get(characterIndex).addItemToInventory(droppedWeapons.get(itemIndex));
+                                    droppedWeapons.get(itemIndex).isItTaken = true;
+                                }
+
+                                else {
+
+                                    System.out.println("you already got this item");
+                                }
+
+                            }
+
+                            else if (input == 4) {
+
+                                if (characters.get(characterIndex).getInventory().size() != 0) {
+                                    characters.get(characterIndex).listInventory();
+
+                                    System.out.println("Please pick the item ");
+                                    int particularItemTableIndex = scanner.nextInt();
+                                    System.out.println();
+
+                                    int itemIndex = particularItemTableIndex - 1;
+
+                                    characters.get(characterIndex).getInventory().add(characters.get(characterIndex).getWeaponHoldingOnHand());
+
+                                    System.out.println();
+                                    System.out.println("----------------------------");
+                                    System.out.println(characters.get(characterIndex).getWeaponHoldingOnHand().getName() + "Added your inventory");
+                                    System.out.println("----------------------------");
+                                    characters.get(characterIndex).setWeaponHoldingOnHand(characters.get(characterIndex).getInventory().get(itemIndex));
+                                    System.out.println(characters.get(characterIndex).getInventory().get(itemIndex).getName() + " is wielded");
+                                    characters.get(characterIndex).getInventory().remove(itemIndex);
+                                    System.out.println("----------------------------");
+                                    System.out.println();
+
+
+                                }
+
+                                else {
+                                    System.out.println();
+                                    System.out.println("--------------------------------------");
+                                    System.out.println("There is no item in your inventory");
+                                    System.out.println("--------------------------------------");
+                                    System.out.println();
+                                    continue;
+                                }
+
+                            }
+
+                            else if (input == 5) {
+
+                                if (characters.get(characterIndex).getInventory().size() != 0) {
+                                    characters.get(characterIndex).listInventory();
+                                } else {
+                                    System.out.println();
+                                    System.out.println("--------------------------------------");
+                                    System.out.println("you don't have any item....");
+                                    System.out.println("--------------------------------------");
+                                    System.out.println();
+                                    continue;
+                                }
+
+                            }
+
+                            else if (input == 6) {
+
+                                if (characters.get(characterIndex).getInventory().size() != 0) {
+
+                                    characters.get(characterIndex).listInventory();
+
+                                    System.out.println("Please pick the item ");
+                                    int particularItemTableIndex = scanner.nextInt();
+                                    System.out.println();
+
+                                    int itemIndex = particularItemTableIndex - 1;
+
+                                    System.out.println(characters.get(characterIndex).getInventory().get(itemIndex).getName() + " removed from your inventory....");
+                                    characters.get(characterIndex).removeItemFromInventory(characters.get(characterIndex).getInventory().get(itemIndex));
+
+                                } else {
+                                    System.out.println();
+                                    characters.get(characterIndex).listInventory();
+                                    System.out.println();
+                                    continue;
+                                }
+
+                            }
+
+                            else if (input == 7) {
+                                break;
+                            }
+
+                        }
+
+                        return;
+                    }
+
+                    else {
+                        System.out.println();
+                        System.out.println("----------------------------------");
+                        System.out.println("Enemies turn....");
+                        System.out.println("----------------------------------");
+                        System.out.println();
+
+                        boolean passTheTurn = false;
+
+                        for (int i = 0; i < enemies.size(); i++) {
+
+                            if (enemies.get(i).isItAlive()) {
+
+                                for (int j = 2; j >= 0; j--) {
+
+                                    if (characters.get(j).isItAlive()) {
+
+                                        System.out.println("----------------------------------");
+                                        enemies.get(i).getWeaponHoldingOnHand().attack(characters.get(j), enemies.get(i));
+                                        System.out.println("----------------------------------");
+                                        passTheTurn = true;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (passTheTurn)
+                                break;
+                        }
+                    }
                 }
 
                 else if (process == 3) {
