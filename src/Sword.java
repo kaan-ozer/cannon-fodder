@@ -30,14 +30,14 @@ public  class Sword extends Item {
 
         if (chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter) <= 0) {
 
-            chosenEnemy.setHp(0);
+            chosenEnemy.setHp(0,chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
             chosenEnemy.setItAlive(false);
             System.out.println(chosenEnemy.getRace() + " is dead");
 
         }
 
         else {
-            chosenEnemy.setHp(chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter));
+            chosenEnemy.setHp(chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter),chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
         }
 
 
