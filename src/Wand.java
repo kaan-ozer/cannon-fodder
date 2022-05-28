@@ -12,9 +12,10 @@ public class Wand extends Item {
         return attackDamage;
     }
 
-    @Override
-    public void SpecialAction(boolean isSpecialActionWithWand,Character chosenEnemy, Character chosenCharacter,Character characterToHeal) {
-        System.out.println("special action  for wand activated ! ");
+
+    public void specialAction() {
+
+
        /* if (chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter) <= 0) {
             chosenEnemy.setHp(0);
             chosenEnemy.setItAlive(false);
@@ -32,7 +33,7 @@ public class Wand extends Item {
             System.out.println("new hp for the " + chosenEnemy.getRace() + " is: " + chosenEnemy.getHp());
         }*/
 
-
+/*
         System.out.println(characterToHeal.getRace()+"  is healed");
         characterToHeal.setItAlive(true);
         //even if our character dies  we will set its living status "true" after healing
@@ -41,7 +42,7 @@ public class Wand extends Item {
 
         System.out.println("Hp of the  "+characterToHeal.getRace() +" after healing is :"+ characterToHeal.getHp());
 
-
+*/
 
 
     }

@@ -198,7 +198,9 @@ public class Main {
                 System.out.println();
 
                 characterIndex = characterMenu(characters);
-            } catch (IndexOutOfBoundsException e) {
+            }
+
+            catch (IndexOutOfBoundsException e) {
                 System.out.println();
                 System.out.println("*******************");
                 System.out.println("You entered invalid value....");
@@ -254,6 +256,7 @@ public class Main {
                         Item droppedItem = enemies.get(index).dropItem();
 
                         if (droppedItem != null) {
+
                             System.out.println();
                             System.out.println("*********************************");
                             System.out.println(droppedItem.getName() + " has dropped" + "by " + enemies.get(index).getRace());
@@ -261,7 +264,10 @@ public class Main {
                             System.out.println();
 
                             droppedItems.add(droppedItem);
-                        } else {
+                        }
+
+                        else {
+
                             System.out.println();
                             System.out.println("*********************************");
                             System.out.println("nothing has dropped" + "by " + enemies.get(index).getRace());
@@ -316,10 +322,10 @@ public class Main {
 
                                 int itemIndex = particularItemTableIndex - 1;
 
-
                                 droppedItems.get(itemIndex).printItemInfo();
 
                             }
+
                             else if (input == 2) {
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedItems);
@@ -340,17 +346,22 @@ public class Main {
                                     characters.get(characterIndex).addItemToInventory(characters.get(characterIndex).getItemHoldingOnHand());
                                     characters.get(characterIndex).setItemHoldingOnHand(droppedItems.get(itemIndex));
                                     droppedItems.get(itemIndex).isItTaken = true;
-                                } else if (droppedItems.get(itemIndex).isItTaken == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItems.get(itemIndex)) {
+                                }
+
+                                else if (droppedItems.get(itemIndex).isItTaken == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItems.get(itemIndex)) {
                                     characters.get(characterIndex).addItemToInventory(characters.get(characterIndex).getItemHoldingOnHand());
                                     characters.get(characterIndex).removeItemFromInventory(droppedItems.get(itemIndex));
 
                                     characters.get(characterIndex).setItemHoldingOnHand(droppedItems.get(itemIndex));
 
-                                } else {
+                                }
+
+                                else {
 
                                     System.out.println("you already get this");
                                 }
                             }
+
                             else if (input == 3) {
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedItems);
@@ -366,12 +377,15 @@ public class Main {
 
                                     characters.get(characterIndex).addItemToInventory(droppedItems.get(itemIndex));
                                     droppedItems.get(itemIndex).isItTaken = true;
-                                } else {
+                                }
+
+                                else {
 
                                     System.out.println("you already got this item");
                                 }
 
                             }
+
                             else if (input == 4) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
@@ -396,7 +410,9 @@ public class Main {
                                     System.out.println();
 
 
-                                } else {
+                                }
+
+                                else {
                                     System.out.println();
                                     System.out.println("--------------------------------------");
                                     System.out.println("There is no item in your inventory");
@@ -406,6 +422,7 @@ public class Main {
                                 }
 
                             }
+
                             else if (input == 5) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
@@ -420,6 +437,7 @@ public class Main {
                                 }
 
                             }
+
                             else if (input == 6) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
@@ -435,27 +453,22 @@ public class Main {
                                     System.out.println(characters.get(characterIndex).getInventory().get(itemIndex).getName() + " removed from your inventory....");
                                     characters.get(characterIndex).removeItemFromInventory(characters.get(characterIndex).getInventory().get(itemIndex));
 
-                                }
-
-                                else {
+                                } else {
                                     System.out.println();
                                     characters.get(characterIndex).listInventory();
                                     System.out.println();
                                     continue;
                                 }
 
-
                             }
+
                             else if (input == 7) {
                                 break;
                             }
 
-
                         }
 
-
                         return;
-
                     }
 
                     else {
@@ -483,6 +496,7 @@ public class Main {
                                     }
                                 }
                             }
+
                             if (passTheTurn)
                                 break;
                         }
@@ -491,10 +505,15 @@ public class Main {
                     System.out.println();
 
                 }
-                else if (process == 2) {}
+
+                else if (process == 2) {
+                }
+
                 else if (process == 3) {
+
                     characters.get(characterIndex).listInventory();
                 }
+
                 else if (process == 4) {
 
                     if (characters.get(characterIndex).getInventory().size() == 0) {
@@ -504,7 +523,9 @@ public class Main {
                     } else {
                         characters.get(characterIndex).wield();
                     }
+
                 }
+
                 else if (process == 5) {
 
                     if (characters.get(characterIndex).getInventory().size() != 0) {
@@ -528,8 +549,8 @@ public class Main {
                         continue;
                     }
 
-
                 }
+
                 else {
                     System.out.println();
                     System.out.println("*******************");
@@ -541,14 +562,8 @@ public class Main {
                     System.out.println("-------------------------");
                     continue;
                 }
-
-
             }
-
-
         }
-
-
     }
 
     public static int characterMenu(ArrayList<Character> characters) {
@@ -576,11 +591,12 @@ public class Main {
             if (!characters.get(characterIndex).isItAlive()) {
                 System.out.println("You cannot choose that character because he is already dead...");
                 continue;
-            } else {
+            }
+
+            else {
                 System.out.println();
                 return characterIndex;
             }
-
         }
     }
 
@@ -616,6 +632,7 @@ public class Main {
             currentLevel++;
 
             if (isThereAnyCharacter(characters)) {
+
                 currentLevel++;
                 System.out.println();
                 System.out.println("Next level is starting");
@@ -623,11 +640,7 @@ public class Main {
                 System.out.println("Creating Level " + currentLevel + ", with " + (int) Math.pow(2.0, currentLevel) + " enemy soldier.");
                 System.out.println("Entering Level " + currentLevel + " Fighter enters.");
                 System.out.println();
-
             }
-
         }
-
-
     }
 }
