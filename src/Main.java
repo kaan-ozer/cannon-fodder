@@ -197,8 +197,7 @@ public class Main {
                 System.out.println();
 
                 characterIndex = characterMenu(characters);
-            }
-            catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 System.out.println();
                 System.out.println("*******************");
                 System.out.println("You entered invalid value....");
@@ -211,10 +210,8 @@ public class Main {
             }
 
 
-
-
             while (true) {
-                
+
                 String menu2 = "Choose the process: \n"
                         + "1. Normal Attack\n"
                         + "2. Special Attack(in progress)\n"
@@ -230,13 +227,13 @@ public class Main {
                 int process = scanner.nextInt();
                 System.out.println();
 
-                int particularEnemyTableIndex=0; ///I put it outside of if  because  I need it fpr special action body
+                int particularEnemyTableIndex = 0; ///I put it outside of if  because  I need it fpr special action body
 
                 if (process == 1) {
 
                     showAllEnemies(enemies);
                     System.out.println("Please choose the enemy which you want to attack:");
-                     particularEnemyTableIndex = scanner.nextInt();
+                    particularEnemyTableIndex = scanner.nextInt();
                     System.out.println();
 
 
@@ -306,7 +303,7 @@ public class Main {
 
                             int input = scanner.nextInt();
 
-                            if(input == 1) {
+                            if (input == 1) {
 
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedItems);
@@ -319,11 +316,9 @@ public class Main {
                                 int itemIndex = particularItemTableIndex - 1;
 
 
-
                                 droppedItems.get(itemIndex).printItemInfo();
 
-                            }
-                            else if(input == 2) {
+                            } else if (input == 2) {
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedItems);
 
@@ -343,22 +338,17 @@ public class Main {
                                     characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
                                     characters.get(characterIndex).setItemHoldingOnHand(droppedItems.get(itemIndex));
                                     droppedItems.get(itemIndex).isItTaken = true;
-                                }
-
-                                else if (droppedItems.get(itemIndex).isItTaken == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItems.get(itemIndex)) {
+                                } else if (droppedItems.get(itemIndex).isItTaken == true && characters.get(characterIndex).getItemHoldingOnHand() != droppedItems.get(itemIndex)) {
                                     characters.get(characterIndex).addItemToInventory(characters.get(characterIndex), characters.get(characterIndex).getItemHoldingOnHand());
                                     characters.get(characterIndex).removeItemFromInventory(droppedItems.get(itemIndex));
 
                                     characters.get(characterIndex).setItemHoldingOnHand(droppedItems.get(itemIndex));
 
-                                }
-
-                                else {
+                                } else {
 
                                     System.out.println("you already get this");
                                 }
-                            }
-                            else if(input == 3) {
+                            } else if (input == 3) {
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedItems);
 
@@ -378,8 +368,7 @@ public class Main {
                                     System.out.println("you already got this item");
                                 }
 
-                            }
-                            else if(input == 4) {
+                            } else if (input == 4) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
                                     characters.get(characterIndex).listInventory();
@@ -412,8 +401,7 @@ public class Main {
                                     continue;
                                 }
 
-                            }
-                            else if(input == 5) {
+                            } else if (input == 5) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
                                     characters.get(characterIndex).listInventory();
@@ -426,8 +414,7 @@ public class Main {
                                     continue;
                                 }
 
-                            }
-                            else if(input == 6) {
+                            } else if (input == 6) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
                                     characters.get(characterIndex).listInventory();
@@ -451,8 +438,7 @@ public class Main {
                                 }
 
 
-                            }
-                            else if(input == 7) {
+                            } else if (input == 7) {
                                 break;
                             }
 
@@ -492,48 +478,10 @@ public class Main {
                         }
                     }
 
-
-                else if (process == 2) {/*
-
-                boolean isActionWithWand=false;
-                boolean isActionWithShield=false;
-                boolean isActionWithSword=false;
-
-
-                    if (characters.get(characterIndex).getItemHoldingOnHand().getClass().getName().equals("Wand")){
-                        isActionWithWand=true;
-                        System.out.println("enter: 1-to heal fighter ,  2-to heal tank ,   3-to heal healer  ");
-                        int healChoice=scanner.nextInt();
-                        if (healChoice==1){//heal the fighter
-                            characters.get(characterIndex).getItemHoldingOnHand().SpecialAction(isActionWithWand,enemies.get(particularEnemyTableIndex),characters.get(characterIndex),characters.get(characterIndex));
-                            //<<<<<<<break;
-                        }
-                        else if (healChoice==2){//heal the tank
-                            characters.get(characterIndex).getItemHoldingOnHand().SpecialAction(isActionWithWand,enemies.get(particularEnemyTableIndex),characters.get(characterIndex),characters.get(characterIndex-1));
-                        }
-                        else if (healChoice==3){//heal the healer //  heal the healer when he dies  should be checked
-                            characters.get(characterIndex).getItemHoldingOnHand().SpecialAction(isActionWithWand,enemies.get(particularEnemyTableIndex),characters.get(characterIndex),characters.get(characterIndex));
-                        }
-                    }
-                    else if (characters.get(characterIndex).getItemHoldingOnHand().getClass().getName().equals("Sword")){
-                        isActionWithSword=true;
-                        characters.get(characterIndex).getItemHoldingOnHand().SpecialAction(isActionWithSword,enemies.get(particularEnemyTableIndex),characters.get(characterIndex),characters.get(characterIndex));
-
-                        break;
-                    }
-                    else if (characters.get(characterIndex).getItemHoldingOnHand().getClass().getName().equals("Shield")){
-                        break;
-                    }
-                  boolean passTheTurn = false;   //if the special action is for" sword "one turn of enemy and character  should be passed
-                    if (isActionWithSword){passTheTurn=true;
-                     }
-
+                    System.out.println();
 
                 }
-
-
-
-
+                else if (process == 2) {}
 
                 else if (process == 3) {
                     characters.get(characterIndex).listInventory();
@@ -548,7 +496,7 @@ public class Main {
                         characters.get(characterIndex).wield();
                     }
                 }
-                else if(process == 5) {
+                else if (process == 5) {
 
                     if (characters.get(characterIndex).getInventory().size() != 0) {
                         characters.get(characterIndex).listInventory();
@@ -586,9 +534,9 @@ public class Main {
                 }
 
 
-                System.out.println();
-
             }
+
+
         }
 
 
@@ -598,6 +546,7 @@ public class Main {
 
         // that method prints out the character menu and it will continue by you choose a character which is alive. -k
         while (true) {
+
             System.out.println();
             String isFighterAlive = characters.get(0).isItAlive() ? "Alive" : "Dead";
             String isHealerAlive = characters.get(1).isItAlive() ? "Alive" : "Dead";
@@ -625,20 +574,6 @@ public class Main {
 
         }
     }
-
-   /* public static boolean wantUseSpecialAction(int userInput) {
-        boolean haveSpecialAction = false;
-
-        if (userInput == 1) {
-            haveSpecialAction = true;
-
-
-        } else if (userInput == 0) {
-            haveSpecialAction = false;
-
-        }
-        return haveSpecialAction;
-    }*/
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -686,5 +621,4 @@ public class Main {
 
 
     }
-
 }
