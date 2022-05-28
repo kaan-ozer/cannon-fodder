@@ -35,6 +35,9 @@ public class Tank extends Character {
             return;
         }
 
+        System.out.println();
+        System.out.println("Tank wields " + getWeaponHoldingOnHand() + ",  wears LeatherArmor.");
+        System.out.println();
 
         System.out.println();
         System.out.println("--------------------------------------------------------");
