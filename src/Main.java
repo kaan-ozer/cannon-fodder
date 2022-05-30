@@ -258,7 +258,7 @@ public class Main {
 
                 String menu2 = "Choose the process: \n"
                         + "1. Normal Attack\n"
-                        + "2. Special Attack(in progress)\n"
+                        + "2. Special Attack\n"
                         + "3. See Your İnventory\n"
                         + "4. Wield item from your inventory\n"
                         + "5. Drop item from your inventory";
