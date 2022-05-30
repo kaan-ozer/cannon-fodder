@@ -43,7 +43,7 @@ public class Wand extends Weapon implements IWeaponDamage,IWeaponSkills  {
     }
 
     @Override
-    public void SpecialAction(ArrayList<Character> characters) {
+    public void SpecialAction(ArrayList<Character> characters, ArrayList<Enemy> enemies,Character chosenCharacter) {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -80,6 +80,8 @@ public class Wand extends Weapon implements IWeaponDamage,IWeaponSkills  {
             System.out.println("------------------------------------");
             System.out.println();
 
+            Main.enemyTurn(enemies,characters,0);
+
         }
 
         else {
@@ -93,6 +95,8 @@ public class Wand extends Weapon implements IWeaponDamage,IWeaponSkills  {
 
             System.out.println("New hp for the " + characters.get(index).getRace() + " is :" + characters.get(index).getHp());
             System.out.println("------------------------------------");
+
+            Main.enemyTurn(enemies,characters,0);
 
         }
 

@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Enemy extends Character{
 
+
     //constructor for Enemy
 
     public Enemy(int strength,int vitality,int intelligence) {
@@ -13,6 +14,7 @@ public class Enemy extends Character{
         this.setHp(calculateHp(strength,vitality,intelligence),strength,vitality,intelligence);
         //SetRace
         setRace("enemy");
+
 
         SecureRandom randomNumber = new SecureRandom();
 
@@ -29,7 +31,7 @@ public class Enemy extends Character{
             setWeaponHoldingOnHand(woodenWand);
         }
 
-        else if(number<80 && number < 90){
+        else if(number<80 && number < 101){
             Shield  bucklerShieled=new Shield("bucklerShield",1,2);
             setWeaponHoldingOnHand(bucklerShieled);
         }
@@ -151,7 +153,6 @@ public class Enemy extends Character{
 
     }
 
-
     public void wield() {
 
         Scanner scanner = new Scanner(System.in);
@@ -171,4 +172,6 @@ public class Enemy extends Character{
 
         getInventory().remove(index);
     }
+
+
 }

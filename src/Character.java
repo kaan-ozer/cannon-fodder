@@ -11,6 +11,7 @@ public abstract class Character {
     private double hp;
 
     //extra features
+    private boolean isCharacterTired;
     private Weapon weaponHoldingOnHand;
     private boolean isItAlive;
     private String race;
@@ -27,6 +28,7 @@ public abstract class Character {
         this.intelligence = intelligence;
         this.hp = 0;
         //extra data members
+        this.isCharacterTired=false;
         this.race = null;
         this.isItAlive = true;
         this.weaponHoldingOnHand = null;
@@ -90,6 +92,15 @@ public abstract class Character {
 
 
     //GETTER AND SETTERS
+
+
+    public boolean isCharacterTired() {
+        return isCharacterTired;
+    }
+
+    public void setCharacterTired(boolean characterTired) {
+        isCharacterTired = characterTired;
+    }
 
     public boolean isItAlive() {
         return isItAlive;

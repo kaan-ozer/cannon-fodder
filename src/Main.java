@@ -5,6 +5,7 @@ import java.util.*;
 public class Main {
 
     public static Scanner scanner = new Scanner(System.in);
+    public static boolean willEnemiesAttack;
 
     public static ArrayList<Enemy> createEnemy(int level) {
 
@@ -176,6 +177,45 @@ public class Main {
 
     }
 
+    public static void enemyTurn(ArrayList<Enemy> enemies, ArrayList<Character> characters, int order) {
+
+        if (willEnemiesAttack == true ) {
+            System.out.println();
+            System.out.println("----------------------------------");
+            System.out.println("Enemies turn....");
+            System.out.println("----------------------------------");
+            System.out.println();
+
+            boolean passTheTurn = false;
+
+            for (int i = order ; i < enemies.size(); i++) {
+
+                if (enemies.get(i).isItAlive()) {
+
+                    for (int j = 2; j >= 0; j--) {
+
+                        if (characters.get(j).isItAlive()) {
+
+                            System.out.println("----------------------------------");
+                            enemies.get(i).getWeaponHoldingOnHand().attack(characters.get(j), enemies.get(i));
+                            System.out.println("----------------------------------");
+                            passTheTurn = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (passTheTurn)
+                    break;
+            }
+        }
+
+        else{
+            willEnemiesAttack = true;
+        }
+
+    }
+
     public static void gameTable(ArrayList<Character> characters, ArrayList<Enemy> enemies) throws InterruptedException {
         // we send two array when we called that method. -k
         //first array for characters and other array is for enemies. -k
@@ -234,6 +274,13 @@ public class Main {
                 int particularEnemyTableIndex = 0; ///I put it outside of if  because  I need it fpr special action body
 
                 if (process == 1) {
+
+                    if (characters.get(characterIndex).isCharacterTired() == true) {
+                        System.out.println(characters.get(characterIndex).getRace() + " cannot be used for one turn...");
+                        break;
+                    }
+
+                    characters.get(characterIndex).setCharacterTired(false);
 
                     showAllEnemies(enemies);
                     System.out.println("Please choose the enemy which you want to attack:");
@@ -473,43 +520,25 @@ public class Main {
                     }
 
                     else {
-                        System.out.println();
-                        System.out.println("----------------------------------");
-                        System.out.println("Enemies turn....");
-                        System.out.println("----------------------------------");
-                        System.out.println();
 
-                        boolean passTheTurn = false;
-
-                        for (int i = 0; i < enemies.size(); i++) {
-
-                            if (enemies.get(i).isItAlive()) {
-
-                                for (int j = 2; j >= 0; j--) {
-
-                                    if (characters.get(j).isItAlive()) {
-
-                                        System.out.println("----------------------------------");
-                                        enemies.get(i).getWeaponHoldingOnHand().attack(characters.get(j), enemies.get(i));
-                                        System.out.println("----------------------------------");
-                                        passTheTurn = true;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            if (passTheTurn)
-                                break;
-                        }
+                        enemyTurn(enemies,characters,0);
                     }
 
                     System.out.println();
+                    break;
 
                 }
 
                 else if (process == 2) {
 
-                    characters.get(characterIndex).getWeaponHoldingOnHand().SpecialAction(characters);
+
+                    if (characters.get(characterIndex).isCharacterTired() == true) {
+                        System.out.println(characters.get(characterIndex).getRace() + " cannot be used for one turn...");
+                        break;
+                    }
+
+                    characters.get(characterIndex).setCharacterTired(false);
+
 
                     if (isThereAnyEnemy(enemies) == false) {
 
@@ -705,35 +734,12 @@ public class Main {
                     }
 
                     else {
-                        System.out.println();
-                        System.out.println("----------------------------------");
-                        System.out.println("Enemies turn....");
-                        System.out.println("----------------------------------");
-                        System.out.println();
 
-                        boolean passTheTurn = false;
+                        characters.get(characterIndex).getWeaponHoldingOnHand().SpecialAction(characters,enemies,characters.get(characterIndex));
 
-                        for (int i = 0; i < enemies.size(); i++) {
-
-                            if (enemies.get(i).isItAlive()) {
-
-                                for (int j = 2; j >= 0; j--) {
-
-                                    if (characters.get(j).isItAlive()) {
-
-                                        System.out.println("----------------------------------");
-                                        enemies.get(i).getWeaponHoldingOnHand().attack(characters.get(j), enemies.get(i));
-                                        System.out.println("----------------------------------");
-                                        passTheTurn = true;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            if (passTheTurn)
-                                break;
-                        }
                     }
+
+                    break;
                 }
 
                 else if (process == 3) {
@@ -844,6 +850,7 @@ public class Main {
         int currentLevel = 0;
         ArrayList<Enemy> level1enemies = createEnemy(0);
         ArrayList<Character> characters = creatCharacters();
+        /*
         System.out.println();
 
 
@@ -851,6 +858,8 @@ public class Main {
         System.out.println("Entering Level " + currentLevel + " Fighter enters.");
         System.out.println();
 
+
+ */
         Thread.sleep(1500);
 
 
