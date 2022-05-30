@@ -12,10 +12,10 @@ public class Sword extends Weapon implements IWeaponDamage,IWeaponSkills {
     }
 
 
-    public int calculateSpecialPower() {
+    public int calculateSpecialPower(Character character) {
         SecureRandom random = new SecureRandom();
 
-        int specialPower = (1 + random.nextInt(6)) * (int)getValue();
+        int specialPower = (1 + random.nextInt(6)) * (int)character.getStrength();
 
         return specialPower;
     }
@@ -56,7 +56,7 @@ public class Sword extends Weapon implements IWeaponDamage,IWeaponSkills {
     @Override
     public void SpecialAction(ArrayList<Character> characters, ArrayList<Enemy> enemies, Character chosenCharacter) {
 
-        int throwedEnemies = calculateSpecialPower();
+        int throwedEnemies = calculateSpecialPower(chosenCharacter);
 
         if (throwedEnemies >= enemies.size()) {
 

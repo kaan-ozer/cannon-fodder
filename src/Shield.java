@@ -55,6 +55,7 @@ public  class Shield extends Weapon implements IWeaponDamage,IWeaponSkills {
     @Override
     public void SpecialAction(ArrayList<Character> characters, ArrayList<Enemy> enemies, Character chosenCharacter) {
 
+
     }
 
 }
