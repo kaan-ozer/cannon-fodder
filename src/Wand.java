@@ -1,9 +1,19 @@
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Scanner;
-public class Wand extends Weapon implements IWeaponDamage,IWeaponSkills  {
+public class Wand extends Weapon implements IWeaponDamage,IWeaponSkills,ICalculateSpecialPower  {
 
     public Wand(String name, int weight, double value) {
         super(name, weight, value);
+    }
+
+
+    public int calculateSpecialPower(Character character) {
+        SecureRandom random = new SecureRandom();
+
+        int specialPower = (1 + random.nextInt(3)) + (int)character.getIntelligence();
+
+        return specialPower;
     }
 
 
@@ -61,11 +71,8 @@ public class Wand extends Weapon implements IWeaponDamage,IWeaponSkills  {
         int decision = scanner.nextInt();
         int index = decision-1;
 
-        double healPower =  getValue() * characters.get(1).getIntelligence();
+        double healPower =  calculateSpecialPower(chosenCharacter);
 
-        System.out.println(healPower);
-        System.out.println(getValue());
-        System.out.println(characters.get(1).getIntelligence());
 
         if(characters.get(index).getRace().equals("Healer")) {
 

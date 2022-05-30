@@ -1,6 +1,7 @@
+import java.security.SecureRandom;
 import java.util.ArrayList;
 
-public  class Shield extends Weapon implements IWeaponDamage,IWeaponSkills {
+public  class Shield extends Weapon implements IWeaponDamage,IWeaponSkills,ICalculateSpecialPower {
 
     public Shield(String name,int weight,double value){
 
@@ -18,6 +19,15 @@ public  class Shield extends Weapon implements IWeaponDamage,IWeaponSkills {
 
 
 
+    }
+
+
+    public int calculateSpecialPower(Character character) {
+        SecureRandom random = new SecureRandom();
+
+        int specialPower = (1 + random.nextInt(6)) * (int)character.getVitality();
+
+        return specialPower;
     }
 
     public double calculateAttackDamage(Character character) {
@@ -54,6 +64,62 @@ public  class Shield extends Weapon implements IWeaponDamage,IWeaponSkills {
 
     @Override
     public void SpecialAction(ArrayList<Character> characters, ArrayList<Enemy> enemies, Character chosenCharacter) {
+
+        int stunnnedEnemies = calculateSpecialPower(chosenCharacter);
+
+        if (stunnnedEnemies >= enemies.size()) {
+
+            System.out.println();
+            System.out.println("*****************************");
+            System.out.println( chosenCharacter.getRace() + " stuns " + enemies.size() + " enemies" );
+            System.out.println("*****************************");
+            System.out.println();
+
+            System.out.println("Enemies doesn't attack for one turn...");
+
+            Main.willEnemiesAttack = false;
+
+        }
+
+        else {
+
+            System.out.println();
+            System.out.println("*****************************");
+            System.out.println( chosenCharacter.getRace() + "  stuns " + stunnnedEnemies + " enemies" );
+            System.out.println("*****************************");
+            System.out.println();
+
+            System.out.println();
+            System.out.println("----------------------------------");
+            System.out.println("Enemies turn....");
+            System.out.println("----------------------------------");
+            System.out.println();
+
+            boolean passTheTurn = false;
+
+            for (int i = stunnnedEnemies-1 ; i < enemies.size(); i++) {
+
+                if (enemies.get(i).isItAlive()) {
+
+
+                    for (int j = 2; j >= 0; j--) {
+
+                        if (characters.get(j).isItAlive()) {
+
+                            System.out.println("----------------------------------");
+                            enemies.get(i).getWeaponHoldingOnHand().attack(characters.get(j), enemies.get(i));
+                            System.out.println("----------------------------------");
+                            passTheTurn = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (passTheTurn)
+                    break;
+            }
+        }
+
 
 
     }
