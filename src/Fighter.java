@@ -5,6 +5,7 @@ public  class  Fighter extends Character{
 
 
 
+
     public Fighter(int strength,int vitality,int intelligence) {
 
         // page 3 of the project instruction (based on table values)
@@ -13,6 +14,7 @@ public  class  Fighter extends Character{
         this.setHp(calculateHp(strength,vitality,intelligence),strength,vitality,intelligence);
         //SetRace
         setRace("Fighter");
+
 
         //character will be born with an item which is given at the beginning
         Sword shortSword = new Sword("short sword", 1,1);
