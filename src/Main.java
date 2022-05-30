@@ -273,15 +273,42 @@ public class Main {
 
                 int particularEnemyTableIndex = 0; ///I put it outside of if  because  I need it fpr special action body
 
+                int currentActiveCharacters = 0;
+                boolean exit = false;
+
                 if (process == 1) {
+
+                    //if last alive character is tired, one turn will pass without any action.
+                    for(Character character : characters) {
+
+                        if (character.isItAlive()) {
+                            currentActiveCharacters++;
+                        }
+
+                        if (currentActiveCharacters == 1 && characters.get(characterIndex).isCharacterTired() == true) {
+                            System.out.println("One turn passed without any action because " + characters.get(characterIndex).getRace() + " was tired.");
+                            characters.get(characterIndex).setCharacterTired(false);
+                            exit = true;
+                            break;
+                        }
+
+
+                    }
+
+                    if(exit) {
+                        exit = false;
+                        break;
+                    }
+
 
                     if (characters.get(characterIndex).isCharacterTired() == true) {
                         System.out.println(characters.get(characterIndex).getRace() + " cannot be used for one turn...");
                         break;
                     }
 
-                    for(Character character : characters)
+                    for(Character character : characters) {
                         character.setCharacterTired(false);
+                    }
 
                     showAllEnemies(enemies);
                     System.out.println("Please choose the enemy which you want to attack:");
@@ -531,6 +558,27 @@ public class Main {
                 }
 
                 else if (process == 2) {
+
+
+                    //if last alive character is tired, one turn will pass without any action.
+                    for(Character character : characters) {
+
+                        if (character.isItAlive()) {
+                            currentActiveCharacters++;
+                        }
+
+                        if (currentActiveCharacters == 1 && characters.get(characterIndex).isCharacterTired() == true) {
+                            System.out.println("One turn passed without any action because " + characters.get(characterIndex).getRace() + " was tired.");
+                            characters.get(characterIndex).setCharacterTired(false);
+                            exit = true;
+                            break;
+                        }
+                    }
+
+                    if(exit) {
+                        exit = false;
+                        break;
+                    }
 
 
                     if (characters.get(characterIndex).isCharacterTired() == true) {

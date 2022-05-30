@@ -19,7 +19,7 @@ public class Enemy extends Character{
         SecureRandom randomNumber = new SecureRandom();
 
         //character will be born with an item which is given at the beginning
-        int number = randomNumber.nextInt(101);
+        int number =  1+ randomNumber.nextInt(101);
 
         if (number < 80) {
             Sword longSword = new Sword("longSword",2,2);
@@ -31,9 +31,12 @@ public class Enemy extends Character{
             setWeaponHoldingOnHand(woodenWand);
         }
 
-        else if(number<80 && number < 200){
+        else if(number > 90 && number < 200){
             Shield  bucklerShieled=new Shield("bucklerShield",1,2);
             setWeaponHoldingOnHand(bucklerShieled);
+        }
+        else {
+            System.out.println("there is a problem");
         }
 
 
