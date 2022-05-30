@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
 
     public static Scanner scanner = new Scanner(System.in);
-    public static boolean willEnemiesAttack;
+    public static boolean willEnemiesAttack = true;
 
     public static ArrayList<Enemy> createEnemy(int level) {
 
@@ -280,7 +280,8 @@ public class Main {
                         break;
                     }
 
-                    characters.get(characterIndex).setCharacterTired(false);
+                    for(Character character : characters)
+                        character.setCharacterTired(false);
 
                     showAllEnemies(enemies);
                     System.out.println("Please choose the enemy which you want to attack:");
@@ -537,7 +538,8 @@ public class Main {
                         break;
                     }
 
-                    characters.get(characterIndex).setCharacterTired(false);
+                    for(Character character : characters)
+                        character.setCharacterTired(false);
 
 
                     if (isThereAnyEnemy(enemies) == false) {

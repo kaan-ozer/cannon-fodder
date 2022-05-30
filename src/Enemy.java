@@ -26,12 +26,12 @@ public class Enemy extends Character{
             setWeaponHoldingOnHand(longSword);
         }
 
-        else if(number >80 && number < 90) {
+        else if(number >= 80 && number <= 90) {
             Wand woodenWand=new Wand("woodenWand",1,1.5);
             setWeaponHoldingOnHand(woodenWand);
         }
 
-        else if(number<80 && number < 101){
+        else if(number<80 && number < 200){
             Shield  bucklerShieled=new Shield("bucklerShield",1,2);
             setWeaponHoldingOnHand(bucklerShieled);
         }
