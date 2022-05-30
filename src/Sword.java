@@ -1,7 +1,7 @@
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
-public class Sword extends Weapon implements IWeaponDamage,IWeaponSkills {
+public class Sword extends Weapon implements IWeaponDamage,IWeaponSkills,ICalculateSpecialPower {
 
 
 
@@ -78,7 +78,7 @@ public class Sword extends Weapon implements IWeaponDamage,IWeaponSkills {
 
             System.out.println();
             System.out.println("*****************************");
-            System.out.println("Fighter throwed " + throwedEnemies + " enemies" );
+            System.out.println( chosenCharacter.getRace() + " throwed " + throwedEnemies + " enemies" );
             System.out.println("*****************************");
             System.out.println();
 
