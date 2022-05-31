@@ -67,11 +67,20 @@ public  class Shield extends Weapon implements IWeaponDamage,IWeaponSkills,ICalc
 
         int stunnnedEnemies = calculateSpecialPower(chosenCharacter);
 
-        if (stunnnedEnemies >= enemies.size()) {
+        int aliveEnemies = 0;
+
+        for (Enemy enemy : enemies) {
+
+             if(enemy.isItAlive()) {
+                 aliveEnemies++;
+             }
+        }
+
+        if (stunnnedEnemies >= aliveEnemies) {
 
             System.out.println();
             System.out.println("*****************************");
-            System.out.println( chosenCharacter.getRace() + " stuns " + enemies.size() + " enemies" );
+            System.out.println( chosenCharacter.getRace() + " stuns " + aliveEnemies + " enemies" );
             System.out.println("*****************************");
             System.out.println();
 

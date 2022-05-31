@@ -58,11 +58,20 @@ public class Sword extends Weapon implements IWeaponDamage,IWeaponSkills,ICalcul
 
         int throwedEnemies = calculateSpecialPower(chosenCharacter);
 
-        if (throwedEnemies >= enemies.size()) {
+        int aliveEnemies = 0;
+
+        for (Enemy enemy : enemies) {
+
+            if(enemy.isItAlive()) {
+                aliveEnemies++;
+            }
+        }
+
+        if (throwedEnemies >= aliveEnemies) {
 
             System.out.println();
             System.out.println("*****************************");
-            System.out.println( chosenCharacter.getRace() + " throwed " + enemies.size() + " enemies" );
+            System.out.println( chosenCharacter.getRace() + " throwed " + aliveEnemies + " enemies" );
             System.out.println("*****************************");
             System.out.println();
 
