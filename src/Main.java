@@ -864,15 +864,21 @@ public class Main {
             String isHealerAlive = characters.get(1).isItAlive() ? "Alive" : "Dead";
             String isTankAlive = characters.get(2).isItAlive() ? "Alive" : "Dead";
 
-            if (isFighterAlive == "Alive") {
-                System.out.println("Fighter is entering to the next level.");
+
+            String willFighterEnter = " Fighter is dead";
+            if (isFighterAlive=="Alive"){
+                willFighterEnter = ", Fighter enters,";
             }
 
-            if (isHealerAlive == "Alive") {
-                System.out.println("Healer is entering to the next level.");
+            String willHealerEnter = " Healer is dead";
+            if (isHealerAlive=="Alive"){
+                willHealerEnter = " Healer enters";
             }
-            if (isTankAlive == "Alive") {
-                System.out.println("Tank is entering to the next level.");
+
+            String willTankEnter = " Tank is dead,";
+            if (isTankAlive=="Alive"){
+                willTankEnter = " Tank enters,";
+
             }
 
 
@@ -880,7 +886,7 @@ public class Main {
             System.out.println("Next level is starting");
             System.out.println();
             System.out.println("Creating Level " + currentLevel + ", with " + (int) Math.pow(2.0, currentLevel) + " enemy soldier.");
-            System.out.println("Entering Level " + currentLevel + " Fighter enters.");
+            System.out.println("Entering Level " + currentLevel + willFighterEnter + willTankEnter + willHealerEnter);
             System.out.println();
 
             gameTable(characters, createEnemy(currentLevel));
