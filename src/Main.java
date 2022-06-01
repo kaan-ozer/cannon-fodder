@@ -1,4 +1,5 @@
 import javax.xml.stream.events.Characters;
+import java.awt.image.AreaAveragingScaleFilter;
 import java.security.SecureRandom;
 import java.util.*;
 
@@ -6,6 +7,7 @@ public class Main {
 
     public static Scanner scanner = new Scanner(System.in);
     public static boolean willEnemiesAttack = true;
+    public static int point = 0;
 
     public static ArrayList<Enemy> createEnemy(int level) {
 
@@ -179,7 +181,7 @@ public class Main {
 
     public static void enemyTurn(ArrayList<Enemy> enemies, ArrayList<Character> characters, int order) {
 
-        if (willEnemiesAttack == true ) {
+        if (willEnemiesAttack == true) {
             System.out.println();
             System.out.println("----------------------------------");
             System.out.println("Enemies turn....");
@@ -188,7 +190,7 @@ public class Main {
 
             boolean passTheTurn = false;
 
-            for (int i = order ; i < enemies.size(); i++) {
+            for (int i = order; i < enemies.size(); i++) {
 
                 if (enemies.get(i).isItAlive()) {
 
@@ -208,9 +210,7 @@ public class Main {
                 if (passTheTurn)
                     break;
             }
-        }
-
-        else{
+        } else {
             willEnemiesAttack = true;
         }
 
@@ -239,9 +239,7 @@ public class Main {
                 System.out.println();
 
                 characterIndex = characterMenu(characters);
-            }
-
-            catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 System.out.println();
                 System.out.println("*******************");
                 System.out.println("You entered invalid value....");
@@ -280,7 +278,7 @@ public class Main {
 
                     //if last alive character is tired, one turn will pass without any action.
                     //if last alive character is tired, one turn will pass without any action.
-                    for(Character character : characters) {
+                    for (Character character : characters) {
 
                         if (character.isItAlive()) {
                             currentActiveCharacters++;
@@ -302,7 +300,7 @@ public class Main {
                         break;
                     }
 
-                    for(Character character : characters) {
+                    for (Character character : characters) {
                         character.setCharacterTired(false);
                     }
 
@@ -322,10 +320,10 @@ public class Main {
                     characters.get(characterIndex).getWeaponHoldingOnHand().attack(enemies.get(index), characters.get(characterIndex));
                     System.out.println("----------------------------------");
                     Thread.sleep(1500);
-
+                    point(enemies);
                     // if the enemy dies an item will drop and I added that item to the droppedItems arraylist to reach them at the end of the level. -k
                     if (enemies.get(index).isItAlive() == false) {
-                        Weapon droppedWeapon= enemies.get(index).dropWeapon();
+                        Weapon droppedWeapon = enemies.get(index).dropWeapon();
 
                         if (droppedWeapon != null) {
 
@@ -336,9 +334,7 @@ public class Main {
                             System.out.println();
 
                             droppedWeapons.add(droppedWeapon);
-                        }
-
-                        else {
+                        } else {
 
                             System.out.println();
                             System.out.println("*********************************");
@@ -396,9 +392,7 @@ public class Main {
 
                                 droppedWeapons.get(itemIndex).printItemInfo();
 
-                            }
-
-                            else if (input == 2) {
+                            } else if (input == 2) {
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedWeapons);
 
@@ -418,23 +412,17 @@ public class Main {
                                     characters.get(characterIndex).addItemToInventory(characters.get(characterIndex).getWeaponHoldingOnHand());
                                     characters.get(characterIndex).setWeaponHoldingOnHand(droppedWeapons.get(itemIndex));
                                     droppedWeapons.get(itemIndex).isItTaken = true;
-                                }
-
-                                else if (droppedWeapons.get(itemIndex).isItTaken == true && characters.get(characterIndex).getWeaponHoldingOnHand() != droppedWeapons.get(itemIndex)) {
+                                } else if (droppedWeapons.get(itemIndex).isItTaken == true && characters.get(characterIndex).getWeaponHoldingOnHand() != droppedWeapons.get(itemIndex)) {
                                     characters.get(characterIndex).addItemToInventory(characters.get(characterIndex).getWeaponHoldingOnHand());
                                     characters.get(characterIndex).removeItemFromInventory(droppedWeapons.get(itemIndex));
 
                                     characters.get(characterIndex).setWeaponHoldingOnHand(droppedWeapons.get(itemIndex));
 
-                                }
-
-                                else {
+                                } else {
 
                                     System.out.println("you already get this");
                                 }
-                            }
-
-                            else if (input == 3) {
+                            } else if (input == 3) {
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedWeapons);
 
@@ -449,16 +437,12 @@ public class Main {
 
                                     characters.get(characterIndex).addItemToInventory(droppedWeapons.get(itemIndex));
                                     droppedWeapons.get(itemIndex).isItTaken = true;
-                                }
-
-                                else {
+                                } else {
 
                                     System.out.println("you already got this item");
                                 }
 
-                            }
-
-                            else if (input == 4) {
+                            } else if (input == 4) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
                                     characters.get(characterIndex).listInventory();
@@ -482,9 +466,7 @@ public class Main {
                                     System.out.println();
 
 
-                                }
-
-                                else {
+                                } else {
                                     System.out.println();
                                     System.out.println("--------------------------------------");
                                     System.out.println("There is no item in your inventory");
@@ -493,9 +475,7 @@ public class Main {
                                     continue;
                                 }
 
-                            }
-
-                            else if (input == 5) {
+                            } else if (input == 5) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
                                     characters.get(characterIndex).listInventory();
@@ -508,9 +488,7 @@ public class Main {
                                     continue;
                                 }
 
-                            }
-
-                            else if (input == 6) {
+                            } else if (input == 6) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
 
@@ -532,32 +510,26 @@ public class Main {
                                     continue;
                                 }
 
-                            }
-
-                            else if (input == 7) {
+                            } else if (input == 7) {
                                 break;
                             }
 
                         }
 
                         return;
-                    }
+                    } else {
 
-                    else {
-
-                        enemyTurn(enemies,characters,0);
+                        enemyTurn(enemies, characters, 0);
                     }
 
                     System.out.println();
                     break;
 
-                }
-
-                else if (process == 2) {
+                } else if (process == 2) {
 
 
                     //if last alive character is tired, one turn will pass without any action.
-                    for(Character character : characters) {
+                    for (Character character : characters) {
 
                         if (character.isItAlive()) {
                             currentActiveCharacters++;
@@ -578,7 +550,7 @@ public class Main {
                         break;
                     }
 
-                    for(Character character : characters)
+                    for (Character character : characters)
                         character.setCharacterTired(false);
 
 
@@ -628,9 +600,7 @@ public class Main {
 
                                 droppedWeapons.get(itemIndex).printItemInfo();
 
-                            }
-
-                            else if (input == 2) {
+                            } else if (input == 2) {
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedWeapons);
 
@@ -650,23 +620,17 @@ public class Main {
                                     characters.get(characterIndex).addItemToInventory(characters.get(characterIndex).getWeaponHoldingOnHand());
                                     characters.get(characterIndex).setWeaponHoldingOnHand(droppedWeapons.get(itemIndex));
                                     droppedWeapons.get(itemIndex).isItTaken = true;
-                                }
-
-                                else if (droppedWeapons.get(itemIndex).isItTaken == true && characters.get(characterIndex).getWeaponHoldingOnHand() != droppedWeapons.get(itemIndex)) {
+                                } else if (droppedWeapons.get(itemIndex).isItTaken == true && characters.get(characterIndex).getWeaponHoldingOnHand() != droppedWeapons.get(itemIndex)) {
                                     characters.get(characterIndex).addItemToInventory(characters.get(characterIndex).getWeaponHoldingOnHand());
                                     characters.get(characterIndex).removeItemFromInventory(droppedWeapons.get(itemIndex));
 
                                     characters.get(characterIndex).setWeaponHoldingOnHand(droppedWeapons.get(itemIndex));
 
-                                }
-
-                                else {
+                                } else {
 
                                     System.out.println("you already get this");
                                 }
-                            }
-
-                            else if (input == 3) {
+                            } else if (input == 3) {
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedWeapons);
 
@@ -681,16 +645,12 @@ public class Main {
 
                                     characters.get(characterIndex).addItemToInventory(droppedWeapons.get(itemIndex));
                                     droppedWeapons.get(itemIndex).isItTaken = true;
-                                }
-
-                                else {
+                                } else {
 
                                     System.out.println("you already got this item");
                                 }
 
-                            }
-
-                            else if (input == 4) {
+                            } else if (input == 4) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
                                     characters.get(characterIndex).listInventory();
@@ -714,9 +674,7 @@ public class Main {
                                     System.out.println();
 
 
-                                }
-
-                                else {
+                                } else {
                                     System.out.println();
                                     System.out.println("--------------------------------------");
                                     System.out.println("There is no item in your inventory");
@@ -725,9 +683,7 @@ public class Main {
                                     continue;
                                 }
 
-                            }
-
-                            else if (input == 5) {
+                            } else if (input == 5) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
                                     characters.get(characterIndex).listInventory();
@@ -740,9 +696,7 @@ public class Main {
                                     continue;
                                 }
 
-                            }
-
-                            else if (input == 6) {
+                            } else if (input == 6) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
 
@@ -764,46 +718,34 @@ public class Main {
                                     continue;
                                 }
 
-                            }
-
-                            else if (input == 7) {
+                            } else if (input == 7) {
                                 break;
                             }
 
                         }
 
                         return;
-                    }
+                    } else {
 
-                    else {
-
-                        characters.get(characterIndex).getWeaponHoldingOnHand().SpecialAction(characters,enemies,characters.get(characterIndex));
+                        characters.get(characterIndex).getWeaponHoldingOnHand().SpecialAction(characters, enemies, characters.get(characterIndex));
 
                     }
 
                     break;
-                }
-
-                else if (process == 3) {
+                } else if (process == 3) {
 
                     characters.get(characterIndex).listInventory();
-                }
-
-                else if (process == 4) {
+                } else if (process == 4) {
 
                     if (characters.get(characterIndex).getInventory().size() == 0) {
                         System.out.println("-----------------------------------------");
                         System.out.println("There is no item in your inventory yet");
                         System.out.println("-----------------------------------------");
-                    }
-
-                    else {
+                    } else {
                         characters.get(characterIndex).wield();
                     }
 
-                }
-
-                else if (process == 5) {
+                } else if (process == 5) {
 
                     if (characters.get(characterIndex).getInventory().size() != 0) {
                         characters.get(characterIndex).listInventory();
@@ -817,9 +759,7 @@ public class Main {
                         System.out.println(characters.get(characterIndex).getInventory().get(itemIndex).getName() + " removed from your inventory....");
                         characters.get(characterIndex).removeItemFromInventory(characters.get(characterIndex).getInventory().get(itemIndex));
 
-                    }
-
-                    else {
+                    } else {
                         System.out.println();
                         System.out.println("--------------------------------------");
                         System.out.println("There is no item in your inventory");
@@ -828,9 +768,7 @@ public class Main {
                         continue;
                     }
 
-                }
-
-                else {
+                } else {
                     System.out.println();
                     System.out.println("*******************");
                     System.out.println("You entered invalid value....");
@@ -870,14 +808,28 @@ public class Main {
             if (!characters.get(characterIndex).isItAlive()) {
                 System.out.println("You cannot choose that character because he is already dead...");
                 continue;
-            }
-
-            else {
+            } else {
                 System.out.println();
                 return characterIndex;
             }
         }
     }
+
+    public static void point(ArrayList<Enemy> enemies) {
+
+        for (int i = 0; i < enemies.size(); i++) {
+            if (enemies.get(i).isItAlive() == false) {
+                point++;
+            }
+            System.out.println("Your point is: " +point);
+        }
+    }
+
+
+
+
+
+
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -912,6 +864,7 @@ public class Main {
             String isHealerAlive = characters.get(1).isItAlive() ? "Alive" : "Dead";
             String isTankAlive = characters.get(2).isItAlive() ? "Alive" : "Dead";
 
+
             String willFighterEnter = " Fighter is dead";
             if (isFighterAlive=="Alive"){
                 willFighterEnter = ", Fighter enters,";
@@ -925,9 +878,8 @@ public class Main {
             String willTankEnter = " Tank is dead,";
             if (isTankAlive=="Alive"){
                 willTankEnter = " Tank enters,";
+
             }
-
-
 
 
             System.out.println();
@@ -939,6 +891,10 @@ public class Main {
 
             gameTable(characters, createEnemy(currentLevel));
             currentLevel++;
+
+
+
+
 
 
         }
