@@ -907,7 +907,23 @@ public class Main {
 
         while (isThereAnyCharacter(characters)) {
 
-            //we need to check if  the charcter is alive here.unless it will continue to hit even though it is dead.
+            //we need to check if  the character is alive here.unless it will continue to hit even though it is dead.
+            String isFighterAlive = characters.get(0).isItAlive() ? "Alive" : "Dead";
+            String isHealerAlive = characters.get(1).isItAlive() ? "Alive" : "Dead";
+            String isTankAlive = characters.get(2).isItAlive() ? "Alive" : "Dead";
+
+            if (isFighterAlive=="Alive"){
+                System.out.println("Fighter is entering to the next level.");
+            }
+
+            if (isHealerAlive=="Alive"){
+                System.out.println("Healer is entering to the next level.");
+            }
+            if (isTankAlive=="Alive"){
+                System.out.println("Tank is entering to the next level.");
+            }
+
+
 
 
             System.out.println();
