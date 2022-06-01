@@ -276,7 +276,7 @@ public class Main {
 
                 if (process == 1) {
 
-                    //if last alive character is tired, one turn will pass without any action.
+
                     //if last alive character is tired, one turn will pass without any action.
                     for (Character character : characters) {
 
@@ -285,6 +285,7 @@ public class Main {
                         }
                     }
 
+                    //if your last character is tired, one turn will pass without being any aciton
                     if (currentActiveCharacters == 1 && characters.get(characterIndex).isCharacterTired() == true) {
                         System.out.println("One turn passed without any action because " + characters.get(characterIndex).getRace() + " was tired.");
                         characters.get(characterIndex).setCharacterTired(false);
@@ -294,7 +295,7 @@ public class Main {
 
                     currentActiveCharacters = 0;
 
-
+                    //your character must rest after used its ability
                     if (characters.get(characterIndex).isCharacterTired() == true) {
                         System.out.println(characters.get(characterIndex).getRace() + "is tired. Therefore," + " cannot be used for one turn...");
                         break;
@@ -319,8 +320,9 @@ public class Main {
                     System.out.println("----------------------------------");
                     characters.get(characterIndex).getWeaponHoldingOnHand().attack(enemies.get(index), characters.get(characterIndex));
                     System.out.println("----------------------------------");
+                    System.out.println("Your point is currently : " + point);
                     Thread.sleep(1500);
-                    point(enemies);
+
                     // if the enemy dies an item will drop and I added that item to the droppedItems arraylist to reach them at the end of the level. -k
                     if (enemies.get(index).isItAlive() == false) {
                         Weapon droppedWeapon = enemies.get(index).dropWeapon();
@@ -378,7 +380,28 @@ public class Main {
 
                             int input = scanner.nextInt();
 
+                            boolean isThereAnyItem = false;
+
+                            for (Weapon weapon : droppedWeapons) {
+
+                                if (weapon != null) {
+                                    isThereAnyItem = true;
+                                }
+
+                            }
+
+
                             if (input == 1) {
+
+                                if (isThereAnyItem == false) {
+                                    System.out.println();
+                                    System.out.println("-------------------------");
+                                    System.out.println("There is no item to take");
+                                    System.out.println("-------------------------");
+                                    System.out.println();
+                                    continue;
+                                }
+
 
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedWeapons);
@@ -392,7 +415,18 @@ public class Main {
 
                                 droppedWeapons.get(itemIndex).printItemInfo();
 
-                            } else if (input == 2) {
+                            }
+                            else if (input == 2) {
+
+                                if (isThereAnyItem == false) {
+                                    System.out.println();
+                                    System.out.println("-------------------------");
+                                    System.out.println("There is no item to take");
+                                    System.out.println("-------------------------");
+                                    System.out.println();
+                                    continue;
+                                }
+
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedWeapons);
 
@@ -422,7 +456,18 @@ public class Main {
 
                                     System.out.println("you already get this");
                                 }
-                            } else if (input == 3) {
+                            }
+                            else if (input == 3) {
+
+                                if (isThereAnyItem == false) {
+                                    System.out.println();
+                                    System.out.println("-------------------------");
+                                    System.out.println("There is no item to take");
+                                    System.out.println("-------------------------");
+                                    System.out.println();
+                                    continue;
+                                }
+
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedWeapons);
 
@@ -525,7 +570,9 @@ public class Main {
                     System.out.println();
                     break;
 
-                } else if (process == 2) {
+                }
+
+                else if (process == 2) {
 
 
                     //if last alive character is tired, one turn will pass without any action.
@@ -584,9 +631,31 @@ public class Main {
                             System.out.println("*********************************");
                             System.out.println();
 
+
                             int input = scanner.nextInt();
 
+                            boolean isThereAnyItem = false;
+
+                            for (Weapon weapon : droppedWeapons) {
+
+                                if (weapon != null) {
+                                    isThereAnyItem = true;
+                                }
+
+                            }
+
+
                             if (input == 1) {
+
+                                if (isThereAnyItem == false) {
+                                    System.out.println();
+                                    System.out.println("-------------------------");
+                                    System.out.println("There is no item to take");
+                                    System.out.println("-------------------------");
+                                    System.out.println();
+                                    continue;
+                                }
+
 
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedWeapons);
@@ -600,7 +669,19 @@ public class Main {
 
                                 droppedWeapons.get(itemIndex).printItemInfo();
 
-                            } else if (input == 2) {
+                            }
+                            else if (input == 2) {
+
+                                if (isThereAnyItem == false) {
+                                    System.out.println();
+                                    System.out.println("-------------------------");
+                                    System.out.println("There is no item to take");
+                                    System.out.println("-------------------------");
+                                    System.out.println();
+                                    continue;
+                                }
+
+
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedWeapons);
 
@@ -630,7 +711,19 @@ public class Main {
 
                                     System.out.println("you already get this");
                                 }
-                            } else if (input == 3) {
+                            }
+                            else if (input == 3) {
+
+                                if (isThereAnyItem == false) {
+                                    System.out.println();
+                                    System.out.println("-------------------------");
+                                    System.out.println("There is no item to take");
+                                    System.out.println("-------------------------");
+                                    System.out.println();
+                                    continue;
+                                }
+
+
                                 //it'll print out the all items on the ground - k
                                 showAllDroppedItems(droppedWeapons);
 
@@ -645,12 +738,14 @@ public class Main {
 
                                     characters.get(characterIndex).addItemToInventory(droppedWeapons.get(itemIndex));
                                     droppedWeapons.get(itemIndex).isItTaken = true;
-                                } else {
+                                }
+                                else {
 
                                     System.out.println("you already got this item");
                                 }
 
-                            } else if (input == 4) {
+                            }
+                            else if (input == 4) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
                                     characters.get(characterIndex).listInventory();
@@ -683,7 +778,8 @@ public class Main {
                                     continue;
                                 }
 
-                            } else if (input == 5) {
+                            }
+                            else if (input == 5) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
                                     characters.get(characterIndex).listInventory();
@@ -732,10 +828,14 @@ public class Main {
                     }
 
                     break;
-                } else if (process == 3) {
+                }
+
+                else if (process == 3) {
 
                     characters.get(characterIndex).listInventory();
-                } else if (process == 4) {
+                }
+
+                else if (process == 4) {
 
                     if (characters.get(characterIndex).getInventory().size() == 0) {
                         System.out.println("-----------------------------------------");
@@ -745,7 +845,9 @@ public class Main {
                         characters.get(characterIndex).wield();
                     }
 
-                } else if (process == 5) {
+                }
+
+                else if (process == 5) {
 
                     if (characters.get(characterIndex).getInventory().size() != 0) {
                         characters.get(characterIndex).listInventory();
@@ -768,7 +870,9 @@ public class Main {
                         continue;
                     }
 
-                } else {
+                }
+
+                else {
                     System.out.println();
                     System.out.println("*******************");
                     System.out.println("You entered invalid value....");
@@ -781,6 +885,11 @@ public class Main {
                 }
             }
         }
+
+        System.out.println("************************************");
+        System.out.println("Game is over your score is : " + point);
+        System.out.println("************************************");
+        point = 0;
     }
 
     public static int characterMenu(ArrayList<Character> characters) {
@@ -815,15 +924,7 @@ public class Main {
         }
     }
 
-    public static void point(ArrayList<Enemy> enemies) {
 
-        for (int i = 0; i < enemies.size(); i++) {
-            if (enemies.get(i).isItAlive() == false) {
-                point++;
-            }
-            System.out.println("Your point is: " +point);
-        }
-    }
 
 
 

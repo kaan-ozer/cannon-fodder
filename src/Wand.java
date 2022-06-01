@@ -35,7 +35,11 @@ public class Wand extends Weapon implements IWeaponDamage,IWeaponSkills,ICalcula
 
             chosenEnemy.setHp(0,chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
             chosenEnemy.setItAlive(false);
-            System.out.println(chosenEnemy.getRace() + " is dead");
+
+            if (chosenEnemy.isItAlive() == false) {
+                Main.point++;
+                System.out.println(chosenEnemy.getRace() + " is dead");
+            }
         }
 
         else {

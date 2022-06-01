@@ -36,7 +36,11 @@ public class Sword extends Weapon implements IWeaponDamage,IWeaponSkills,ICalcul
 
             chosenEnemy.setHp(0,chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
             chosenEnemy.setItAlive(false);
-            System.out.println(chosenEnemy.getRace() + " is dead");
+            if (chosenEnemy.isItAlive() == false) {
+                Main.point++;
+                System.out.println(chosenEnemy.getRace() + " is dead");
+            }
+
         }
 
         else {
