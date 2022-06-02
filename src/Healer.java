@@ -87,7 +87,6 @@ public class Healer extends Character{
 
     }
 
-
     public void wieldOrWear() {
 
         Scanner scanner = new Scanner(System.in);
