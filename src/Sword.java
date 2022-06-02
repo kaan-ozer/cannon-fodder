@@ -34,7 +34,7 @@ public class Sword extends Weapon implements IWeaponDamage,IWeaponSkills,ICalcul
 
         if (chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter) <= 0) {
 
-            chosenEnemy.setHp(0,chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
+            chosenEnemy.setHp(0,0,chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
             chosenEnemy.setItAlive(false);
             if (chosenEnemy.isItAlive() == false) {
                 Main.point++;
@@ -45,7 +45,7 @@ public class Sword extends Weapon implements IWeaponDamage,IWeaponSkills,ICalcul
 
         else {
 
-            chosenEnemy.setHp(chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter),chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
+            chosenEnemy.setHp(chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter),0,chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
         }
 
 

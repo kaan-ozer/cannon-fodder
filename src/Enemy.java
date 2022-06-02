@@ -11,7 +11,7 @@ public class Enemy extends Character{
         // page 3 of the project instruction (based on table values)
         super(strength,vitality,intelligence);
         //setHP
-        this.setHp(calculateHp(strength,vitality,intelligence),strength,vitality,intelligence);
+        this.setHp(calculateHp(strength,vitality,intelligence),0,strength,vitality,intelligence);
         //SetRace
         setRace("enemy");
 
@@ -42,11 +42,12 @@ public class Enemy extends Character{
 
     }
 
-    public static Weapon dropWeapon() {
+    public static Item itemDrop() {
 
         SecureRandom random = new SecureRandom();
 
         int number = random.nextInt(101);
+
 
         if (number <= 24) {
             Sword longSword = new Sword("longSword",2,2);
@@ -72,22 +73,36 @@ public class Enemy extends Character{
             Wand boneWand=new Wand("boneWand", 2,2.3);
             return boneWand;
         }
-        else if(number<65&& number < 80){
+        else if(number <= 90 && number <= 110){
             Wand steelWand=new Wand("steelWand", 2,2.6);
             return steelWand;
         }
-        else if(number<80 && number < 90){
+        else if(number < 110 && number < 120){
             Shield  bucklerShieled=new Shield("bucklerShiled",1,2);
             return bucklerShieled;
         }
-        else if(number<90 && number < 101){
+        else if(number <= 120 && number <= 130){
             Shield smallShield=new Shield("smallShield", 2,1.5);
             return smallShield;
         }
+        else if(number > 130 &&  number <= 150) {
+            Armor lightarmor = new Armor("Light Armor" , 1 ,1);
+            return lightarmor;
+        }
+        else if(number > 150 &&  number <= 170) {
+            Armor medium_armor = new Armor("Medium Armor" , 2 ,2);
+            return medium_armor;
+        }
+        else if(number > 170 &&  number <= 200) {
+            Armor HeavyArmor = new Armor("Heavy Armor" , 3 ,3);
+            return HeavyArmor;
+        }
+
         else {
             System.out.println("Drops nothing");
             return null;
         }
+
 
     }
     //it will show the information of the Enemy
@@ -137,7 +152,7 @@ public class Enemy extends Character{
         System.out.println();
     }
 
-    public void addItemToInventory(Weapon item) {
+    public void addItemToInventory(Item item) {
 
         //character try to take an item and we calculate the totalweight.
         double updatedWeightInInventory = item.weight + calculateYourInventoryWeight();
@@ -156,7 +171,7 @@ public class Enemy extends Character{
 
     }
 
-    public void wield() {
+    public void wieldOrWear() {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -166,14 +181,29 @@ public class Enemy extends Character{
         int decision = scanner.nextInt();
         int index = decision -1;
 
+        if(getInventory().get(index) instanceof Weapon) {
 
-        addItemToInventory(getWeaponHoldingOnHand());
-        System.out.println(getWeaponHoldingOnHand().getName() + " which you hold before is added Enemy's inventory.");
+            addItemToInventory(getWeaponHoldingOnHand());
+            System.out.println(getWeaponHoldingOnHand().getName() + " which you hold before is added Enemy's inventory.");
 
-        setWeaponHoldingOnHand(getInventory().get(index));
-        System.out.println(getInventory().get(index).getName() + " is wielded now");
+            setWeaponHoldingOnHand((Weapon) (getInventory().get(index)));
+            System.out.println(getInventory().get(index).getName() + " is wielded now");
 
-        getInventory().remove(index);
+            getInventory().remove(index);
+
+        }
+
+        else if(getInventory().get(index) instanceof Armor) {
+
+            addItemToInventory(getArmorOnCharacter());
+            System.out.println(getArmorOnCharacter().getName() + " which you hold before is added Enemy's inventory.");
+
+            setArmorOnCharacter((Armor)(getInventory().get(index)));
+            System.out.println(getInventory().get(index).getName() + " is wearing now");
+
+            getInventory().remove(index);
+
+        }
     }
 
 

@@ -7,11 +7,17 @@ public class Healer extends Character{
 
         super(strength,vitality,intelligence);
 
-        this.setHp(calculateHp(strength,vitality,intelligence),strength,vitality,intelligence);
-        setRace("Healer");
-
         Wand woodWand= new Wand("wood wand",1,0.7);
         setWeaponHoldingOnHand(woodWand);
+
+        Armor lightArmor = new Armor("Light Armor", 1, 1);
+        setArmorOnCharacter(lightArmor);
+
+        this.setHp(calculateHp(strength,vitality,intelligence)  , getArmorOnCharacter().getExtraHp(),strength,vitality,intelligence);
+        setRace("Healer");
+
+
+
     }
 
     public void showInfos(){
@@ -35,7 +41,7 @@ public class Healer extends Character{
 
 
         System.out.println();
-        System.out.println("Healer wields " + getWeaponHoldingOnHand() + ",  wears LeatherArmor.");
+        System.out.println("Healer wields " + getWeaponHoldingOnHand() + ",  wears " + getArmorOnCharacter());
         System.out.println();
 
         System.out.println();
@@ -62,7 +68,7 @@ public class Healer extends Character{
         System.out.println();
     }
 
-    public void addItemToInventory(Weapon item) {
+    public void addItemToInventory(Item item) {
 
         //character try to take an item and we calculate the totalweight.
         double updatedWeightInInventory = item.weight + calculateYourInventoryWeight();
@@ -81,7 +87,8 @@ public class Healer extends Character{
 
     }
 
-    public void wield() {
+
+    public void wieldOrWear() {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -91,14 +98,29 @@ public class Healer extends Character{
         int decision = scanner.nextInt();
         int index = decision -1;
 
+        if(getInventory().get(index) instanceof Weapon) {
 
-        addItemToInventory(getWeaponHoldingOnHand());
-        System.out.println(getWeaponHoldingOnHand().getName() + " which you hold before is added Healer's inventory.");
+            addItemToInventory(getWeaponHoldingOnHand());
+            System.out.println(getWeaponHoldingOnHand().getName() + " which you hold before is added Healer's inventory.");
 
-        setWeaponHoldingOnHand(getInventory().get(index));
-        System.out.println(getInventory().get(index).getName() + " is wielded now");
+            setWeaponHoldingOnHand((Weapon) (getInventory().get(index)));
+            System.out.println(getInventory().get(index).getName() + " is wielded now");
 
-        getInventory().remove(index);
+            getInventory().remove(index);
+
+        }
+
+        else if(getInventory().get(index) instanceof Armor) {
+
+            addItemToInventory(getArmorOnCharacter());
+            System.out.println(getArmorOnCharacter().getName() + " which you hold before is added Healer's inventory.");
+
+            setArmorOnCharacter((Armor)(getInventory().get(index)));
+            System.out.println(getInventory().get(index).getName() + " is wearing now");
+
+            getInventory().remove(index);
+
+        }
     }
 
 
