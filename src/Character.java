@@ -13,10 +13,11 @@ public abstract class Character {
     //extra features
     private boolean isCharacterTired;
     private Weapon weaponHoldingOnHand;
+    private Armor armorOnCharacter;
     private boolean isItAlive;
     private String race;
     // each character has an inventory which holds items
-    private ArrayList<Weapon> inventory;
+    private ArrayList<Item> inventory;
 
     //CONSTRUCTORS
 
@@ -32,6 +33,7 @@ public abstract class Character {
         this.race = null;
         this.isItAlive = true;
         this.weaponHoldingOnHand = null;
+        this.armorOnCharacter = null;
         //inventory for each character
         this.inventory = new ArrayList<>();
     }
@@ -43,6 +45,7 @@ public abstract class Character {
         this.intelligence = 0;
         this.hp = 0;
         this.weaponHoldingOnHand = null;
+        this.armorOnCharacter = null;
         this.race = null;
         this.isItAlive = true;
         this.inventory = new ArrayList<>();
@@ -53,11 +56,12 @@ public abstract class Character {
 
     public abstract void showInfos();
 
-    public abstract void wield();
+    public abstract void wieldOrWear();
+
 
     public abstract void listInventory();
 
-    public abstract void addItemToInventory(Weapon item);
+    public abstract void addItemToInventory(Item item);
 
     public double calculateYourInventoryWeight() {
 
@@ -73,7 +77,7 @@ public abstract class Character {
         return totalWeightInInventory;
     }
 
-    public void removeItemFromInventory(Weapon item) {
+    public void removeItemFromInventory(Item item) {
 
         for (int i = 0 ; i < getInventory().size() ; i++) {
             if (getInventory().get(i) == item)
@@ -93,6 +97,14 @@ public abstract class Character {
 
     //GETTER AND SETTERS
 
+
+    public Armor getArmorOnCharacter() {
+        return armorOnCharacter;
+    }
+
+    public void setArmorOnCharacter(Armor armorOnCharacter) {
+        this.armorOnCharacter = armorOnCharacter;
+    }
 
     public boolean isCharacterTired() {
         return isCharacterTired;
@@ -126,11 +138,11 @@ public abstract class Character {
         this.weaponHoldingOnHand = weaponHoldingOnHand;
     }
 
-    public ArrayList<Weapon> getInventory() {
+    public ArrayList<Item> getInventory() {
         return inventory;
     }
 
-    public void setInventory(ArrayList<Weapon> inventory) {
+    public void setInventory(ArrayList<Item> inventory) {
         this.inventory = inventory;
     }
 
@@ -162,9 +174,9 @@ public abstract class Character {
         return hp;
     }
 
-    public void setHp(double hp,int strength,int vitality,int intelligence) {
+    public void setHp(double hp,double extraHp,int strength,int vitality,int intelligence) {
 
-        double boundary = calculateHp(strength,vitality,intelligence);
+        double boundary = calculateHp(strength,vitality,intelligence) + extraHp;
 
         if (hp < boundary)
             this.hp = hp;

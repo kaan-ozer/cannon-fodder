@@ -10,15 +10,21 @@ public  class  Fighter extends Character{
 
         // page 3 of the project instruction (based on table values)
         super(strength,vitality,intelligence);
-        //setHP
-        this.setHp(calculateHp(strength,vitality,intelligence),strength,vitality,intelligence);
-        //SetRace
-        setRace("Fighter");
-
 
         //character will be born with an item which is given at the beginning
         Sword shortSword = new Sword("short sword", 1,1);
         setWeaponHoldingOnHand(shortSword);
+
+        Armor lightArmor = new Armor("Light Armor", 1, 1);
+        setArmorOnCharacter(lightArmor);
+
+        //setHP
+        this.setHp(calculateHp(strength,vitality,intelligence), getArmorOnCharacter().getExtraHp(),strength,vitality,intelligence);
+        //SetRace
+        setRace("Fighter");
+
+
+
     }
 
     //it will show the information of the Fighter
@@ -43,7 +49,7 @@ public  class  Fighter extends Character{
         }
 
         System.out.println();
-        System.out.println("Fighter wields " + getWeaponHoldingOnHand() + ",  wears LeatherArmor.");
+        System.out.println("Fighter wields " + getWeaponHoldingOnHand() + ",  wears " + getArmorOnCharacter());
         System.out.println();
 
         System.out.println("--------------------------------------------------------");
@@ -69,7 +75,9 @@ public  class  Fighter extends Character{
         System.out.println();
     }
 
-    public void addItemToInventory(Weapon item) {
+
+
+    public void addItemToInventory(Item item) {
 
         //character try to take an item and we calculate the totalweight.
         double updatedWeightInInventory = item.weight + calculateYourInventoryWeight();
@@ -88,7 +96,7 @@ public  class  Fighter extends Character{
 
     }
 
-    public void wield() {
+    public void wieldOrWear() {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -98,15 +106,32 @@ public  class  Fighter extends Character{
         int decision = scanner.nextInt();
         int index = decision -1;
 
+        if(getInventory().get(index) instanceof Weapon) {
 
-        addItemToInventory(getWeaponHoldingOnHand());
-        System.out.println(getWeaponHoldingOnHand().getName() + " which you hold before is added Fighter's inventory.");
+            addItemToInventory(getWeaponHoldingOnHand());
+            System.out.println(getWeaponHoldingOnHand().getName() + " which you hold before is added Fighter's inventory.");
 
-        setWeaponHoldingOnHand(getInventory().get(index));
-        System.out.println(getInventory().get(index).getName() + " is wielded now");
+            setWeaponHoldingOnHand((Weapon) (getInventory().get(index)));
+            System.out.println(getInventory().get(index).getName() + " is wielded now");
 
-        getInventory().remove(index);
+            getInventory().remove(index);
+
+        }
+
+        else if(getInventory().get(index) instanceof Armor) {
+
+            addItemToInventory(getArmorOnCharacter());
+            System.out.println(getArmorOnCharacter().getName() + " which you hold before is added Fighter's inventory.");
+
+            setArmorOnCharacter((Armor)(getInventory().get(index)));
+            System.out.println(getInventory().get(index).getName() + " is wearing now");
+
+            getInventory().remove(index);
+
+        }
     }
+
+
 
 
 }

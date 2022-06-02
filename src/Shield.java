@@ -43,7 +43,7 @@ public  class Shield extends Weapon implements IWeaponDamage,IWeaponSkills,ICalc
 
         if (chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter) <= 0) {
 
-            chosenEnemy.setHp(0,chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
+            chosenEnemy.setHp(0,0,chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
             chosenEnemy.setItAlive(false);
 
             if (chosenEnemy.isItAlive() == false) {
@@ -54,7 +54,7 @@ public  class Shield extends Weapon implements IWeaponDamage,IWeaponSkills,ICalc
 
         else {
 
-            chosenEnemy.setHp(chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter),chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
+            chosenEnemy.setHp(chosenEnemy.getHp() - (long)calculateAttackDamage(chosenCharacter),0,chosenCharacter.getStrength(),chosenCharacter.getVitality(),chosenCharacter.getIntelligence());
         }
 
 
