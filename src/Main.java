@@ -1,5 +1,9 @@
 import javax.xml.stream.events.Characters;
 import java.awt.image.AreaAveragingScaleFilter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.*;
 
@@ -997,6 +1001,42 @@ public class Main {
                 }
             }
         }
+
+
+        FileOutputStream fos = null;
+        //File file =  new File("dosya.txt");
+        try {
+            fos = new FileOutputStream("dosya.txt",true);
+
+            //byte[] array = {101,75,66,68};
+            String s = "Your score is : " + point + " ";
+
+            byte[] s_array = s.getBytes();
+
+
+            fos.write(s_array);
+
+
+
+
+
+        } catch (FileNotFoundException ex) {
+            System.out.println("File Not found exception....");
+        } catch (IOException ex) {
+            System.out.println("an error occured while the file is being writed...");
+        }
+        finally{
+
+            try {
+                fos.close();
+            } catch (IOException ex) {
+                System.out.println("an error occured while your file is being closed...");
+            }
+
+        }
+
+
+
 
         System.out.println("************************************");
         System.out.println("Game is over your score is : " + point);
