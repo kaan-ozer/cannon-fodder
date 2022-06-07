@@ -282,6 +282,8 @@ public class Main {
 
                 int currentActiveCharacters = 0;
 
+                int index = 0;
+
 
                 if (process == 1) {
 
@@ -314,21 +316,39 @@ public class Main {
                         character.setCharacterTired(false);
                     }
 
-                    showAllEnemies(enemies);
-                    System.out.println("Please choose the enemy which you want to attack:");
-                    particularEnemyTableIndex = scanner.nextInt();
-                    System.out.println();
 
 
-                    // you choose the enemy's index from table but in the background arrays start from 0 that is why I decrease 1 to obtain real index. -k
-                    int index = particularEnemyTableIndex - 1;
-                    //we need try catch here to catch the boundOfexception
+                    while(true) {
+
+                        showAllEnemies(enemies);
 
 
-                    // you are attacking that enemy. - k
-                    System.out.println("----------------------------------");
-                    characters.get(characterIndex).getWeaponHoldingOnHand().attack(enemies.get(index), characters.get(characterIndex));
-                    System.out.println("----------------------------------");
+                            try {
+                                System.out.println("Please choose the enemy which you want to attack:");
+                                particularEnemyTableIndex = scanner.nextInt();
+                                System.out.println();
+
+
+                                // you choose the enemy's index from table but in the background arrays start from 0 that is why I decrease 1 to obtain real index. -k
+                                index = particularEnemyTableIndex - 1;
+                                //we need try catch here to catch the boundOfexception
+
+
+                                // you are attacking that enemy. - k
+                                System.out.println("----------------------------------");
+                                characters.get(characterIndex).getWeaponHoldingOnHand().attack(enemies.get(index), characters.get(characterIndex));
+                                System.out.println("----------------------------------");
+                                break;
+
+                            }
+                            catch (IndexOutOfBoundsException e) {
+                                System.out.println("you entered an invalid value");
+                                System.out.println();
+                                continue;
+                            }
+                    }
+
+
                     System.out.println("Your point is currently : " + point);
                     Thread.sleep(1500);
 
