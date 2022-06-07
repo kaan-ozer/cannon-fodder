@@ -10,8 +10,11 @@ public class Enemy extends Character{
 
         // page 3 of the project instruction (based on table values)
         super(strength,vitality,intelligence);
+
+
+
         //setHP
-        this.setHp(calculateHp(strength,vitality,intelligence),0,strength,vitality,intelligence);
+        this.setHp(calculateHp(strength,vitality,intelligence) + 1   ,1,strength,vitality,intelligence);
         //SetRace
         setRace("enemy");
 
@@ -21,18 +24,21 @@ public class Enemy extends Character{
         //character will be born with an item which is given at the beginning
         int number =  1+ randomNumber.nextInt(101);
 
-        if (number < 80) {
-            Sword longSword = new Sword("longSword",2,2);
+
+
+
+        if (number <= 80) {
+            Sword longSword = new Sword("BrokenSword",2,0.3);
             setWeaponHoldingOnHand(longSword);
         }
 
-        else if(number >= 80 && number <= 90) {
-            Wand woodenWand=new Wand("woodenWand",1,1.5);
-            setWeaponHoldingOnHand(woodenWand);
+        else if(number > 80 && number <= 90) {
+            Wand boneWand=new Wand("BoneWand",1,0.6);
+            setWeaponHoldingOnHand(boneWand);
         }
 
-        else if(number > 90 && number < 200){
-            Shield  bucklerShieled=new Shield("bucklerShield",1,2);
+        else if(number > 90 && number <= 102){
+            Shield  bucklerShieled=new Shield("BucklerShield",1,0.6);
             setWeaponHoldingOnHand(bucklerShieled);
         }
         else {
@@ -46,54 +52,58 @@ public class Enemy extends Character{
 
         SecureRandom random = new SecureRandom();
 
-        int number = random.nextInt(101);
+        int number = random.nextInt(375);
 
 
-        if (number <= 24) {
-            Sword longSword = new Sword("longSword",2,2);
+        if (number <= 25) {
+            Sword longSword = new Sword("longSword",2,0.6);
             return longSword;
         }
 
-        else if(number >= 25 && number <= 39) {
-            Sword brokenSword = new Sword("brokenSword",1,1.2);
+        else if(number > 25 && number <= 50) {
+            Sword brokenSword = new Sword("brokenSword",1,0.3);
             return brokenSword;
         }
 
-        else if( number >= 40  && number <= 45 ) {
-            Sword excalibur = new Sword("excalibur",1,2.5);
+        else if( number > 50  && number <= 75 ) {
+            Sword excalibur = new Sword("excalibur",3,0.9);
             return excalibur;
         }
 
-        else if(number < 70 && number > 45){
-            Wand woodenWand=new Wand("woodenWand",1,1.5);
+        else if(number > 75 && number <= 100){
+            Wand woodenWand=new Wand("woodenWand",1,0.3);
             return woodenWand;
         }
-        else if(number < 90 && number >= 70){
+        else if(number > 100 && number <= 125){
 
-            Wand boneWand=new Wand("boneWand", 2,2.3);
+            Wand boneWand=new Wand("boneWand", 2,0.6);
             return boneWand;
         }
-        else if(number <= 90 && number <= 110){
-            Wand steelWand=new Wand("steelWand", 2,2.6);
+        else if(number > 125 && number <= 150){
+            Wand steelWand=new Wand("steelWand", 3,0.9);
             return steelWand;
         }
-        else if(number < 110 && number < 120){
-            Shield  bucklerShieled=new Shield("bucklerShiled",1,2);
+        else if(number > 150 && number <= 175){
+            Shield  bucklerShieled=new Shield("bucklerShield",2,0.6);
             return bucklerShieled;
         }
-        else if(number <= 120 && number <= 130){
-            Shield smallShield=new Shield("smallShield", 2,1.5);
+        else if(number > 175 && number <= 200){
+            Shield smallShield=new Shield("smallShield", 1,0.3);
             return smallShield;
         }
-        else if(number > 130 &&  number <= 150) {
+        else if(number > 200 && number <= 225){
+            Shield towerShield =new Shield("towerShield", 1,0.9);
+            return towerShield;
+        }
+        else if(number > 225 &&  number <= 275) {
             Armor lightarmor = new Armor("Light Armor" , 1 ,1);
             return lightarmor;
         }
-        else if(number > 150 &&  number <= 170) {
+        else if(number > 275 &&  number <= 325) {
             Armor medium_armor = new Armor("Medium Armor" , 2 ,2);
             return medium_armor;
         }
-        else if(number > 170 &&  number <= 200) {
+        else if(number > 325 &&  number <= 375) {
             Armor HeavyArmor = new Armor("Heavy Armor" , 3 ,3);
             return HeavyArmor;
         }

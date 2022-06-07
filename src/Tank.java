@@ -7,13 +7,13 @@ public class Tank extends Character {
 
         super(strength,vitality,intelligence);
 
-        Shield shield = new Shield("shield",1,0.5);
+        Shield shield = new Shield("smallShield",1,0.3);
         setWeaponHoldingOnHand(shield);
 
         Armor lightArmor = new Armor("Light Armor", 1, 1);
         setArmorOnCharacter(lightArmor);
 
-        this.setHp(calculateHp(strength,vitality,intelligence) , getArmorOnCharacter().getExtraHp() ,strength,vitality,intelligence);
+        this.setHp(calculateHp(strength,vitality,intelligence) + getArmorOnCharacter().getExtraHp() , getArmorOnCharacter().getExtraHp() ,strength,vitality,intelligence);
 
         setRace("Tank");
 
@@ -41,7 +41,7 @@ public class Tank extends Character {
         }
 
         System.out.println();
-        System.out.println("Tank wields " + getWeaponHoldingOnHand() + ",  wears " + getArmorOnCharacter());
+        System.out.println("Tank wields " + getWeaponHoldingOnHand().getName() + ",  wears " + getArmorOnCharacter().getName());
         System.out.println();
 
         System.out.println();

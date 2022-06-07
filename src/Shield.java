@@ -25,7 +25,7 @@ public  class Shield extends Weapon implements IWeaponDamage,IWeaponSkills,ICalc
     public int calculateSpecialPower(Character character) {
         SecureRandom random = new SecureRandom();
 
-        int specialPower = (1 + random.nextInt(6)) * (int)character.getVitality();
+        int specialPower = (1 + random.nextInt(3)) * (int)character.getVitality();
 
         return specialPower;
     }
@@ -33,7 +33,7 @@ public  class Shield extends Weapon implements IWeaponDamage,IWeaponSkills,ICalc
     public double calculateAttackDamage(Character character) {
 
         double attackDamage = getValue() * character.getVitality(); //shield damage will be calculated based on vitality
-        return attackDamage;
+        return Math.round(attackDamage);
     }
 
     public void attack(Character chosenEnemy, Character chosenCharacter) {

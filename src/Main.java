@@ -73,22 +73,28 @@ public class Main {
                 + " S: " + fighter.getStrength()
                 + ", V:" + fighter.getVitality()
                 + ", I: " + fighter.getIntelligence()
-                + ". The HP is :" + fighter.getHp()
-                + ". The weapon of the fighter is: " + fighter.getWeaponHoldingOnHand().getName());
+                + ", HP: " + fighter.getHp()
+                + ". Attack Power: " + Math.round(fighter.getWeaponHoldingOnHand().getValue() * fighter.getStrength())
+                + ". Wears: " + fighter.getArmorOnCharacter().getName()
+                + ". Wears: " + fighter.getArmorOnCharacter().getName());
 
         System.out.println("healer created with "
                 + " S: " + healer.getStrength()
                 + ", V:" + healer.getVitality()
                 + ", I: " + healer.getIntelligence()
-                + ". The HP is :" + healer.getHp()
-                + ". The weapon of the healer is: " + healer.getWeaponHoldingOnHand().getName());
+                + ", HP: " + healer.getHp()
+                + ". Attack Power: " + Math.round(healer.getWeaponHoldingOnHand().getValue() * healer.getIntelligence())
+                + ". Wields: " + healer.getWeaponHoldingOnHand().getName()
+                + ". Wears: " + healer.getArmorOnCharacter().getName());
 
         System.out.println("tank created with "
                 + " S: " + tank.getStrength()
                 + ", V:" + tank.getVitality()
                 + ", I: " + tank.getIntelligence()
-                + ". The HP is :" + tank.getHp()
-                + ". The weapon of the healer is: " + "in progress ");
+                + ", HP: " + tank.getHp()
+                + ". Attack Power: " + Math.round(tank.getWeaponHoldingOnHand().getValue() * tank.getVitality())
+                + ". Wields: " + tank.getWeaponHoldingOnHand().getName()
+                + ". Wears: " + tank.getArmorOnCharacter().getName());
 
 
         return charactersAreAtBeginning;
@@ -111,7 +117,7 @@ public class Main {
 
 
                     System.out.printf("%d. %-17s ", i + 1, enemies.get(i).getRace() + (i + 1));
-                    // System.out.printf("%-14s ", );
+                     System.out.printf("%-10s ", "its hp:" + enemies.get(i).getHp());
                     // System.out.printf("%-10s ", );
                     System.out.println();
                 }
@@ -191,7 +197,6 @@ public class Main {
         }
 
     }
-
     public static void showAllDroppedItems(ArrayList<Item> droppedItems) {
 
 
@@ -204,7 +209,7 @@ public class Main {
         for (int i = 0; i < droppedItems.size(); i++) {
 
 
-            System.out.printf("%d. %-17s ", i + 1, droppedItems.get(i).getName() + (i + 1));
+            System.out.printf("%d. %-17s ", i + 1, droppedItems.get(i).getName());
             // System.out.printf("%-droppedItems
             // System.out.printf("%-10s ", );
             System.out.println();
@@ -421,6 +426,24 @@ public class Main {
                                 int itemIndex = particularItemTableIndex - 1;
 
                                 droppedItems.get(itemIndex).printItemInfo();
+
+
+                                if (droppedItems.get(itemIndex) instanceof Sword) {
+                                    System.out.print(" Attack Damage: " + droppedItems.get(itemIndex).getValue() * characters.get(characterIndex).getStrength());
+                                }
+                                if (droppedItems.get(itemIndex) instanceof Wand){
+                                    System.out.print(" Attack Damage: " + droppedItems.get(itemIndex).getValue() * characters.get(characterIndex).getIntelligence());
+                                }
+                                if(droppedItems.get(itemIndex) instanceof Shield) {
+                                    System.out.print(" Attack Damage: " + droppedItems.get(itemIndex).getValue() * characters.get(characterIndex).getVitality());
+                                }
+                                if(droppedItems.get(itemIndex) instanceof Armor) {
+                                    System.out.print(" Extra hp:  " + ((Armor) droppedItems.get(itemIndex)).getExtraHp());
+                                }
+
+                                System.out.println();
+
+
 
                             }
                             else if (input == 2) {
@@ -732,6 +755,20 @@ public class Main {
 
                                 droppedItems.get(itemIndex).printItemInfo();
 
+                                if (droppedItems.get(itemIndex) instanceof Sword) {
+                                    System.out.print(" Attack Damage: " + droppedItems.get(itemIndex).getValue() * characters.get(characterIndex).getStrength());
+                                }
+                                if (droppedItems.get(itemIndex) instanceof Wand){
+                                    System.out.print(" Attack Damage: " + droppedItems.get(itemIndex).getValue() * characters.get(characterIndex).getIntelligence());
+                                }
+                                if(droppedItems.get(itemIndex) instanceof Shield) {
+                                    System.out.print(" Attack Damage: " + droppedItems.get(itemIndex).getValue() * characters.get(characterIndex).getVitality());
+                                }
+                                if(droppedItems.get(itemIndex) instanceof Armor) {
+                                    System.out.print(" Extra hp:  " + ((Armor) droppedItems.get(itemIndex)).getExtraHp());
+                                }
+
+                                System.out.println();
                             }
                             else if (input == 2) {
 

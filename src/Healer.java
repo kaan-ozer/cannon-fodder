@@ -7,13 +7,13 @@ public class Healer extends Character{
 
         super(strength,vitality,intelligence);
 
-        Wand woodWand= new Wand("wood wand",1,0.7);
+        Wand woodWand= new Wand("wood wand",1,0.3);
         setWeaponHoldingOnHand(woodWand);
 
         Armor lightArmor = new Armor("Light Armor", 1, 1);
         setArmorOnCharacter(lightArmor);
 
-        this.setHp(calculateHp(strength,vitality,intelligence)  , getArmorOnCharacter().getExtraHp(),strength,vitality,intelligence);
+        this.setHp(calculateHp(strength,vitality,intelligence) + getArmorOnCharacter().getExtraHp()  , getArmorOnCharacter().getExtraHp(),strength,vitality,intelligence);
         setRace("Healer");
 
 
@@ -41,7 +41,7 @@ public class Healer extends Character{
 
 
         System.out.println();
-        System.out.println("Healer wields " + getWeaponHoldingOnHand() + ",  wears " + getArmorOnCharacter());
+        System.out.println("Healer wields " + getWeaponHoldingOnHand().getName() + ",  wears " + getArmorOnCharacter().getName());
         System.out.println();
 
         System.out.println();

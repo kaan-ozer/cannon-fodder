@@ -17,7 +17,8 @@ public class Item {
 
     //each weapon has a Special action(page 2 of project instruction)
     public void printItemInfo(){
-        System.out.println("name: "+getName()+"  weight: "+getWeight()+"   value: "+getValue());
+
+        System.out.print("name: "+getName()+"  weight: "+getWeight()+" value: "+getValue());
 
 
 

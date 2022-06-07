@@ -12,14 +12,14 @@ public  class  Fighter extends Character{
         super(strength,vitality,intelligence);
 
         //character will be born with an item which is given at the beginning
-        Sword shortSword = new Sword("short sword", 1,1);
+        Sword shortSword = new Sword("short sword", 1,0.3);
         setWeaponHoldingOnHand(shortSword);
 
         Armor lightArmor = new Armor("Light Armor", 1, 1);
         setArmorOnCharacter(lightArmor);
 
         //setHP
-        this.setHp(calculateHp(strength,vitality,intelligence), getArmorOnCharacter().getExtraHp(),strength,vitality,intelligence);
+        this.setHp(calculateHp(strength,vitality,intelligence) + getArmorOnCharacter().getExtraHp(), getArmorOnCharacter().getExtraHp(),strength,vitality,intelligence);
         //SetRace
         setRace("Fighter");
 
@@ -49,7 +49,7 @@ public  class  Fighter extends Character{
         }
 
         System.out.println();
-        System.out.println("Fighter wields " + getWeaponHoldingOnHand() + ",  wears " + getArmorOnCharacter());
+        System.out.println("Fighter wields " + getWeaponHoldingOnHand().getName() + ",  wears " + getArmorOnCharacter().getName());
         System.out.println();
 
         System.out.println("--------------------------------------------------------");

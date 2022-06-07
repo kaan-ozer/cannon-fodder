@@ -21,7 +21,7 @@ public class Wand extends Weapon implements IWeaponDamage,IWeaponSkills,ICalcula
 
         double attackDamage = getValue() * character.getIntelligence();// wand damage will calculate based on intelligence
 
-        return attackDamage;
+        return Math.round(attackDamage);
     }
 
 

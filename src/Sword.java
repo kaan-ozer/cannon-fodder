@@ -15,7 +15,7 @@ public class Sword extends Weapon implements IWeaponDamage,IWeaponSkills,ICalcul
     public int calculateSpecialPower(Character character) {
         SecureRandom random = new SecureRandom();
 
-        int specialPower = (1 + random.nextInt(6)) * (int)character.getStrength();
+        int specialPower = (1 + random.nextInt(3)) * (int)character.getStrength();
 
         return specialPower;
     }
@@ -23,7 +23,7 @@ public class Sword extends Weapon implements IWeaponDamage,IWeaponSkills,ICalcul
     public double calculateAttackDamage(Character character) {
 
         double attackDamage = getValue() * character.getStrength();
-        return attackDamage;
+        return Math.round(attackDamage);
     }
 
     //it must be inside of the interface because ve write calculate damage different for each class.
