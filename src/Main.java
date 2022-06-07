@@ -1002,29 +1002,60 @@ public class Main {
             }
         }
 
+        System.out.println();
+        System.out.println("Please, Enter your name to save your score: ");
+
+        scanner.nextLine();
+
+        String userName = null;
+        String[] names = null;
+
+        while (true) {
+            userName = scanner.nextLine();
+
+            names = userName.split(" ");
+
+            if (names.length >= 3) {
+                System.out.println();
+                System.out.println("Your name cannot be long then two sentences.");
+                System.out.println();
+                continue;
+            }
+            else
+                break;
+        }
+
+        String saveTheName = "Name of the user: " + names[0] + "\n";
+
+        if (names.length == 2)
+            saveTheName += "Last name of the user: " + names[1].toUpperCase() + "\n";
+
+        saveTheName += "Score: " + Main.point + "\n";
+        saveTheName += "-------------------" + "\n";
+
 
         FileOutputStream fos = null;
-        //File file =  new File("dosya.txt");
+
         try {
-            fos = new FileOutputStream("dosya.txt",true);
+            fos = new FileOutputStream("file.txt",true);
 
-            //byte[] array = {101,75,66,68};
-            String s = "Your score is : " + point + " ";
 
-            byte[] s_array = s.getBytes();
+            byte[] s_array = saveTheName.getBytes();
 
 
             fos.write(s_array);
 
 
+        }
 
-
-
-        } catch (FileNotFoundException ex) {
+        catch (FileNotFoundException ex) {
             System.out.println("File Not found exception....");
-        } catch (IOException ex) {
+        }
+
+        catch (IOException ex) {
             System.out.println("an error occured while the file is being writed...");
         }
+
         finally{
 
             try {

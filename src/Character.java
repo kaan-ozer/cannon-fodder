@@ -16,6 +16,7 @@ public abstract class Character {
     private Armor armorOnCharacter;
     private boolean isItAlive;
     private String race;
+
     // each character has an inventory which holds items
     private ArrayList<Item> inventory;
 
