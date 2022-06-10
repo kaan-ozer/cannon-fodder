@@ -770,7 +770,22 @@ public class Main {
                             System.out.println();
 
 
-                            int input = scanner.nextInt();
+                            int input = 0;
+
+                            try {
+                                System.out.println("Please choose the process:");
+                                input = scanner.nextInt();
+                                System.out.println();
+                            }
+                            catch (InputMismatchException e) {
+                                scanner.nextLine();
+                                System.out.println();
+                                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                System.out.println("Please don't try to crash my program and enter integer :)");
+                                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                System.out.println();
+                                continue;
+                            }
 
                             boolean isThereAnyItem = false;
 
