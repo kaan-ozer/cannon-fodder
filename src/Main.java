@@ -333,6 +333,11 @@ public class Main {
                                 index = particularEnemyTableIndex - 1;
                                 //we need try catch here to catch the boundOfexception
 
+                                if(enemies.get(index).isItAlive() == false) {
+                                    System.out.println("there is nobody there...");
+                                    continue;
+                                }
+
 
                                 // you are attacking that enemy. - k
                                 System.out.println("----------------------------------");
