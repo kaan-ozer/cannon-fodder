@@ -734,15 +734,17 @@ public class Main {
 
 
 
-                                    else {
-                                        System.out.println();
-                                        System.out.println("--------------------------------------");
-                                        System.out.println("There is no item in your inventory");
-                                        System.out.println("--------------------------------------");
-                                        System.out.println();
-                                        continue;
-                                    }
 
+
+                                }
+
+                                else {
+                                    System.out.println();
+                                    System.out.println("--------------------------------------");
+                                    System.out.println("There is no item in your inventory");
+                                    System.out.println("--------------------------------------");
+                                    System.out.println();
+                                    continue;
                                 }
                             }
                             else if (input == 5) {
@@ -1123,7 +1125,8 @@ public class Main {
                                             particularItemTableIndex = scanner.nextInt();
                                             System.out.println();
                                             break;
-                                        } catch (InputMismatchException e) {
+                                        }
+                                        catch (InputMismatchException e) {
                                             scanner.nextLine();
                                             System.out.println();
                                             System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -1173,15 +1176,15 @@ public class Main {
 
 
 
-                                    else {
-                                        System.out.println();
-                                        System.out.println("--------------------------------------");
-                                        System.out.println("There is no item in your inventory");
-                                        System.out.println("--------------------------------------");
-                                        System.out.println();
-                                        continue;
-                                    }
+                                }
 
+                                else {
+                                    System.out.println();
+                                    System.out.println("--------------------------------------");
+                                    System.out.println("There is no item in your inventory");
+                                    System.out.println("--------------------------------------");
+                                    System.out.println();
+                                    continue;
                                 }
                             }
                             else if (input == 5) {

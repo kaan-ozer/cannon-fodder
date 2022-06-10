@@ -119,7 +119,7 @@ public class Tank extends Character {
 
 
         }
-        
+
         int index = decision -1;
 
         if(getInventory().get(index) instanceof Weapon) {
