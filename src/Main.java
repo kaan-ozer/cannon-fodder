@@ -336,9 +336,20 @@ public class Main {
 
 
                             try {
-                                System.out.println("Please choose the enemy which you want to attack:");
-                                particularEnemyTableIndex = scanner.nextInt();
-                                System.out.println();
+                                try {
+                                    System.out.println("Please choose the enemy which you want to attack:");
+                                    particularEnemyTableIndex = scanner.nextInt();
+                                    System.out.println();
+                                }
+                                catch (InputMismatchException e) {
+                                    scanner.nextLine();
+                                    System.out.println();
+                                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                    System.out.println("Please don't try to crash my program and enter integer :)");
+                                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                    System.out.println();
+                                    continue;
+                                }
 
 
                                 // you choose the enemy's index from table but in the background arrays start from 0 that is why I decrease 1 to obtain real index. -k
@@ -467,13 +478,32 @@ public class Main {
                                 }
 
 
-                                //it'll print out the all items on the ground - k
-                                showAllDroppedItems(droppedItems);
 
-                                // I choose the item from the table
-                                System.out.println("Please pick the item ");
-                                int particularItemTableIndex = scanner.nextInt();
-                                System.out.println();
+                                int particularItemTableIndex = 0;
+
+                             while(true) {
+
+
+                                 //it'll print out the all items on the ground - k
+                                 showAllDroppedItems(droppedItems);
+
+                                 // I choose the item from the table
+
+                                 try {
+                                     System.out.println("Please pick the item ");
+                                     particularItemTableIndex = scanner.nextInt();
+                                     System.out.println();
+                                     break;
+                                 } catch (InputMismatchException e) {
+                                     scanner.nextLine();
+                                     System.out.println();
+                                     System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                     System.out.println("Please don't try to crash my program and enter integer :)");
+                                     System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                     System.out.println();
+                                     continue;
+                                 }
+                             }
 
                                 int itemIndex = particularItemTableIndex - 1;
 
@@ -509,13 +539,32 @@ public class Main {
                                     continue;
                                 }
 
-                                //it'll print out the all items on the ground - k
-                                showAllDroppedItems(droppedItems);
 
-                                // I choose the item from the table
-                                System.out.println("Please choose the item ");
-                                int particularItemTableIndex = scanner.nextInt();
-                                System.out.println();
+                                int particularItemTableIndex = 0;
+
+                                while(true) {
+
+
+                                    //it'll print out the all items on the ground - k
+                                    showAllDroppedItems(droppedItems);
+
+                                    // I choose the item from the table
+
+                                    try {
+                                        System.out.println("Please choose the item ");
+                                        particularItemTableIndex = scanner.nextInt();
+                                        System.out.println();
+                                        break;
+                                    } catch (InputMismatchException e) {
+                                        scanner.nextLine();
+                                        System.out.println();
+                                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                        System.out.println("Please don't try to crash my program and enter integer :)");
+                                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                        System.out.println();
+                                        continue;
+                                    }
+                                }
 
                                 int itemIndex = particularItemTableIndex - 1;
 
@@ -577,14 +626,32 @@ public class Main {
                                     continue;
                                 }
 
-                                //it'll print out the all items on the ground - k
-                                showAllDroppedItems(droppedItems);
 
-                                // I choose the item from the table
-                                System.out.println("Please choose the item ");
-                                int particularItemTableIndex = scanner.nextInt();
-                                System.out.println();
+                                int particularItemTableIndex = 0;
 
+                                while(true) {
+
+
+                                    //it'll print out the all items on the ground - k
+                                    showAllDroppedItems(droppedItems);
+
+                                    // I choose the item from the table
+
+                                    try {
+                                        System.out.println("Please choose the item ");
+                                        particularItemTableIndex = scanner.nextInt();
+                                        System.out.println();
+                                        break;
+                                    } catch (InputMismatchException e) {
+                                        scanner.nextLine();
+                                        System.out.println();
+                                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                        System.out.println("Please don't try to crash my program and enter integer :)");
+                                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                        System.out.println();
+                                        continue;
+                                    }
+                                }
                                 int itemIndex = particularItemTableIndex - 1;
 
                                 if (droppedItems.get(itemIndex).isItTaken == false) {
@@ -601,11 +668,33 @@ public class Main {
                             else if (input == 4) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
-                                    characters.get(characterIndex).listInventory();
 
-                                    System.out.println("Please pick the item ");
-                                    int particularItemTableIndex = scanner.nextInt();
-                                    System.out.println();
+                                    int particularItemTableIndex = 0;
+
+                                    while(true) {
+
+
+                                        //it'll print out the all items on the ground - k
+                                        characters.get(characterIndex).listInventory();
+
+                                        // I choose the item from the table
+
+                                        try {
+                                            System.out.println("Please pick the item ");
+                                            particularItemTableIndex = scanner.nextInt();
+                                            System.out.println();
+                                            break;
+                                        } catch (InputMismatchException e) {
+                                            scanner.nextLine();
+                                            System.out.println();
+                                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                            System.out.println("Please don't try to crash my program and enter integer :)");
+                                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                            System.out.println();
+                                            continue;
+                                        }
+                                    }
+
 
                                     int itemIndex = particularItemTableIndex - 1;
 
@@ -674,11 +763,33 @@ public class Main {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
 
-                                    characters.get(characterIndex).listInventory();
 
-                                    System.out.println("Please pick the item ");
-                                    int particularItemTableIndex = scanner.nextInt();
-                                    System.out.println();
+                                    int particularItemTableIndex = 0;
+
+                                    while(true) {
+
+
+                                        //it'll print out the all items on the ground - k
+                                        characters.get(characterIndex).listInventory();
+
+                                        // I choose the item from the table
+
+                                        try {
+                                            System.out.println("Please pick the item ");
+                                            particularItemTableIndex = scanner.nextInt();
+                                            System.out.println();
+                                            break;
+                                        } catch (InputMismatchException e) {
+                                            scanner.nextLine();
+                                            System.out.println();
+                                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                            System.out.println("Please don't try to crash my program and enter integer :)");
+                                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                            System.out.println();
+                                            continue;
+                                        }
+                                    }
+
 
                                     int itemIndex = particularItemTableIndex - 1;
 
@@ -810,13 +921,31 @@ public class Main {
                                 }
 
 
-                                //it'll print out the all items on the ground - k
-                                showAllDroppedItems(droppedItems);
+                                int particularItemTableIndex = 0;
 
-                                // I choose the item from the table
-                                System.out.println("Please pick the item ");
-                                int particularItemTableIndex = scanner.nextInt();
-                                System.out.println();
+                                while(true) {
+
+
+                                    //it'll print out the all items on the ground - k
+                                    showAllDroppedItems(droppedItems);
+
+                                    // I choose the item from the table
+
+                                    try {
+                                        System.out.println("Please choose the item ");
+                                        particularItemTableIndex = scanner.nextInt();
+                                        System.out.println();
+                                        break;
+                                    } catch (InputMismatchException e) {
+                                        scanner.nextLine();
+                                        System.out.println();
+                                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                        System.out.println("Please don't try to crash my program and enter integer :)");
+                                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                        System.out.println();
+                                        continue;
+                                    }
+                                }
 
                                 int itemIndex = particularItemTableIndex - 1;
 
@@ -848,13 +977,32 @@ public class Main {
                                     continue;
                                 }
 
-                                //it'll print out the all items on the ground - k
-                                showAllDroppedItems(droppedItems);
 
-                                // I choose the item from the table
-                                System.out.println("Please choose the item ");
-                                int particularItemTableIndex = scanner.nextInt();
-                                System.out.println();
+                                int particularItemTableIndex = 0;
+
+                                while(true) {
+
+
+                                    //it'll print out the all items on the ground - k
+                                    showAllDroppedItems(droppedItems);
+
+                                    // I choose the item from the table
+
+                                    try {
+                                        System.out.println("Please choose the item ");
+                                        particularItemTableIndex = scanner.nextInt();
+                                        System.out.println();
+                                        break;
+                                    } catch (InputMismatchException e) {
+                                        scanner.nextLine();
+                                        System.out.println();
+                                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                        System.out.println("Please don't try to crash my program and enter integer :)");
+                                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                        System.out.println();
+                                        continue;
+                                    }
+                                }
 
                                 int itemIndex = particularItemTableIndex - 1;
 
@@ -916,13 +1064,32 @@ public class Main {
                                     continue;
                                 }
 
-                                //it'll print out the all items on the ground - k
-                                showAllDroppedItems(droppedItems);
 
-                                // I choose the item from the table
-                                System.out.println("Please choose the item ");
-                                int particularItemTableIndex = scanner.nextInt();
-                                System.out.println();
+                                int particularItemTableIndex = 0;
+
+                                while(true) {
+
+
+                                    //it'll print out the all items on the ground - k
+                                    showAllDroppedItems(droppedItems);
+
+                                    // I choose the item from the table
+
+                                    try {
+                                        System.out.println("Please choose the item ");
+                                        particularItemTableIndex = scanner.nextInt();
+                                        System.out.println();
+                                        break;
+                                    } catch (InputMismatchException e) {
+                                        scanner.nextLine();
+                                        System.out.println();
+                                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                        System.out.println("Please don't try to crash my program and enter integer :)");
+                                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                        System.out.println();
+                                        continue;
+                                    }
+                                }
 
                                 int itemIndex = particularItemTableIndex - 1;
 
@@ -940,11 +1107,33 @@ public class Main {
                             else if (input == 4) {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
-                                    characters.get(characterIndex).listInventory();
 
-                                    System.out.println("Please pick the item ");
-                                    int particularItemTableIndex = scanner.nextInt();
-                                    System.out.println();
+                                    int particularItemTableIndex = 0;
+
+                                    while(true) {
+
+
+                                        //it'll print out the all items on the ground - k
+                                        characters.get(characterIndex).listInventory();
+
+                                        // I choose the item from the table
+
+                                        try {
+                                            System.out.println("Please pick the item ");
+                                            particularItemTableIndex = scanner.nextInt();
+                                            System.out.println();
+                                            break;
+                                        } catch (InputMismatchException e) {
+                                            scanner.nextLine();
+                                            System.out.println();
+                                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                            System.out.println("Please don't try to crash my program and enter integer :)");
+                                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                            System.out.println();
+                                            continue;
+                                        }
+                                    }
+
 
                                     int itemIndex = particularItemTableIndex - 1;
 
@@ -1013,11 +1202,43 @@ public class Main {
 
                                 if (characters.get(characterIndex).getInventory().size() != 0) {
 
-                                    characters.get(characterIndex).listInventory();
 
-                                    System.out.println("Please pick the item ");
-                                    int particularItemTableIndex = scanner.nextInt();
-                                    System.out.println();
+
+                                    int particularItemTableIndex = 0;
+
+                                    while(true) {
+
+
+                                        //it'll print out the all items on the ground - k
+                                        characters.get(characterIndex).listInventory();
+
+                                        // I choose the item from the table
+
+                                        try {
+                                            System.out.println("Please pick the item ");
+                                            particularItemTableIndex = scanner.nextInt();
+                                            System.out.println();
+                                            break;
+                                        } catch (InputMismatchException e) {
+                                            scanner.nextLine();
+                                            System.out.println();
+                                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                            System.out.println("Please don't try to crash my program and enter integer :)");
+                                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                            System.out.println();
+                                            continue;
+                                        }
+                                    }
+
+
+
+
+
+
+
+
+
+
 
                                     int itemIndex = particularItemTableIndex - 1;
 
@@ -1070,11 +1291,33 @@ public class Main {
                 else if (process == 5) {
 
                     if (characters.get(characterIndex).getInventory().size() != 0) {
-                        characters.get(characterIndex).listInventory();
 
-                        System.out.println("Please pick the item ");
-                        int particularItemTableIndex = scanner.nextInt();
-                        System.out.println();
+                        int particularItemTableIndex = 0;
+
+                        while(true) {
+
+
+                            //it'll print out the all items on the ground - k
+                            characters.get(characterIndex).listInventory();
+
+                            // I choose the item from the table
+
+                            try {
+                                System.out.println("Please pick the item ");
+                                particularItemTableIndex = scanner.nextInt();
+                                System.out.println();
+                                break;
+                            } catch (InputMismatchException e) {
+                                scanner.nextLine();
+                                System.out.println();
+                                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                System.out.println("Please don't try to crash my program and enter integer :)");
+                                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                System.out.println();
+                                continue;
+                            }
+                        }
+
 
                         int itemIndex = particularItemTableIndex - 1;
 
