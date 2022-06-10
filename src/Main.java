@@ -1364,7 +1364,7 @@ public class Main {
 
             if (names.length >= 3) {
                 System.out.println();
-                System.out.println("Your name cannot be long then two sentences.");
+                System.out.println("Your name cannot be longer then two sentences.");
                 System.out.println();
                 continue;
             }

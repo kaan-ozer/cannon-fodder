@@ -85,6 +85,8 @@ public  class  Fighter extends Character{
         //Character cannot carry much more than itself's strength
         if (updatedWeightInInventory < getStrength()) {
             getInventory().add(item);
+            System.out.println();
+            System.out.println("-----------------------------------------------");
             System.out.println(item.getName() + " has been added to Fighter's inventory");
         }
 
@@ -92,6 +94,8 @@ public  class  Fighter extends Character{
 
             System.out.println("the current weight of the inventory for the fighter is: " + calculateYourInventoryWeight());
             System.out.println("Fighter cannot carry much more than " + getStrength() + " as total value." );
+            System.out.println("-----------------------------------------------");
+            System.out.println();
         }
 
     }

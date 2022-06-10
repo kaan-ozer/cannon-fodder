@@ -1,5 +1,6 @@
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Wand extends Weapon implements IWeaponDamage,IWeaponSkills,ICalculateSpecialPower  {
 
@@ -73,7 +74,21 @@ public class Wand extends Weapon implements IWeaponDamage,IWeaponSkills,ICalcula
             System.out.println();
             System.out.println("Choose the character who will be healed: ");
 
-            int decision = scanner.nextInt();
+            int decision =0;
+
+            try {
+             decision = scanner.nextInt();
+            }
+            catch (InputMismatchException e) {
+                scanner.nextLine();
+                System.out.println();
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                System.out.println("Please don't try to crash my program and enter integer :)");
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                System.out.println();
+                continue;
+            }
+
             int index = decision-1;
 
             double healPower =  calculateSpecialPower(chosenCharacter);

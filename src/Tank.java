@@ -76,6 +76,8 @@ public class Tank extends Character {
         //Character cannot carry much more than itself's strength
         if (updatedWeightInInventory < getStrength()) {
             getInventory().add(weapon);
+            System.out.println();
+            System.out.println("-----------------------------------------------");
             System.out.println(weapon.getName() + " has been added to Tank's inventory");
         }
 
@@ -83,6 +85,8 @@ public class Tank extends Character {
 
             System.out.println("the current weight of the inventory for the Tank is: " + calculateYourInventoryWeight());
             System.out.println("Tank cannot carry much more than " + getStrength() + " as total value." );
+            System.out.println("-----------------------------------------------");
+            System.out.println();
         }
 
     }
