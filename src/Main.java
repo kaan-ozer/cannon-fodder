@@ -274,9 +274,21 @@ public class Main {
                 System.out.println(menu2);
                 System.out.println("----------------------------------------");
 
-                System.out.println("Please choose the process:");
-                int process = scanner.nextInt();
-                System.out.println();
+                int process = 0;
+                try {
+                    System.out.println("Please choose the process:");
+                     process = scanner.nextInt();
+                    System.out.println();
+                }
+                catch (InputMismatchException e) {
+                    scanner.nextLine();
+                    System.out.println();
+                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    System.out.println("Please don't try to crash my program and enter integer :)");
+                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    System.out.println();
+                    continue;
+                }
 
                 int particularEnemyTableIndex = 0; ///I put it outside of if  because  I need it fpr special action body
 
@@ -414,8 +426,23 @@ public class Main {
                             System.out.println(menu3);
                             System.out.println("*********************************");
                             System.out.println();
+                            int input = 0;
 
-                            int input = scanner.nextInt();
+                            try {
+                                System.out.println("Please choose the process:");
+                                 input = scanner.nextInt();
+                                System.out.println();
+                            }
+                            catch (InputMismatchException e) {
+                                scanner.nextLine();
+                                System.out.println();
+                                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                System.out.println("Please don't try to crash my program and enter integer :)");
+                                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                System.out.println();
+                                continue;
+                            }
+
 
                             boolean isThereAnyItem = false;
 
@@ -743,7 +770,22 @@ public class Main {
                             System.out.println();
 
 
-                            int input = scanner.nextInt();
+                            int input = 0;
+
+                            try {
+                                System.out.println("Please choose the process:");
+                                input = scanner.nextInt();
+                                System.out.println();
+                            }
+                            catch (InputMismatchException e) {
+                                scanner.nextLine();
+                                System.out.println();
+                                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                System.out.println("Please don't try to crash my program and enter integer :)");
+                                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                System.out.println();
+                                continue;
+                            }
 
                             boolean isThereAnyItem = false;
 
@@ -1155,17 +1197,41 @@ public class Main {
             System.out.println(actionMenu);
             System.out.println();
 
-            System.out.println("Choose the character which you want to play:");
-            int characterDecision = scanner.nextInt();
-            int characterIndex = characterDecision - 1;
 
-            if (!characters.get(characterIndex).isItAlive()) {
-                System.out.println("You cannot choose that character because he is already dead...");
-                continue;
-            } else {
-                System.out.println();
-                return characterIndex;
-            }
+                System.out.println("Choose the character which you want to play:");
+
+                int characterDecision = 0;
+                try {
+                    characterDecision = scanner.nextInt();
+
+                } catch (InputMismatchException e) {
+                    scanner.nextLine();
+                    System.out.println();
+                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    System.out.println("Please don't try to crash my program and enter integer :)");
+                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    System.out.println();
+                    continue;
+                }
+
+                int characterIndex = characterDecision - 1;
+
+                if (!characters.get(characterIndex).isItAlive()) {
+                    System.out.println("You cannot choose that character because he is already dead...");
+                    continue;
+                }
+
+                else {
+                    System.out.println();
+                    return characterIndex;
+                }
+
+
+
+
+
+
+
         }
     }
 
