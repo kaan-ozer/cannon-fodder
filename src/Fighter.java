@@ -1,4 +1,5 @@
 import java.security.SecureRandom;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public  class  Fighter extends Character{
@@ -104,10 +105,29 @@ public  class  Fighter extends Character{
 
         Scanner scanner = new Scanner(System.in);
 
-        listInventory();
+        int decision = 0;
 
-        System.out.println("Please choose the item via numbers");
-        int decision = scanner.nextInt();
+        while (true) {
+
+            listInventory();
+            try {
+                System.out.println("Please choose the item via numbers");
+                decision = scanner.nextInt();
+                System.out.println();
+                break;
+
+            } catch (InputMismatchException e) {
+                scanner.nextLine();
+                System.out.println();
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                System.out.println("Please don't try to crash my program and enter integer :)");
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                System.out.println();
+                continue;
+            }
+
+
+        }
         int index = decision -1;
 
         if(getInventory().get(index) instanceof Weapon) {
