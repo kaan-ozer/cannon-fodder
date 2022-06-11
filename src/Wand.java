@@ -12,7 +12,7 @@ public class Wand extends Weapon implements IWeaponDamage,IWeaponSkills,ICalcula
     public int calculateSpecialPower(Character character) {
         SecureRandom random = new SecureRandom();
 
-        int specialPower = (1 + random.nextInt(3)) + (int)character.getIntelligence();
+        int specialPower = (1 + random.nextInt(3)) + Math.round((int)character.getIntelligence()/2);
 
         return specialPower;
     }
@@ -94,7 +94,11 @@ public class Wand extends Weapon implements IWeaponDamage,IWeaponSkills,ICalcula
             double healPower =  calculateSpecialPower(chosenCharacter);
 
             if (characters.get(index).isItAlive() == false) {
+                System.out.println();
+                System.out.println("------------------------------------------");
                 System.out.println("Chosen character is dead, you should choose another character");
+                System.out.println("------------------------------------------");
+                System.out.println();
                 continue;
             }
 
@@ -107,7 +111,9 @@ public class Wand extends Weapon implements IWeaponDamage,IWeaponSkills,ICalcula
                     System.out.println("------------------------------------");
                     System.out.println("healer is healing the herself/himself....");
 
-                    characters.get(1).setHp(healPower,characters.get(1).getStrength(),0,characters.get(1).getVitality(),characters.get(1).getIntelligence());
+
+                    characters.get(1).setHp(healPower + characters.get(1).getHp(),characters.get(1).getArmorOnCharacter().getExtraHp(),0,characters.get(1).getVitality(),characters.get(1).getIntelligence());
+
 
                     System.out.println("New hp for the " + characters.get(index).getRace() + " is :" + characters.get(index).getHp());
                     System.out.println("------------------------------------");
@@ -125,7 +131,7 @@ public class Wand extends Weapon implements IWeaponDamage,IWeaponSkills,ICalcula
                     System.out.println("------------------------------------");
                     System.out.println("healer is healing the " + characters.get(index).getRace() + " .....");
 
-                    characters.get(index).setHp(healPower,0,characters.get(index).getStrength(),characters.get(index).getVitality(),characters.get(index).getIntelligence());
+                    characters.get(index).setHp(healPower + characters.get(index).getHp(),characters.get(index).getArmorOnCharacter().getExtraHp(),characters.get(index).getStrength(),characters.get(index).getVitality(),characters.get(index).getIntelligence());
 
                     System.out.println("New hp for the " + characters.get(index).getRace() + " is :" + characters.get(index).getHp());
                     System.out.println("------------------------------------");

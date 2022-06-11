@@ -96,15 +96,15 @@ public class Enemy extends Character{
             return towerShield;
         }
         else if(number > 225 &&  number <= 275) {
-            Armor lightarmor = new Armor("Light Armor" , 1 ,1);
-            return lightarmor;
+            Armor chainArmor = new Armor("chainArmor" , 1 ,2);
+            return chainArmor;
         }
         else if(number > 275 &&  number <= 325) {
-            Armor medium_armor = new Armor("Medium Armor" , 2 ,2);
+            Armor medium_armor = new Armor("Medium Armor" , 2 ,3);
             return medium_armor;
         }
         else if(number > 325 &&  number <= 375) {
-            Armor HeavyArmor = new Armor("Heavy Armor" , 3 ,3);
+            Armor HeavyArmor = new Armor("Heavy Armor" , 3 ,4);
             return HeavyArmor;
         }
 
