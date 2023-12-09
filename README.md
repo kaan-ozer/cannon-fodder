@@ -1,4 +1,4 @@
-<img src="./logo.png" alt="ieu logo" width="250" height="250" > 
+<img src="./logo.png" alt="ieu logo" width="225" height="225" > 
 
  
 ###  Cannon Fodder
